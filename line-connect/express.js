@@ -37,8 +37,7 @@ app.post('/api/auth', async (req, res) => {
             headers: { 'Authorization': `Bearer ${line.data.access_token}` }
         })
         
-        const lineProfile = profile.data;
-        console.log(lineProfile)
+        const lineProfile = { ...profile.data, accessToken: line.data.access_token };
         return res.json(lineProfile)
     } catch (error) {
         console.log(error)
