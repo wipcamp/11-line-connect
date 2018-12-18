@@ -12,25 +12,26 @@ const responseFacebook = async (res) => {
       code: `${url.get('code')}`,
     },
   }).catch(err => {
-      console.log(err)
+    console.log(err)
   })
-
+  const line = response.data
+  const facebook = res
   console.log('line, ', response.data)
   console.log('facebook', res)
 
-  // await axios({
-  //   method: 'post',
-  //   url: 'http://localhost:8000/api/loginfacebook',
-  //   data: {
-  //     response: `${response}`,
-  //     userId: `${cookie.get('userId')}`
-  //   },
-  // })
-  // if(){
-  //   window.location('wip.camp/register') //go to success
-  // }else{
-  //   window.location('wip.camp/register') //go to register
-  // }
+  const responseAllowline = await axios({
+    method: 'post',
+    url: 'http://localhost:8000/api/auth/connect',
+    data: {
+        provider_fb: facebook.userID,
+        accessTokenFB: facebook.accessToken,
+        provider_line: line.userId,
+        accessTokenLine: line.accessToken
+    }
+  })
+  if (responseAllowline){
+    window.location.href = 'https://www.google.com'
+  }
 }
 
 
