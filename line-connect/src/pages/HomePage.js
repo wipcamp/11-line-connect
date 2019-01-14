@@ -15,29 +15,35 @@ const responseFacebook = async (res) => {
   })
   const line = response.data
   const facebook = res
-  console.log('line, ', response.data)
-  console.log('facebook', res)
-
+  
   const responseAllowline = await axios({
     method: 'post',
     url: 'http://localhost:8000/api/auth/connect',
     data: {
-        provider_fb: facebook.userID,
-        accessTokenFB: facebook.accessToken,
-        provider_line: line.userId,
-        accessTokenLine: line.accessToken
+      provider_fb: facebook.userID,
+      accessTokenFB: facebook.accessToken,
+      provider_line: line.userId,
+      accessTokenLine: line.accessToken
     }
   })
-  console.log(responseAllowline.data.error)
-  if(responseAllowline.data.error==='Invalid Line Account' || responseAllowline.data.error==='Invalid Facebook Account'){
-    window.location.href = 'https://localhost:3000/status/errortoken'
-  }else if(responseAllowline.data.error==='Please Register By Facebook Account Before Connect With Line'){
-    window.location.href = 'https://localhost:3000/status/errornotregister'
-  }else if(responseAllowline.data.error==='You already connect'){
-    window.location.href = 'https://localhost:3000/status/connected'
-  }else{
-    window.location.href = 'https://localhost:3000/status/success'
-  }
+  console.log('line, ', line)
+  console.log('facebook', facebook)
+  console.log('respons',responseAllowline.data)
+
+  setInterval(()=>{
+    if(responseAllowline.data.error&&line&&facebook){
+      window.close()
+        }
+  },3000)
+  // if(responseAllowline.data.error==='Invalid Line Account' || responseAllowline.data.error==='Invalid Facebook Account'){
+  //   window.location.href = 'https://localhost:3000/status/errortoken'
+  // }else if(responseAllowline.data.error==='Please Register By Facebook Account Before Connect With Line'){
+  //   window.location.href = 'https://localhost:3000/status/errornotregister'
+  // }else if(responseAllowline.data.error==='You already connect'){
+  //   window.location.href = 'https://localhost:3000/status/connected'
+  // }else{
+  //   window.location.href = 'https://localhost:3000/status/success'
+  // }
 }
 
 

@@ -5,13 +5,13 @@ const Box = styled.div`
     background-color: yellow;
 `
 
-const Close = () => {
-    window.close();
-}
 class Error extends Component {
+    Close = () => {
+        window.close();
+    }
     componentDidMount() {
         setTimeout(function () {
-            window.close();
+            window.this.Close();
         }, 5000)
     }
     render() {

@@ -6,6 +6,7 @@ const Box = styled.div`
 `
 
 class Home extends Component {
+
   render() {
     return (
       <Box>

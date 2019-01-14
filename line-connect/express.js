@@ -6,6 +6,7 @@ const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser')
 const cookie = require('js-cookie')
+const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json())
 app.use(cors())
@@ -24,8 +25,8 @@ app.post('/api/auth', async (req, res) => {
                 grant_type: 'authorization_code',
                 code: `${req.body.code}`,
                 redirect_uri: 'https://localhost:3000',
-                client_id: '1632037404',
-                client_secret: 'bb4295842fe2321e03cc88c10a9b5a5c'
+                client_id: '1638650000',
+                client_secret: '782fe647bb3279f92f1c16e1d12f4d67'
             }),
         }).catch(err => {
             console.log(err)
@@ -55,6 +56,7 @@ app.post('/api/loginfacebook', (req, res) => {
         }),
     })
         .then(res => {
+            console.log(res)
 
         }).catch(err => {
             console.log(err)
@@ -66,7 +68,6 @@ app.post('/api/loginfacebook', (req, res) => {
 //     res.sendFile(path.join(__dirname + '/public/index.html'));
 // });
 
-const port = process.env.PORT || 5000;
 app.listen(port);
 
 console.log('App is listening on port ' + port);
