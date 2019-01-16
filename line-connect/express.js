@@ -5,7 +5,6 @@ const qs = require('qs');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser')
-const cookie = require('js-cookie')
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json())
@@ -37,7 +36,6 @@ app.post('/api/auth', async (req, res) => {
             withCredentials: true,
             headers: { 'Authorization': `Bearer ${line.data.access_token}` }
         })
-        
         const lineProfile = { ...profile.data, accessToken: line.data.access_token };
         return res.json(lineProfile)
     } catch (error) {
@@ -63,6 +61,9 @@ app.post('/api/loginfacebook', (req, res) => {
         })
 });
 
+app.post('/api/test',(req,res)=>{
+console.log('asdasdasdasdasd')
+})
 // Handles any requests that don't match the ones above
 // app.get('*', (req, res) => {
 //     res.sendFile(path.join(__dirname + '/public/index.html'));

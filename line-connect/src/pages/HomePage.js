@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+import Cookie from 'js-cookie'
 
 const responseFacebook = async (res) => {
   const url = new URLSearchParams(window.location.search)
@@ -15,7 +16,7 @@ const responseFacebook = async (res) => {
   })
   const line = response.data
   const facebook = res
-  
+
   const responseAllowline = await axios({
     method: 'post',
     url: 'http://localhost:8000/api/auth/connect',
@@ -28,13 +29,21 @@ const responseFacebook = async (res) => {
   })
   console.log('line, ', line)
   console.log('facebook', facebook)
-  console.log('respons',responseAllowline.data)
+  console.log('respons',responseAllowline.data.status)
 
-  setInterval(()=>{
-    if(responseAllowline.data.error&&line&&facebook){
-      window.close()
-        }
-  },3000)
+  const sendLine={
+    provider_id:line.userId,
+    provider_name:'line',
+    accessToken:line.accessToken,
+  }
+
+  if (await responseAllowline.data.status){
+   let statuslogin = await axios.post('http://localhost:8000/api/auth/login',sendLine)
+  console.log(statuslogin)
+
+  }
+
+  
   // if(responseAllowline.data.error==='Invalid Line Account' || responseAllowline.data.error==='Invalid Facebook Account'){
   //   window.location.href = 'https://localhost:3000/status/errortoken'
   // }else if(responseAllowline.data.error==='Please Register By Facebook Account Before Connect With Line'){
@@ -54,10 +63,14 @@ class Home extends Component {
   }
   componentDidMount = async () => {
   }
+  handleAPi = ()=>{
+    axios.post('https://wipcamp-testbot-joknoi.herokuapp.com/test')
+  }
   render() {
     console.log('render')
     return (
       <div className="App">
+          <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script> 
         <p>{this.state.param}</p>
         <FacebookLogin
           scope="email"
@@ -69,6 +82,10 @@ class Home extends Component {
             <button size="large " block type="primary" onClick={renderProps.onClick}>Login!</button>
           )}
         />
+<div>
+            <button onClick={this.handleAPi}>test</button>
+</div>
+
 
       </div>
     );
