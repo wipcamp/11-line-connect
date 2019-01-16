@@ -19,7 +19,7 @@ const responseFacebook = async (res) => {
 
   const responseAllowline = await axios({
     method: 'post',
-    url: 'http://localhost:8000/api/auth/connect',
+    url: 'http://localhost:8000/api/auth/connect',  
     data: {
       provider_fb: facebook.userID,
       accessTokenFB: facebook.accessToken,
@@ -38,12 +38,21 @@ const responseFacebook = async (res) => {
   }
 
   if (await responseAllowline.data.status){
-   let statuslogin = await axios.post('http://localhost:8000/api/auth/login',sendLine)
-  console.log(statuslogin)
-
+   let JWT = await axios.post('http://localhost:8000/api/auth/login',sendLine)
+  console.log(JWT.data.token)
+Cookie.set('JWT',JWT.data.token)
+  const response = await axios({
+    method: 'post',
+    url: 'http://localhost:5000/api/questions',
+    data: {
+      JWT: Cookie.get('JWT')
+    },
+  }).catch(err => {
+    console.log(err)
+  })
+  console.log(response)
   }
 
-  
   // if(responseAllowline.data.error==='Invalid Line Account' || responseAllowline.data.error==='Invalid Facebook Account'){
   //   window.location.href = 'https://localhost:3000/status/errortoken'
   // }else if(responseAllowline.data.error==='Please Register By Facebook Account Before Connect With Line'){
@@ -62,10 +71,12 @@ class Home extends Component {
     data: {}
   }
   componentDidMount = async () => {
+    
   }
   handleAPi = ()=>{
     axios.post('https://wipcamp-testbot-joknoi.herokuapp.com/test')
   }
+
   render() {
     console.log('render')
     return (

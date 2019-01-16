@@ -5,8 +5,7 @@ const qs = require('qs');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser')
-const port = process.env.PORT || 5000;
-
+const port = process.env.PORT_BE || 5000;
 app.use(bodyParser.json())
 app.use(cors())
 // Serve the static files from the React app
@@ -64,10 +63,21 @@ app.post('/api/loginfacebook', (req, res) => {
 app.post('/api/test',(req,res)=>{
 console.log('asdasdasdasdasd')
 })
-// Handles any requests that don't match the ones above
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname + '/public/index.html'));
-// });
+
+app.post('/api/questions',async (req,res)=>{
+    console.log(req)
+    const getQuestion = await axios ({
+        method: 'get',
+        url: `http://127.0.0.1:8001/api/questions`,
+        headers: {
+            'Authorization': `Bearer ${req.body.JWT}`,
+            'Content-Type': 'application/json'
+          }
+    })
+    let Question = getQuestion.data
+    return res.json(Question)
+    })
+    
 
 app.listen(port);
 
