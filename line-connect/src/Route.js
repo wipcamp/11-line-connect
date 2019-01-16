@@ -6,6 +6,8 @@ import SuccessPage from './pages/SuccessPage'
 import ErrorTokenPage from './pages/ErrorTokenPage'
 import ErrorNotRegisterPage from './pages/ErrorNotRegisterPage'
 import ConnectedPage from './pages/ConnectedPage'
+import SelectQuestion from './pages/ShowQuestions'
+import Question from './pages/Question'
 // import CreateRoom from './components/CreateRoom'
 // import AdminPage from './components/AdminPage'
 // import TimePage from './components/TimePage'
@@ -23,6 +25,8 @@ class Routes extends React.Component {
             <Route path="/status/errortoken" component={ErrorTokenPage} />
             <Route path="/status/errornotregister" component={ErrorNotRegisterPage} />
             <Route path="/status/connected" component={ConnectedPage} />
+            <Route path="/selectquestion" component={SelectQuestion} />
+            <Route path="/question" component={Question} />
             {/* <Route path="/status/errortoken" component={ErrorTokenPage} /> */}
             {/* <Route path="/createroom" component={CreateRoom} />
             <Route path="/adminpage" component={AdminPage} />
