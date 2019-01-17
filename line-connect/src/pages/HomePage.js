@@ -3,6 +3,7 @@ import axios from 'axios';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import Cookie from 'js-cookie'
 import Loging from 'react-page-loading'
+import ReactLoading from 'react-loading';
 
 const responseFacebook = async (res) => {
   const url = new URLSearchParams(window.location.search)
@@ -66,6 +67,9 @@ const responseFacebook = async (res) => {
   // }
 }
 
+const Example = ({ type, color }) => (
+  <ReactLoading type={type} color={color} height={667} width={375} />
+);
 
 class Home extends Component {
   state = {
@@ -101,10 +105,11 @@ class Home extends Component {
           </div>
 
         </div>
-        <Loging loader={"bar"} color={"#A9A9A9"} size={4} duration={1}>
+        {/* <Loging loader={"bar"} color={"#A9A9A9"} size={4} duration={1}>
           <h1>Title</h1>
           <p>content goes here</p>
-        </Loging>
+        </Loging> */}
+        <Example />
 
 
       </div>
