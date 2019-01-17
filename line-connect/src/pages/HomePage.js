@@ -41,6 +41,7 @@ const responseFacebook = async (res) => {
    let JWT = await axios.post('http://localhost:8000/api/auth/login',sendLine)
   console.log(JWT.data.token)
   Cookie.set('JWT',JWT.data.token)
+  }
   // const response = await axios({
   //   method: 'post',
   //   url: 'http://localhost:5000/api/questions',
