@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import Cookie from 'js-cookie'
+import Loging from 'react-page-loading'
 
 const responseFacebook = async (res) => {
   const url = new URLSearchParams(window.location.search)
@@ -19,7 +20,7 @@ const responseFacebook = async (res) => {
 
   const responseAllowline = await axios({
     method: 'post',
-    url: 'http://localhost:8000/api/auth/connect',  
+    url: 'http://localhost:8000/api/auth/connect',
     data: {
       provider_fb: facebook.userID,
       accessTokenFB: facebook.accessToken,
@@ -29,18 +30,18 @@ const responseFacebook = async (res) => {
   })
   console.log('line, ', line)
   console.log('facebook', facebook)
-  console.log('respons',responseAllowline.data.status)
+  console.log('respons', responseAllowline.data.status)
 
-  const sendLine={
-    provider_id:line.userId,
-    provider_name:'line',
-    accessToken:line.accessToken,
+  const sendLine = {
+    provider_id: line.userId,
+    provider_name: 'line',
+    accessToken: line.accessToken,
   }
 
-  if (await responseAllowline.data.status){
-   let JWT = await axios.post('http://localhost:8000/api/auth/login',sendLine)
-  console.log(JWT.data.token)
-  Cookie.set('JWT',JWT.data.token)
+  if (await responseAllowline.data.status) {
+    let JWT = await axios.post('http://localhost:8000/api/auth/login', sendLine)
+    console.log(JWT.data.token)
+    Cookie.set('JWT', JWT.data.token)
   }
   // const response = await axios({
   //   method: 'post',
@@ -72,9 +73,9 @@ class Home extends Component {
     data: {}
   }
   componentDidMount = async () => {
-    
+
   }
-  handleAPi = ()=>{
+  handleAPi = () => {
     axios.post('https://wipcamp-testbot-joknoi.herokuapp.com/test')
   }
 
@@ -82,21 +83,28 @@ class Home extends Component {
     console.log('render')
     return (
       <div className="App">
-          <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script> 
-        <p>{this.state.param}</p>
-        <FacebookLogin
-          scope="email"
+        <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
+        <div style={{display:'none'}}>
+          <p>{this.state.param}</p>
+          <FacebookLogin
+            scope="email"
 
-          fields="name,email,picture,id"
-          appId="293604811359850"
-          callback={responseFacebook}
-          render={renderProps => (
-            <button size="large " block type="primary" onClick={renderProps.onClick}>Login!</button>
-          )}
-        />
-<div>
+            fields="name,email,picture,id"
+            appId="293604811359850"
+            callback={responseFacebook}
+            render={renderProps => (
+              <button size="large " block type="primary" onClick={renderProps.onClick}>Login!</button>
+            )}
+          />
+          <div>
             <button onClick={this.handleAPi}>test</button>
-</div>
+          </div>
+
+        </div>
+        <Loging loader={"bar"} color={"#A9A9A9"} size={4}>
+          <h1>Title</h1>
+          <p>content goes here</p>
+        </Loging>
 
 
       </div>
