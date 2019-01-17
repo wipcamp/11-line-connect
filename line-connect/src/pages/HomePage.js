@@ -101,7 +101,7 @@ class Home extends Component {
           </div>
 
         </div>
-        <Loging loader={"bar"} color={"#A9A9A9"} size={4}>
+        <Loging loader={"bar"} color={"#A9A9A9"} size={4} duration={1}>
           <h1>Title</h1>
           <p>content goes here</p>
         </Loging>
