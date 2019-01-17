@@ -8,30 +8,30 @@ import Cookie from 'js-cookie'
 
 class Question extends Component {
     state = {
-        item: 0,
+        questionid: 0,
         questions: 'dakfisuiofjsiodgjiozdshg',
         answer: 'dgfsdf'
     }
-    componentWillMount = () => {
-        // const questions = await axios({
-        //     method: 'post',
-        //     url: '',
-        //     data: {
-        //         JWT: Cookie.get('JWT')
-        //     }
-        // })
-        // this.setState({ questions: questions })
+    componentWillMount = async() => {
         const url = new URLSearchParams(window.location.search)
-        this.setState({ item: `${url.get('item')}` })
+        this.setState({ questionid: `${url.get('item')}` })
+        const questionsformDB = await axios({
+            method: 'post',
+            url: 'http://localhost:5000/api/question',
+            data: {
+                JWT: Cookie.get('JWT'),
+                questionid:`${url.get('item')}`
+            }
+        })
+        this.setState({ questions: questionsformDB.data.content })
     }
     render() {
-        console.log(this.state.answer.length)
         return (
             <div className='container'>
                 <h1 className='text-center'>Question</h1>
                 <div className='col-12'>
                     <div className='row'>
-                        <p>{this.state.item}. {this.state.questions}</p><br></br>
+                        <p>{this.state.questionid}. {this.state.questions}</p><br></br>
                         <textarea value={this.state.answer} className='col-12' style={{height:'150px'}}></textarea>
                         <div className='col-12 mt-3'>
                             <div className='row float-right'>

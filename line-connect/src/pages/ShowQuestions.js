@@ -7,21 +7,21 @@ import Cookie from 'js-cookie'
 
 class ShowQuestions extends Component {
     state = {
-        questions: [1,2,3,4,5,6],
+        questions: [],
     }
     handleQuestion(props) {
         window.location.href = `/question?item=${props}`
     }
-    // componentDidMount = async () => {
-    //     const questions = await axios({
-    //         method: 'post',
-    //         url: '',
-    //         data: {
-    //             JWT: Cookie.get('JWT')
-    //         }
-    //     })
-    //     this.setState({ questions: questions })
-    // }
+    componentDidMount = async () => {
+        const questionsformDB = await axios({
+            method: 'post',
+            url: 'http://localhost:5000/api/questions',
+            data: {
+                JWT: Cookie.get('JWT')
+            }
+        })
+        this.setState({ questions: questionsformDB.data })
+    }
     render() {
         return (
             <div className='container'>

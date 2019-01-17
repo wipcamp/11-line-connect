@@ -77,7 +77,28 @@ app.post('/api/questions',async (req,res)=>{
     let Question = getQuestion.data
     return res.json(Question)
     })
-    
+
+app.post('/api/question',async (req,res)=>{
+        const getQuestion = await axios ({
+            method: 'get',
+            url: `http://127.0.0.1:8001/api/questions/${req.body.questionid}`,
+            headers: {
+                'Authorization': `Bearer ${req.body.JWT}`,
+                'Content-Type': 'application/json'
+              }
+        })
+        const getAnswer = await axios ({
+            method: 'get',
+            url: `http://127.0.0.1:8001/api/answers/${req.body.questionid}`,
+            headers: {
+                'Authorization': `Bearer ${req.body.JWT}`,
+                'Content-Type': 'application/json'
+              }
+        })
+        const Question = getQuestion.data
+        console.log(getAnswer)
+        return res.json(Question)
+        })
 
 app.listen(port);
 
