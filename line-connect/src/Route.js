@@ -8,12 +8,6 @@ import ErrorNotRegisterPage from './pages/ErrorNotRegisterPage'
 import ConnectedPage from './pages/ConnectedPage'
 import SelectQuestion from './pages/ShowQuestions'
 import Question from './pages/Question'
-// import CreateRoom from './components/CreateRoom'
-// import AdminPage from './components/AdminPage'
-// import TimePage from './components/TimePage'
-const Aaa = () => (
-        <div>sdsd</div>
-)
 
 class Routes extends React.Component {
   render(){
@@ -27,10 +21,6 @@ class Routes extends React.Component {
             <Route path="/status/connected" component={ConnectedPage} />
             <Route path="/selectquestion" component={SelectQuestion} />
             <Route path="/question" component={Question} />
-            {/* <Route path="/status/errortoken" component={ErrorTokenPage} /> */}
-            {/* <Route path="/createroom" component={CreateRoom} />
-            <Route path="/adminpage" component={AdminPage} />
-            <Route path="/timepage" component={TimePage} /> */}
           </div>
       </Router>
     )
