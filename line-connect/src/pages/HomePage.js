@@ -40,18 +40,18 @@ const responseFacebook = async (res) => {
   if (await responseAllowline.data.status){
    let JWT = await axios.post('http://localhost:8000/api/auth/login',sendLine)
   console.log(JWT.data.token)
-Cookie.set('JWT',JWT.data.token)
-  const response = await axios({
-    method: 'post',
-    url: 'http://localhost:5000/api/questions',
-    data: {
-      JWT: Cookie.get('JWT')
-    },
-  }).catch(err => {
-    console.log(err)
-  })
-  console.log(response)
-  }
+  Cookie.set('JWT',JWT.data.token)
+  // const response = await axios({
+  //   method: 'post',
+  //   url: 'http://localhost:5000/api/questions',
+  //   data: {
+  //     JWT: Cookie.get('JWT')
+  //   },
+  // }).catch(err => {
+  //   console.log(err)
+  // })
+  // console.log(response)
+  // }
 
   // if(responseAllowline.data.error==='Invalid Line Account' || responseAllowline.data.error==='Invalid Facebook Account'){
   //   window.location.href = 'https://localhost:3000/status/errortoken'
