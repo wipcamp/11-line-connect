@@ -67,9 +67,9 @@ const responseFacebook = async (res) => {
   // }
 }
 
-const Example = ({ type, color }) => (
-  <ReactLoading type={type} color={color} height={667} width={375} />
-);
+// const Example = ({ type, color }) => (
+//   <ReactLoading type={type} color={color} height={667} width={375} />
+// );
 
 class Home extends Component {
   state = {
@@ -109,7 +109,7 @@ class Home extends Component {
           <h1>Title</h1>
           <p>content goes here</p>
         </Loging> */}
-        <Example />
+        <ReactLoading type={this.props.type} color={this.props.color} height={667} width={375} />
 
 
       </div>
