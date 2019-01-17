@@ -22,7 +22,7 @@ app.post('/api/auth', async (req, res) => {
             data: qs.stringify({
                 grant_type: 'authorization_code',
                 code: `${req.body.code}`,
-                redirect_uri: 'https://localhost:3000',
+                redirect_uri: 'https://localhost:3002',
                 client_id: '1638650000',
                 client_secret: '782fe647bb3279f92f1c16e1d12f4d67'
             }),
