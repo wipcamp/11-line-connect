@@ -21,7 +21,7 @@ const responseFacebook = async (res) => {
 
   const responseAllowline = await axios({
     method: 'post',
-    url: 'http://localhost:8081/api/auth/connect',
+    url: `${process.env.PATH_AUTH}`,
     data: {
       provider_fb: facebook.userID,
       accessTokenFB: facebook.accessToken,
@@ -40,7 +40,7 @@ const responseFacebook = async (res) => {
   }
 
   if (await responseAllowline.data.status) {
-    let JWT = await axios.post('http://localhost:8081/api/auth/login', sendLine)
+    let JWT = await axios.post(`${process.env.PATH_AUTH}`, sendLine)
     console.log(JWT.data.token)
     Cookie.set('JWT', JWT.data.token)
   }
