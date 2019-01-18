@@ -84,9 +84,7 @@ class Home extends Component {
     data: {}
   }
   componentDidMount = async () => {
-    liff.init(data=>{
-      console.log(data)
-      })
+console.log(liff)
   }
   handleAPi = () => {
     axios.post('https://wipcamp-testbot-joknoi.herokuapp.com/test')
