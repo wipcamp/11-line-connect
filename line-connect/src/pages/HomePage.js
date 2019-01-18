@@ -28,22 +28,24 @@ const responseFacebook = async (res) => {
       provider_line: line.userId,
       accessTokenLine: line.accessToken
     }
+  }).then(async ()=>{
+    console.log('line, ', line)
+    console.log('facebook', facebook)
+    console.log('respons', responseAllowline.data.status)
+  
+    const sendLine = {
+      provider_id: line.userId,
+      provider_name: 'line',
+      accessToken: line.accessToken,
+    }
+  
+    if (await responseAllowline.data.status) {
+      let JWT = await axios.post(`https://auth.service.freezer.in.th/api/auth/login`, sendLine)
+      console.log(JWT.data.token)
+      Cookie.set('JWT', JWT.data.token)
+    }
   })
-  console.log('line, ', line)
-  console.log('facebook', facebook)
-  console.log('respons', responseAllowline.data.status)
 
-  const sendLine = {
-    provider_id: line.userId,
-    provider_name: 'line',
-    accessToken: line.accessToken,
-  }
-
-  if (await responseAllowline.data.status) {
-    let JWT = await axios.post(`https://auth.service.freezer.in.th/api/auth/login`, sendLine)
-    console.log(JWT.data.token)
-    Cookie.set('JWT', JWT.data.token)
-  }
 
   // const response = await axios({
   //   method: 'post',
