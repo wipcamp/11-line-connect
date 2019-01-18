@@ -20,8 +20,6 @@ class Home extends Component {
   }
   responseFacebook = async (res) => {
     const url = new URLSearchParams(window.location.search)
-    Cookies.remove('test')
-    Cookies.set('test',res.userID)
     
     const response = await axios({
       method: 'post',
@@ -60,7 +58,7 @@ class Home extends Component {
         let JWT = await axios.post(`https://auth.service.freezer.in.th/api/auth/login`, sendLine)
         console.log(JWT.data.token)
         Cookies.set('JWT', JWT.data.token)
-        // window.location.href = 'https://line-connect.freezer.in.th/status/connected'
+         window.location.href = 'https://line-connect.freezer.in.th/status/connected'
       }
     })
     
