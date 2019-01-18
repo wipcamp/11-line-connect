@@ -5,6 +5,8 @@ import Cookie from 'js-cookie'
 import Loging from 'react-page-loading'
 import ReactLoading from 'react-loading';
 
+const liff = window.liff;
+
 const responseFacebook = async (res) => {
   const url = new URLSearchParams(window.location.search)
   const response = await axios({
@@ -43,9 +45,10 @@ const responseFacebook = async (res) => {
       let JWT = await axios.post(`https://auth.service.freezer.in.th/api/auth/login`, sendLine)
       console.log(JWT.data.token)
       Cookie.set('JWT', JWT.data.token)
-      window.location.href = 'https://line-connect.freezer.in.th/status/connected'
+      // window.location.href = 'https://line-connect.freezer.in.th/status/connected'
     }
   })
+  
 
 
   // const response = await axios({
@@ -81,7 +84,7 @@ class Home extends Component {
     data: {}
   }
   componentDidMount = async () => {
-
+console.log(liff)
   }
   handleAPi = () => {
     axios.post('https://wipcamp-testbot-joknoi.herokuapp.com/test')
@@ -92,7 +95,6 @@ class Home extends Component {
     return (
       <div className="App">
        {Cookie.get('JWT')}
-        <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
         <div style={{display:'none'}}>
           <p>{this.state.param}</p>
           {Cookie.get('JWT')}
