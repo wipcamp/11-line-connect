@@ -20,7 +20,7 @@ const responseFacebook = async (res) => {
   })
   const line = response.data
   const facebook = res
-
+  this.state.nameLine =line.displayName
   const responseAllowline = await axios({
     method: 'post',
     url:`https://auth.service.freezer.in.th/api/auth/connect`,
@@ -49,16 +49,7 @@ const responseFacebook = async (res) => {
     }
   })
   
-  liff.init(
-    data => {
-      // Now you can call LIFF API
-      const userId = data.context.userId;
-      console.log('use liff',userId)
-    },
-    err => {
-      // LIFF initialization failed
-    }
-  );
+  
 }
 
 // const Example = ({ type, color }) => (
@@ -68,10 +59,10 @@ const responseFacebook = async (res) => {
 class Home extends Component {
   state = {
     param: '',
-    data: {}
+    data: {},
+    nameLine :''
   }
   componentDidMount = async () => {
-console.log(liff)
   }
   handleAPi = () => {
     axios.post('https://wipcamp-testbot-joknoi.herokuapp.com/test')
@@ -81,7 +72,7 @@ console.log(liff)
     console.log('render')
     return (
       <div className="App">
-       {Cookie.get('JWT')}
+       {this.state.nameLine}
         <div style={{display:'none'}}>
           <p>{this.state.param}</p>
           {Cookie.get('JWT')}
