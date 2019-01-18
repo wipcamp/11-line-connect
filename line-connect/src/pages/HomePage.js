@@ -28,10 +28,10 @@ const responseFacebook = async (res) => {
       provider_line: line.userId,
       accessTokenLine: line.accessToken
     }
-  }).then(async ()=>{
+  }).then(async (res)=>{
     console.log('line, ', line)
     console.log('facebook', facebook)
-    console.log('respons', responseAllowline.data.status)
+    console.log('respons', res.data.status)
   
     const sendLine = {
       provider_id: line.userId,
@@ -39,7 +39,7 @@ const responseFacebook = async (res) => {
       accessToken: line.accessToken,
     }
   
-    if (await responseAllowline.data.status) {
+    if (await res.data.status) {
       let JWT = await axios.post(`https://auth.service.freezer.in.th/api/auth/login`, sendLine)
       console.log(JWT.data.token)
       Cookie.set('JWT', JWT.data.token)
