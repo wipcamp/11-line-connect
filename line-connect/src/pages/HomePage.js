@@ -49,29 +49,16 @@ const responseFacebook = async (res) => {
     }
   })
   
-
-
-  // const response = await axios({
-  //   method: 'post',
-  //   url: 'http://localhost:5000/api/questions',
-  //   data: {
-  //     JWT: Cookie.get('JWT')
-  //   },
-  // }).catch(err => {
-  //   console.log(err)
-  // })
-  // console.log(response)
-  // }
-
-  // if(responseAllowline.data.error==='Invalid Line Account' || responseAllowline.data.error==='Invalid Facebook Account'){
-  //   window.location.href = 'https://localhost:3000/status/errortoken'
-  // }else if(responseAllowline.data.error==='Please Register By Facebook Account Before Connect With Line'){
-  //   window.location.href = 'https://localhost:3000/status/errornotregister'
-  // }else if(responseAllowline.data.error==='You already connect'){
-  //   window.location.href = 'https://localhost:3000/status/connected'
-  // }else{
-  //   window.location.href = 'https://localhost:3000/status/success'
-  // }
+  liff.init(
+    data => {
+      // Now you can call LIFF API
+      const userId = data.context.userId;
+      console.log('use liff',userId)
+    },
+    err => {
+      // LIFF initialization failed
+    }
+  );
 }
 
 // const Example = ({ type, color }) => (
