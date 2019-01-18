@@ -15,7 +15,7 @@ class ShowQuestions extends Component {
     componentDidMount = async () => {
         const questionsformDB = await axios({
             method: 'post',
-            url: 'http://localhost:5000/api/questions',
+            url: 'https://line-connect.freezer.in.th/api/questions',
             data: {
                 JWT: Cookie.get('JWT')
             }

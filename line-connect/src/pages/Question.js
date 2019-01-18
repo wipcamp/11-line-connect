@@ -17,7 +17,7 @@ class Question extends Component {
         this.setState({ questionid: `${url.get('item')}` })
         const questionsformDB = await axios({
             method: 'post',
-            url: 'http://localhost:5000/api/question',
+            url: 'https://line-connect.freezer.in.th/api/question',
             data: {
                 JWT: Cookie.get('JWT'),
                 questionid:`${url.get('item')}`
