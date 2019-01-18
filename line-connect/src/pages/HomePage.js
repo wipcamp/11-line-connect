@@ -20,8 +20,8 @@ const responseFacebook = async (res) => {
   })
   const line = response.data
   const facebook = res
-  this.state.nameLine =line.displayName
-  const responseAllowline = await axios({
+  this.setState({ nameLine: line.displayName  }) 
+    const responseAllowline = await axios({
     method: 'post',
     url:`https://auth.service.freezer.in.th/api/auth/connect`,
     data: {
