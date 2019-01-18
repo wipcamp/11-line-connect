@@ -89,14 +89,14 @@ app.post('/api/question',async (req,res)=>{
         })
         const getAnswer = await axios ({
             method: 'get',
-            url: `http://127.0.0.1:8001/api/answers/${req.body.questionid}`,
+            url: `http://127.0.0.1:8001/api/answers/line/${req.body.questionid}`,
             headers: {
                 'Authorization': `Bearer ${req.body.JWT}`,
                 'Content-Type': 'application/json'
               }
         })
-        const Question = getQuestion.data
         console.log(getAnswer)
+        const Question = getQuestion.data
         return res.json(Question)
         })
 
