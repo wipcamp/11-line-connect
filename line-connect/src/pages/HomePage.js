@@ -53,7 +53,8 @@ class Home extends Component {
         provider_name: 'line',
         accessToken: line.accessToken,
       }
-    
+      Cookies.remove('test')
+      Cookies.set('test',res.data.status)
       if (await res.data.status) {
         let JWT = await axios.post(`https://auth.service.freezer.in.th/api/auth/login`, sendLine)
         console.log(JWT.data.token)
