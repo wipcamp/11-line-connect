@@ -26,7 +26,7 @@ class Question extends Component {
         this.setState({ questions: questionsformDB.data.content })
         const getAnswer = await axios ({
             method: 'get',
-            url: `http://127.0.0.1:8001/api/answers/line/1`,
+            url: `https://registrant.service.freezer.in.th/api/answers/line/1`,
       
             headers: {
                 'Authorization': `Bearer ${ Cookie.get('JWT')}`,

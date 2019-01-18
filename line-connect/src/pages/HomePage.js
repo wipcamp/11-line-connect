@@ -21,7 +21,7 @@ const responseFacebook = async (res) => {
 
   const responseAllowline = await axios({
     method: 'post',
-    url:`${process.env.PATH_AUTH}/auth/connect`,
+    url:`https://auth.service.freezer.in.th/api/auth/connect`,
     data: {
       provider_fb: facebook.userID,
       accessTokenFB: facebook.accessToken,
@@ -40,10 +40,11 @@ const responseFacebook = async (res) => {
   }
 
   if (await responseAllowline.data.status) {
-    let JWT = await axios.post(`${process.env.PATH_AUTH}/auth/login`, sendLine)
+    let JWT = await axios.post(`https://auth.service.freezer.in.th/api/auth/login`, sendLine)
     console.log(JWT.data.token)
     Cookie.set('JWT', JWT.data.token)
   }
+
   // const response = await axios({
   //   method: 'post',
   //   url: 'http://localhost:5000/api/questions',
