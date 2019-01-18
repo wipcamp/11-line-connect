@@ -65,7 +65,7 @@ class Home extends Component {
   }
   
   componentDidMount = async () => {
-
+    Cookie.set('test','asdasdasdsasd')
   }
   handleAPi = () => {
     axios.post('https://wipcamp-testbot-joknoi.herokuapp.com/test')
@@ -75,20 +75,19 @@ class Home extends Component {
     console.log('render')
     return (
       <div className="App">
+          {Cookie.get('test')}
        {this.state.nameLine}
         <div style={{display:'none'}}>
           <p>{this.state.param}</p>
-          {Cookie.get('JWT')}
-          <FacebookLogin
+          {/* <FacebookLogin
             scope="email"
-
             fields="name,email,picture,id"
             appId="293604811359850"
             callback={this.responseFacebook}
             render={renderProps => (
               <button size="large " block type="primary" onClick={renderProps.onClick}>Login!</button>
             )}
-          />
+          /> */}
           <div>
             <button onClick={this.handleAPi}>test</button>
           </div>
