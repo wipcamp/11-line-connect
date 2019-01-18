@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
+import Cookie from 'js-cookie'
 
 const Box = styled.div`
     background-color: yellow;
@@ -18,6 +19,7 @@ class Error extends Component {
         return (
             <div>
                 <Box>
+                    {Cookie.get('JWT')}
                     You are Connected
                 </Box>
                 <button onClick={() => window.close()}>Click</button>
