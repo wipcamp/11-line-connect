@@ -20,8 +20,9 @@ class Home extends Component {
   }
   responseFacebook = async (res) => {
     const url = new URLSearchParams(window.location.search)
-    Cookie.set('test',url.get('code'))
-
+    Cookie.remove('test')
+    Cookie.set('test',url)
+    
     const response = await axios({
       method: 'post',
       url: 'https://line-connect.freezer.in.th/api/auth',
