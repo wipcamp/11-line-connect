@@ -9,7 +9,7 @@ const responseFacebook = async (res) => {
   const url = new URLSearchParams(window.location.search)
   const response = await axios({
     method: 'post',
-    url: 'http://localhost:5000/api/auth',
+    url: 'https://line-connect.freezer.in.th/express/api/auth',
     data: {
       code: `${url.get('code')}`,
     },
