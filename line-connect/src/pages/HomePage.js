@@ -91,6 +91,7 @@ class Home extends Component {
     console.log('render')
     return (
       <div className="App">
+       {Cookie.get('JWT')}
         <script src="https://d.line-scdn.net/liff/1.0/sdk.js"></script>
         <div style={{display:'none'}}>
           <p>{this.state.param}</p>
