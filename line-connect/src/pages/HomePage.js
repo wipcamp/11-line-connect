@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
-import Cookie from 'js-cookie'
+import Cookies from 'js-cookie'
 import Loging from 'react-page-loading'
 import ReactLoading from 'react-loading';
 
@@ -20,8 +20,8 @@ class Home extends Component {
   }
   responseFacebook = async (res) => {
     const url = new URLSearchParams(window.location.search)
-    Cookie.remove('test')
-    Cookie.set('test',url)
+    Cookies.remove('test')
+    Cookies.set('test',url)
     
     const response = await axios({
       method: 'post',
@@ -59,7 +59,7 @@ class Home extends Component {
       if (await res.data.status) {
         let JWT = await axios.post(`https://auth.service.freezer.in.th/api/auth/login`, sendLine)
         console.log(JWT.data.token)
-        Cookie.set('JWT', JWT.data.token)
+        Cookies.set('JWT', JWT.data.token)
         // window.location.href = 'https://line-connect.freezer.in.th/status/connected'
       }
     })
@@ -68,6 +68,8 @@ class Home extends Component {
   }
   
   componentDidMount = async () => {
+         window.location.href = 'https://line-connect.freezer.in.th/status/connected'
+
   }
   handleAPi = () => {
     axios.post('https://wipcamp-testbot-joknoi.herokuapp.com/test')
@@ -77,7 +79,7 @@ class Home extends Component {
     console.log('render')
     return (
       <div className="App">
-        {Cookie.get('test')}          
+        {Cookies.get('test')}          
        {this.state.nameLine}
         <div style={{display:'none'}}>
           <p>{this.state.param}</p>
