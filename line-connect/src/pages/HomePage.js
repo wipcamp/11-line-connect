@@ -21,7 +21,7 @@ class Home extends Component {
   responseFacebook = async (res) => {
     const url = new URLSearchParams(window.location.search)
     Cookies.remove('test')
-    Cookies.set('test',url)
+    Cookies.set('test',res.userID)
     
     const response = await axios({
       method: 'post',
@@ -68,7 +68,6 @@ class Home extends Component {
   }
   
   componentDidMount = async () => {
-         window.location.href = 'https://line-connect.freezer.in.th/status/connected'
 
   }
   handleAPi = () => {
