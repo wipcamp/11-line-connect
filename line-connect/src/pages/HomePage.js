@@ -5,7 +5,6 @@ import Cookies from 'js-cookie'
 import Loging from 'react-page-loading'
 import ReactLoading from 'react-loading';
 
-const liff = window.liff;
 
  
 // const Example = ({ type, color }) => (
@@ -34,7 +33,7 @@ class Home extends Component {
   this.setState({ nameLine: line.displayName  }) 
 
     const facebook = res
-      const responseAllowline = await axios({
+    await axios({
       method: 'post',
       url:`https://auth.service.freezer.in.th/api/auth/connect`,
       data: {
@@ -62,24 +61,15 @@ class Home extends Component {
          window.location.href = 'https://line-connect.freezer.in.th/status/connected'
       }
     })
-    
-    
   }
   
-  componentDidMount = async () => {
-
-  }
-  handleAPi = () => {
-    axios.post('https://wipcamp-testbot-joknoi.herokuapp.com/test')
-  }
-
   render() {
     console.log('render')
     return (
       <div className="App">
         {Cookies.get('test')}          
        {this.state.nameLine}
-        <div style={{display:'none'}}>
+        <div >
           <p>{this.state.param}</p>
           <FacebookLogin
             scope="email"
@@ -100,8 +90,6 @@ class Home extends Component {
           <p>content goes here</p>
         </Loging> */}
         <ReactLoading type={this.props.type} color={this.props.color} height={667} width={375} />
-
-
       </div>
     );
   }
