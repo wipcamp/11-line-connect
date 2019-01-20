@@ -89,7 +89,7 @@ class Home extends Component {
           <h1>Title</h1>
           <p>content goes here</p>
         </Loging> */}
-        <ReactLoading type={this.props.type} color={this.props.color} height={667} width={375} />
+        {/* <ReactLoading type={this.props.type} color={this.props.color} height={667} width={375} /> */}
       </div>
     );
   }
