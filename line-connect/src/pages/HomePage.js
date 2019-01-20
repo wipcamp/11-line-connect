@@ -5,12 +5,6 @@ import Cookies from 'js-cookie'
 import Loging from 'react-page-loading'
 import ReactLoading from 'react-loading';
 
-
- 
-// const Example = ({ type, color }) => (
-//   <ReactLoading type={type} color={color} height={667} width={375} />
-// );
-
 class Home extends Component {
   state = {
     param: '',
@@ -54,12 +48,12 @@ class Home extends Component {
       }
       Cookies.remove('test')
       Cookies.set('test',res.data.status)
-      if (await res.data.status) {
+      // if (await res.data.status) {
         let JWT = await axios.post(`https://auth.service.freezer.in.th/api/auth/login`, sendLine)
         console.log(JWT.data.token)
         Cookies.set('JWT', JWT.data.token)
          window.location.href = 'https://line-connect.freezer.in.th/status/connected'
-      }
+      // }
     })
   }
   
