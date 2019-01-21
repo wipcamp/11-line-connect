@@ -14,7 +14,7 @@ class Question extends Component {
         statusAns: 'disabled',
         statusEdit: '',
     }
-    componentWillMount = async () => {
+    componentDidMount = async () => {
         const url = new URLSearchParams(window.location.search)
         this.setState({ questionid: `${url.get('item')}` })
         const questionsformDB = await axios({
