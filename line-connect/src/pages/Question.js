@@ -51,6 +51,19 @@ class Question extends Component {
             answer: e.target.value
         })
     }
+    handleSendAnswer = async() => {
+        await axios({
+            method: 'post',
+            url: 'https://line-connect.freezer.in.th/api/sendAnswer',
+            data: {
+                JWT: Cookie.get('JWT'),
+                questionid: this.state.questionid,
+                content: this.state.answer
+            }
+        }).then((res) => {
+            window.location('https://line-connect.freezer.in.th/selectquestion')
+        })
+    }
 
     render() {
         return (
@@ -63,7 +76,7 @@ class Question extends Component {
                         <div className='col-12 mt-3'>
                             <div className='row float-right'>
                                 <div className='inline-block mr-2'><button type="button" class="btn btn-warning" onClick={this.handleAnswerByButton} disabled={this.state.statusEdit}>แก้ไขคำตอบ</button></div>
-                                <div className='inline-block'><button type="button" class="btn btn-info">Info</button></div>
+                                <div className='inline-block'><button type="button" class="btn btn-info" onClick={this.handleSendAnswer}>ยืนยันคำตอบ</button></div>
                             </div>
                         </div>
                     </div>
