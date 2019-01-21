@@ -9,8 +9,8 @@ import Cookie from 'js-cookie'
 class Question extends Component {
     state = {
         questionid: 0,
-        questions: 'dakfisuiofjsiodgjiozdshg',
-        answer: 'dgfsdf'
+        question: 'กำลังโหลดคำถาม',
+        answer: 'กำลังโหลดคำตอบ'
     }
     componentWillMount = async() => {
         const url = new URLSearchParams(window.location.search)
@@ -23,17 +23,18 @@ class Question extends Component {
                 questionid:`${url.get('item')}`
             }
         })
-        this.setState({ questions: questionsformDB.data.content })
-        const getAnswer = await axios ({
-            method: 'get',
-            url: `https://registrant.service.freezer.in.th/api/answers/line/1`,
+        this.setState({ question: questionsformDB.data.question.content,
+            answer:questionsformDB.data.answer[0] })
+        // const getAnswer = await axios ({
+        //     method: 'get',
+        //     url: `https://registrant.service.freezer.in.th/api/answers/line/1`,
       
-            headers: {
-                'Authorization': `Bearer ${ Cookie.get('JWT')}`,
-                'Content-Type': 'application/json'
-              }
-        })
-        console.log(getAnswer)
+        //     headers: {
+        //         'Authorization': `Bearer ${ Cookie.get('JWT')}`,
+        //         'Content-Type': 'application/json'
+        //       }
+        // })
+        console.log(questionsformDB)
     }
     render() {
         return (
@@ -41,7 +42,7 @@ class Question extends Component {
                 <h1 className='text-center'>Question</h1>
                 <div className='col-12'>
                     <div className='row'>
-                        <p>{this.state.questionid}. {this.state.questions}</p><br></br>
+                        <p>{this.state.questionid}. {this.state.question}</p><br></br>
                         <textarea value={this.state.answer} className='col-12' style={{height:'150px'}}></textarea>
                         <div className='col-12 mt-3'>
                             <div className='row float-right'>
