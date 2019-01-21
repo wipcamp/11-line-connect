@@ -46,7 +46,7 @@ class Question extends Component {
             statusAns: ''
         })
     }
-    handleAnswer(e){
+    handleAnswer = (e) => {
         this.setState({
             ans: e.target.value
         })
