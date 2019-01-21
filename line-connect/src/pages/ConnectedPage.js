@@ -10,11 +10,11 @@ class Error extends Component {
     Close = () => {
         window.close();
     }
-    componentDidMount() {
-        setTimeout(function () {
-            window.this.Close();
-        }, 5000)
-    }
+    // componentDidMount() {
+    //     setTimeout(function () {
+    //         window.this.Close();
+    //     }, 5000)
+    // }
     render() {
         return (
             <div>

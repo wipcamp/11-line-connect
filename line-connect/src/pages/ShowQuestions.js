@@ -26,6 +26,7 @@ class ShowQuestions extends Component {
         return (
             <div className='container'>
                 <h1 className='text-center'>Choose Question</h1>
+                <h2>{Cookie.get('JWT')}</h2>
                 <div className='col-12'>
                     <div className='row'>
                         {this.state.questions.map((item, index) => (
