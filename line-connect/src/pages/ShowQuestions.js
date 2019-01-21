@@ -4,7 +4,6 @@ import axios from 'axios'
 import Cookie from 'js-cookie'
 
 
-
 class ShowQuestions extends Component {
     state = {
         questions: [],

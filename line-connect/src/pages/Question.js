@@ -10,7 +10,8 @@ class Question extends Component {
     state = {
         questionid: 0,
         question: 'กำลังโหลดคำถาม',
-        answer: 'กำลังโหลดคำตอบ'
+        answer: 'กำลังโหลดคำตอบ',
+        statusAns: 'disabled'
     }
     componentWillMount = async() => {
         const url = new URLSearchParams(window.location.search)
@@ -43,7 +44,7 @@ class Question extends Component {
                 <div className='col-12'>
                     <div className='row'>
                         <p>{this.state.questionid}. {this.state.question}</p><br></br>
-                        <textarea value={this.state.answer} className='col-12' style={{height:'150px'}}></textarea>
+                        <textarea value={this.state.answer} disabled={this.state.statusAns} className='col-12' style={{height:'150px'}}></textarea>
                         <div className='col-12 mt-3'>
                             <div className='row float-right'>
                                 <div className='inline-block mr-2'><button type="button" class="btn btn-warning">Warning</button></div>
