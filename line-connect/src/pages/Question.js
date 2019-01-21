@@ -25,7 +25,7 @@ class Question extends Component {
             }
         })
         this.setState({ question: questionsformDB.data.question.content,
-            answer:questionsformDB.data.answer[0] })
+            answer:questionsformDB.data.answer[0].ans_content })
         // const getAnswer = await axios ({
         //     method: 'get',
         //     url: `https://registrant.service.freezer.in.th/api/answers/line/1`,
