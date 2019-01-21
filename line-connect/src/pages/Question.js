@@ -9,8 +9,8 @@ import Cookie from 'js-cookie'
 class Question extends Component {
     state = {
         questionid: 0,
-        questions: 'dakfisuiofjsiodgjiozdshg',
-        answer: 'dgfsdf'
+        questions: 'กำลังโหลดคำถาม',
+        answer: 'กำลังโหลดคำตอบ'
     }
     componentWillMount = async() => {
         const url = new URLSearchParams(window.location.search)
