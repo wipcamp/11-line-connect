@@ -12,49 +12,49 @@ class Home extends Component {
     nameLine :''
   }
   responseFacebook = async (res) => {
-    const url = new URLSearchParams(window.location.search)
+  //   const url = new URLSearchParams(window.location.search)
     
-    const response = await axios({
-      method: 'post',
-      url: 'https://line-connect.freezer.in.th/api/auth',
-      data: {
-        code: `${url.get('code')}`,
-      },
-    }).catch(err => {
-      console.log(err)
-    })
-    const line = response.data
-  this.setState({ nameLine: line.displayName  }) 
+  //   const response = await axios({
+  //     method: 'post',
+  //     url: 'https://line-connect.freezer.in.th/api/auth',
+  //     data: {
+  //       code: `${url.get('code')}`,
+  //     },
+  //   }).catch(err => {
+  //     console.log(err)
+  //   })
+  //   const line = response.data
+  // this.setState({ nameLine: line.displayName  }) 
 
-    const facebook = res
-    await axios({
-      method: 'post',
-      url:`https://auth.service.freezer.in.th/api/auth/connect`,
-      data: {
-        provider_fb: facebook.userID,
-        accessTokenFB: facebook.accessToken,
-        provider_line: line.userId,
-        accessTokenLine: line.accessToken
-      }
-    }).then(async (res)=>{
-      console.log('line, ', line)
-      console.log('facebook', facebook)
-      console.log('respons', res.data.status)
+  //   const facebook = res
+  //   await axios({
+  //     method: 'post',
+  //     url:`https://auth.service.freezer.in.th/api/auth/connect`,
+  //     data: {
+  //       provider_fb: facebook.userID,
+  //       accessTokenFB: facebook.accessToken,
+  //       provider_line: line.userId,
+  //       accessTokenLine: line.accessToken
+  //     }
+  //   }).then(async (res)=>{
+  //     console.log('line, ', line)
+  //     console.log('facebook', facebook)
+  //     console.log('respons', res.data.status)
     
-      const sendLine = {
-        provider_id: line.userId,
-        provider_name: 'line',
-        accessToken: line.accessToken,
-      }
-      Cookies.remove('test')
-      Cookies.set('test',res.data.status)
-      // if (await res.data.status) {
-        let JWT = await axios.post(`https://auth.service.freezer.in.th/api/auth/login`, sendLine)
-        console.log(JWT.data.token)
-        Cookies.set('JWT', JWT.data.token)
+  //     const sendLine = {
+  //       provider_id: line.userId,
+  //       provider_name: 'line',
+  //       accessToken: line.accessToken,
+  //     }
+  //     Cookies.remove('test')
+  //     Cookies.set('test',res.data.status)
+  //     if (await res.data.status) {
+  //       let JWT = await axios.post(`https://auth.service.freezer.in.th/api/auth/login`, sendLine)
+  //       console.log(JWT.data.token)
+  //       Cookies.set('JWT', JWT.data.token)
          window.location.href = 'https://line-connect.freezer.in.th/status/connected'
-      // }
-    })
+    //   }
+    // })
   }
   
   render() {
