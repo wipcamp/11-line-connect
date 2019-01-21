@@ -98,7 +98,7 @@ app.post('/api/question',async (req,res)=>{
         console.log(getAnswer)
         const Question = {
             question:getQuestion.data,
-            answer:getAnswer
+            answer:getAnswer.data
         }
         return res.json(Question)
         })
