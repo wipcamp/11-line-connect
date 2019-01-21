@@ -11,7 +11,8 @@ class Question extends Component {
         questionid: 0,
         question: 'กำลังโหลดคำถาม',
         answer: 'กำลังโหลดคำตอบ',
-        statusAns: 'disabled'
+        statusAns: 'disabled',
+        statusEdit: '',
     }
     componentWillMount = async () => {
         const url = new URLSearchParams(window.location.search)
@@ -29,23 +30,20 @@ class Question extends Component {
                 question: questionsformDB.data.question.content,
                 answer: questionsformDB.data.answer[0].ans_content
             })
-        }else{
+        } else {
             this.setState({
                 question: questionsformDB.data.question.content,
-                answer: ''
+                answer: '',
+                statusAns: '',
+                statusEdit: 'disabled'
             })
         }
 
-        // const getAnswer = await axios ({
-        //     method: 'get',
-        //     url: `https://registrant.service.freezer.in.th/api/answers/line/1`,
-
-        //     headers: {
-        //         'Authorization': `Bearer ${ Cookie.get('JWT')}`,
-        //         'Content-Type': 'application/json'
-        //       }
-        // })
-        console.log(questionsformDB)
+    }
+    handleAnswer() {
+        this.setState({
+            statusAns: ''
+        })
     }
     render() {
         return (
@@ -57,7 +55,7 @@ class Question extends Component {
                         <textarea value={this.state.answer} disabled={this.state.statusAns} className='col-12' style={{ height: '150px' }}></textarea>
                         <div className='col-12 mt-3'>
                             <div className='row float-right'>
-                                <div className='inline-block mr-2'><button type="button" class="btn btn-warning">Warning</button></div>
+                                <div className='inline-block mr-2'><button type="button" class="btn btn-warning" onClick={this.handleAnswer} disabled={this.state.statusEdit}>แก้ไขคำตอบ</button></div>
                                 <div className='inline-block'><button type="button" class="btn btn-info">Info</button></div>
                             </div>
                         </div>
