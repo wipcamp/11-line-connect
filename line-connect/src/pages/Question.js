@@ -24,7 +24,7 @@ class Question extends Component {
                 questionid: `${url.get('item')}`
             }
         })
-        if (questionsformDB.data.answer[0].ans_content) {
+        if (questionsformDB.data.answer[0]) {
             this.setState({
                 question: questionsformDB.data.question.content,
                 answer: questionsformDB.data.answer[0].ans_content
