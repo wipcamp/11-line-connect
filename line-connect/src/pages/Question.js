@@ -9,7 +9,7 @@ import Cookie from 'js-cookie'
 class Question extends Component {
     state = {
         questionid: 0,
-        questions: 'กำลังโหลดคำถาม',
+        question: 'กำลังโหลดคำถาม',
         answer: 'กำลังโหลดคำตอบ'
     }
     componentWillMount = async() => {
@@ -23,7 +23,8 @@ class Question extends Component {
                 questionid:`${url.get('item')}`
             }
         })
-        this.setState({ questions: questionsformDB.data.content })
+        this.setState({ question: questionsformDB.data.question.content,
+            answer:questionsformDB.data.answer[0] })
         // const getAnswer = await axios ({
         //     method: 'get',
         //     url: `https://registrant.service.freezer.in.th/api/answers/line/1`,
@@ -41,7 +42,7 @@ class Question extends Component {
                 <h1 className='text-center'>Question</h1>
                 <div className='col-12'>
                     <div className='row'>
-                        <p>{this.state.questionid}. {this.state.questions}</p><br></br>
+                        <p>{this.state.questionid}. {this.state.question}</p><br></br>
                         <textarea value={this.state.answer} className='col-12' style={{height:'150px'}}></textarea>
                         <div className='col-12 mt-3'>
                             <div className='row float-right'>
