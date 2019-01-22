@@ -72,7 +72,7 @@ app.post('/api/sendAnswer',async (req,res)=>{
             question_id:req.questionid,
             ans_content:req.content
           }
-    })
+    }).error({msg:'send have problem'})
 
     return res.json('sendcomplete')
 })
