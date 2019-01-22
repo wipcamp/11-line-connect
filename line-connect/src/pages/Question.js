@@ -60,8 +60,8 @@ class Question extends Component {
                 questionid: this.state.questionid,
                 content: this.state.answer
             }
-        }).then((res) => {
-            window.location('https://line-connect.freezer.in.th/selectquestion')
+        }).then(() => {
+            window.location.href = 'https://line-connect.freezer.in.th/selectquestion'
         })
     }
 
