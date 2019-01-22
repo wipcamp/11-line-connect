@@ -63,7 +63,7 @@ app.post('/api/loginfacebook', (req, res) => {
 app.post('/api/sendAnswer',async (req,res)=>{
     await axios ({
         method: 'post',
-        url: `https://registrant.service.freezer.in.th/api/answerbyline`,
+        url: `https://registrant.service.freezer.in.th/api/answers/line/answerbyline`,
         headers: {
             'Authorization': `Bearer ${req.body.JWT}`,
             'Content-Type': 'application/json'
