@@ -41,7 +41,7 @@ class Question extends Component {
         }
 
     }
-    handleAnswerByButton() {
+    handleAnswerByButton = () => {
         this.setState({
             statusAns: ''
         })
