@@ -60,12 +60,26 @@ app.post('/api/loginfacebook', (req, res) => {
         })
 });
 
-app.post('/api/test',(req,res)=>{
-console.log('asdasdasdasdasd')
+app.post('/api/sendAnswer',async (req,res)=>{
+    await axios ({
+        method: 'post',
+        url: `https://registrant.service.freezer.in.th/api/answers/line/answerbyline`,
+        headers: {
+            'Authorization': `Bearer ${req.body.JWT}`,
+            'Content-Type': 'application/json'
+          },
+          data:{
+            question_id:req.questionid,
+            ans_content:req.content
+          }
+    }).catch(err => {
+       return err;
+    })
+
+    return res.json('sendcomplete')
 })
 
 app.post('/api/questions',async (req,res)=>{
-    console.log(req)
     const getQuestion = await axios ({
         method: 'get',
         url: `https://registrant.service.freezer.in.th/api/questions`,
