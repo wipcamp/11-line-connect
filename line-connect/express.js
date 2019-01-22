@@ -61,6 +61,7 @@ app.post('/api/loginfacebook', (req, res) => {
 });
 
 app.post('/api/sendAnswer',async (req,res)=>{
+    console.log(req)
     await axios ({
         method: 'post',
         url: `https://registrant.service.freezer.in.th/api/answers/line/answerbyline`,
@@ -69,14 +70,14 @@ app.post('/api/sendAnswer',async (req,res)=>{
             'Content-Type': 'application/json'
           },
           data:{
-            question_id:req.questionid,
-            ans_content:req.content
+            question_id:req.body.questionid,
+            ans_content:req.body.content
           }
     }).catch(err => {
        return err;
     })
 
-    return res.json('sendcomplete')
+    return res.json({s:req.questionid})
 })
 
 app.post('/api/questions',async (req,res)=>{
