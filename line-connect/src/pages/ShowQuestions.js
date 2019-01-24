@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components'
 import axios from 'axios'
 import Cookie from 'js-cookie'
-require('dotenv').load();
+require('dotenv').config()
 
 
 class ShowQuestions extends Component {
@@ -15,7 +15,7 @@ class ShowQuestions extends Component {
     componentDidMount = async () => {
         const questionsformDB = await axios({
             method: 'post',
-            url: `${process.env.PATH_REGISTANCE}/api/questions`,
+            url: `https://line-connect.freezer.in.th/api/questions`,
             data: {
                 JWT: Cookie.get('JWT')
             }

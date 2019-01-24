@@ -4,8 +4,7 @@ import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props
 import Cookies from 'js-cookie'
 import Loging from 'react-page-loading'
 import ReactLoading from 'react-loading';
-require('dotenv').load();
-
+require('dotenv').config()
 
 class Home extends Component {
   state = {
@@ -13,12 +12,12 @@ class Home extends Component {
     data: {},
     nameLine: ''
   }
+  
   responseFacebook = async (res) => {
     const url = new URLSearchParams(window.location.search)
-
     const response = await axios({
       method: 'post',
-      url: `${process.env.PATH_BE}/api/auth`,
+      url: `https://line-connect.freezer.in.th/api/auth`,
       data: {
         code: `${url.get('code')}`,
       },
@@ -30,7 +29,7 @@ class Home extends Component {
 
     await axios({
       method: 'post',
-      url: `${process.env.PATH_BE}/api/auth/connect`,
+      url: `https://auth.service.freezer.in.th/api/auth/connect`,
       data: {
         provider_fb: facebook.userID,
         accessTokenFB: facebook.accessToken,
@@ -44,15 +43,18 @@ class Home extends Component {
         accessToken: line.accessToken,
       }
       if (await res.data.status) {
-        let JWT = await axios.post(`${process.env.PATH_AUTH}/api/auth/login`, sendLine)
+        let JWT = await axios.post(`https://auth.service.freezer.in.th/api/auth/login`, sendLine)
         Cookies.set('JWT', JWT.data.token)
-        window.location.href = `${process.env.PATH_AUTH}/status/connected`
+        window.location.href = `https://line-connect.freezer.in.th/status/connected`
       }
     })
   }
+  componentDidMount =() =>{
+    console.log('sadasd',process.env.PATH_AUTH)
+  }
 
   render() {
-    console.log('render')
+
     return (
       <div className="App">
         <div >

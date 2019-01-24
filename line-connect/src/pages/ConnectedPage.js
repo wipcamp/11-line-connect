@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
 import Cookie from 'js-cookie'
-require('dotenv').load();
+require('dotenv').config()
 
 const Box = styled.div`
     background-color: yellow;

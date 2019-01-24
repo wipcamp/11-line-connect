@@ -11,7 +11,6 @@ app.use(bodyParser.json())
 app.use(cors())
 // Serve the static files from the React app
 // app.use(express.static(path.join(__dirname, 'client/build')));
-
 // An api endpoint that returns a short list of items
 app.post('/api/auth', async (req, res) => {
     try {
