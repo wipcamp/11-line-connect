@@ -5,6 +5,7 @@ const qs = require('qs');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser')
+require('dotenv').load();
 const port = process.env.PORT_BE || 5000;
 app.use(bodyParser.json())
 app.use(cors())
@@ -22,7 +23,7 @@ app.post('/api/auth', async (req, res) => {
             data: qs.stringify({
                 grant_type: 'authorization_code',
                 code: `${req.body.code}`,
-                redirect_uri: 'https://line-connect.freezer.in.th',
+                redirect_uri: process.env.PATH_FE,
                 client_id: '1638650000',
                 client_secret: '782fe647bb3279f92f1c16e1d12f4d67'
             }),
@@ -64,7 +65,7 @@ app.post('/api/sendAnswer',async (req,res)=>{
     console.log(req)
     await axios ({
         method: 'post',
-        url: `https://registrant.service.freezer.in.th/api/answers/line/answerbyline`,
+        url: `${process.env.PATH_REGISTANCE}/answers/line/answerbyline`,
         headers: {
             'Authorization': `Bearer ${req.body.JWT}`,
             'Content-Type': 'application/json'
@@ -83,7 +84,7 @@ app.post('/api/sendAnswer',async (req,res)=>{
 app.post('/api/questions',async (req,res)=>{
     const getQuestion = await axios ({
         method: 'get',
-        url: `https://registrant.service.freezer.in.th/api/questions`,
+        url: `${process.env.PATH_REGISTANCE}/api/questions`,
         headers: {
             'Authorization': `Bearer ${req.body.JWT}`,
             'Content-Type': 'application/json'
@@ -96,7 +97,7 @@ app.post('/api/questions',async (req,res)=>{
 app.post('/api/question',async (req,res)=>{
         const getQuestion = await axios ({
             method: 'get',
-            url: `https://registrant.service.freezer.in.th/api/questions/${req.body.questionid}`,
+            url: `${process.env.PATH_REGISTANCE}/api/questions/${req.body.questionid}`,
             headers: {
                 'Authorization': `Bearer ${req.body.JWT}`,
                 'Content-Type': 'application/json'
@@ -104,7 +105,7 @@ app.post('/api/question',async (req,res)=>{
         })
         const getAnswer = await axios ({
             method: 'get',
-            url: `https://registrant.service.freezer.in.th/api/answers/line/${req.body.questionid}`,
+            url: `${process.env.PATH_REGISTANCE}/api/answers/line/${req.body.questionid}`,
             headers: {
                 'Authorization': `Bearer ${req.body.JWT}`,
                 'Content-Type': 'application/json'

@@ -5,6 +5,7 @@ import Cookie from 'js-cookie'
 // const Box = styled.div`
 //     background-color: green;
 // `
+require('dotenv').load();
 
 class Question extends Component {
     state = {
@@ -20,7 +21,7 @@ class Question extends Component {
         this.setState({ questionid: `${url.get('item')}` })
         const questionsformDB = await axios({
             method: 'post',
-            url: 'https://line-connect.freezer.in.th/api/question',
+            url: `${process.env.PATH_REGISTANCE}/api/question`,
             data: {
                 JWT: Cookie.get('JWT'),
                 questionid: `${url.get('item')}`
@@ -54,14 +55,14 @@ class Question extends Component {
     handleSendAnswer = async() => {
         await axios({
             method: 'post',
-            url: 'https://line-connect.freezer.in.th/api/sendAnswer',
+            url: `${process.env.PATH_REGISTANCE}/api/sendAnswer`,
             data: {
                 JWT: Cookie.get('JWT'),
                 questionid: this.state.questionid,
                 content: this.state.answer
             }
         }).then(() => {
-            window.location.href = 'https://line-connect.freezer.in.th/selectquestion'
+            window.location.href = `${process.env.PATH_FE}/selectquestion`
         })
     }
 
