@@ -83,7 +83,7 @@ app.post('/api/sendAnswer',async (req,res)=>{
 app.post('/api/questions',async (req,res)=>{
     const getQuestion = await axios ({
         method: 'get',
-        url: `${process.env.PATH_REGISTANCE}/api/questions`,
+        url: `${process.env.PATH_REGISTANCE}/questions`,
         headers: {
             'Authorization': `Bearer ${req.body.JWT}`,
             'Content-Type': 'application/json'
@@ -96,7 +96,7 @@ app.post('/api/questions',async (req,res)=>{
 app.post('/api/question',async (req,res)=>{
         const getQuestion = await axios ({
             method: 'get',
-            url: `${process.env.PATH_REGISTANCE}/api/questions/${req.body.questionid}`,
+            url: `${process.env.PATH_REGISTANCE}/questions/${req.body.questionid}`,
             headers: {
                 'Authorization': `Bearer ${req.body.JWT}`,
                 'Content-Type': 'application/json'
@@ -104,7 +104,7 @@ app.post('/api/question',async (req,res)=>{
         })
         const getAnswer = await axios ({
             method: 'get',
-            url: `${process.env.PATH_REGISTANCE}/api/answers/line/${req.body.questionid}`,
+            url: `${process.env.PATH_REGISTANCE}/answers/line/${req.body.questionid}`,
             headers: {
                 'Authorization': `Bearer ${req.body.JWT}`,
                 'Content-Type': 'application/json'
