@@ -5,7 +5,6 @@ import Cookies from 'js-cookie'
 import Loging from 'react-page-loading'
 import ReactLoading from 'react-loading';
 require('dotenv').config()
-
 class Home extends Component {
   state = {
     param: '',
@@ -17,7 +16,7 @@ class Home extends Component {
     const url = new URLSearchParams(window.location.search)
     const response = await axios({
       method: 'post',
-      url: `https://line-connect.freezer.in.th/api/auth`,
+      url: `${window.env.PATH_BE}/auth`,
       data: {
         code: `${url.get('code')}`,
       },
@@ -29,7 +28,7 @@ class Home extends Component {
 
     await axios({
       method: 'post',
-      url: `https://auth.service.freezer.in.th/api/auth/connect`,
+      url: `${window.env.PATH_AUTH}/auth/connect`,
       data: {
         provider_fb: facebook.userID,
         accessTokenFB: facebook.accessToken,
@@ -43,14 +42,13 @@ class Home extends Component {
         accessToken: line.accessToken,
       }
       if (await res.data.status) {
-        let JWT = await axios.post(`https://auth.service.freezer.in.th/api/auth/login`, sendLine)
+        let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
         Cookies.set('JWT', JWT.data.token)
-        window.location.href = `https://line-connect.freezer.in.th/status/connected`
+        window.location.href = `${window.env.PATH_AUTH}/status/connected`
       }
     })
   }
   componentDidMount =() =>{
-    console.log('sadasd',process.env.PATH_AUTH)
   }
 
   render() {

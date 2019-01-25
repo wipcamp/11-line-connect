@@ -21,7 +21,7 @@ class Question extends Component {
         this.setState({ questionid: `${url.get('item')}` })
         const questionsformDB = await axios({
             method: 'post',
-            url: `https://line-connect.freezer.in.th/api/question`,
+            url: `${window.env.PATH_BE}/question`,
             data: {
                 JWT: Cookie.get('JWT'),
                 questionid: `${url.get('item')}`
@@ -55,14 +55,14 @@ class Question extends Component {
     handleSendAnswer = async() => {
         await axios({
             method: 'post',
-            url: `https://line-connect.freezer.in.th/api/sendAnswer`,
+            url: `${window.env.PATH_BE}/sendAnswer`,
             data: {
                 JWT: Cookie.get('JWT'),
                 questionid: this.state.questionid,
                 content: this.state.answer
             }
         }).then(() => {
-            window.location.href = `https://line-connect.freezer.in.th/selectquestion`
+            window.location.href = `${window.env.PATH_FE}/selectquestion`
         })
     }
 
