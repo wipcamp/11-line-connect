@@ -60,6 +60,8 @@ class Home extends Component {
             scope="email"
             fields="name,email,picture,id"
             appId="293604811359850"
+            version="3.2"
+            redirectUri="https://line-connect.freezer.in.th/"
             callback={this.responseFacebook}
             render={renderProps => (
               <button size="large " block type="primary" onClick={renderProps.onClick}>Login!</button>
