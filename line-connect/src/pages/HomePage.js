@@ -44,7 +44,7 @@ class Home extends Component {
       if (await res.data.status) {
         let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
         Cookies.set('JWT', JWT.data.token)
-        window.location.href = `${window.env.PATH_AUTH}/status/connected`
+        window.location.href = `${window.env.PATH_FE}/status/connected`
       }
     })
   }
