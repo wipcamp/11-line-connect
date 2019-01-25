@@ -4,7 +4,6 @@ import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props
 import Cookies from 'js-cookie'
 import Loging from 'react-page-loading'
 import ReactLoading from 'react-loading';
-require('dotenv').config()
 class Home extends Component {
   state = {
     param: '',
@@ -51,7 +50,8 @@ class Home extends Component {
 
 
   render() {
-    const url = `${window.env.PATH_FE}`
+    const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1638650000&redirect_uri=${window.env.PATH_FE}&state=asdasd&scope=openid%20profile`
+    
     return (
       <div className="App">
         <div >
