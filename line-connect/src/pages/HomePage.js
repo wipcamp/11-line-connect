@@ -20,7 +20,7 @@ class Home extends Component {
         code: `${url.get('code')}`,
       },
     }).catch(err => {
-      console.log(err)
+      window.location.href = `${window.env.PATH_FE}/loginface`
     })
     const line = response.data
     const facebook = res
@@ -50,7 +50,6 @@ class Home extends Component {
 
 
   render() {
-    const url = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1638650000&redirect_uri=${window.env.PATH_FE}&state=asdasd&scope=openid%20profile`
     
     return (
       <div className="App">
@@ -60,7 +59,6 @@ class Home extends Component {
             fields="name,email,picture,id"
             appId="293604811359850"
             version="3.2"
-            redirectUri={url}
             callback={this.responseFacebook}
             render={renderProps => (
               <button size="large " block type="primary" onClick={renderProps.onClick}>Login!</button>
