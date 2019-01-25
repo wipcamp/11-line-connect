@@ -51,8 +51,7 @@ class Home extends Component {
 
 
   render() {
-    const url = new URLSearchParams(window.location.search)
-    const code =`https://line-connect.freezer.in.th/?code=${url.get('code')}`
+    const url = `${window.env.PATH_FE}`
     return (
       <div className="App">
         <div >
@@ -61,7 +60,7 @@ class Home extends Component {
             fields="name,email,picture,id"
             appId="293604811359850"
             version="3.2"
-            redirectUri={code}
+            redirectUri={url}
             callback={this.responseFacebook}
             render={renderProps => (
               <button size="large " block type="primary" onClick={renderProps.onClick}>Login!</button>
