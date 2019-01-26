@@ -67,6 +67,9 @@ class Question extends Component {
     }
 
     render() {
+        if(!Cookie.get('JWT')){
+            window.location.href = `${window.env.PATH_FE}/login`
+        }
         return (
             <div className='container'>
                 <h1 className='text-center'>Question</h1>

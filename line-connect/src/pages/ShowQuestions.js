@@ -23,6 +23,9 @@ class ShowQuestions extends Component {
         this.setState({ questions: questionsformDB.data })
     }
     render() {
+        if(!Cookie.get('JWT')){
+            window.location.href = `${window.env.PATH_FE}/login`
+        }
         return (
             <div className='container'>
                 <h1 className='text-center'>Choose Question</h1>

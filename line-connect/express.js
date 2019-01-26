@@ -61,39 +61,51 @@ app.post('/api/loginfacebook', (req, res) => {
 });
 
 app.post('/api/sendAnswer',async (req,res)=>{
-    console.log(req)
-    await axios ({
-        method: 'post',
-        url: `${process.env.PATH_REGISTANCE}/answers/line/answerbyline`,
-        headers: {
-            'Authorization': `Bearer ${req.body.JWT}`,
-            'Content-Type': 'application/json'
-          },
-          data:{
-            question_id:req.body.questionid,
-            ans_content:req.body.content
-          }
-    }).catch(err => {
-       return err;
-    })
-
-    return res.json({s:req.questionid})
+    try {
+        await axios ({
+            method: 'post',
+            url: `${process.env.PATH_REGISTANCE}/answers/line/answerbyline`,
+            headers: {
+                'Authorization': `Bearer ${req.body.JWT}`,
+                'Content-Type': 'application/json'
+              },
+              data:{
+                question_id:req.body.questionid,
+                ans_content:req.body.content
+              }
+        }).catch(err => {
+            return res.json('getquestionsProblem')
+        })
+        return res.json({s:req.questionid})
+    } catch (error) {
+        return res.json('getquestionsProblem')
+        
+    }
+   
 })
 
 app.post('/api/questions',async (req,res)=>{
-    const getQuestion = await axios ({
-        method: 'get',
-        url: `${process.env.PATH_REGISTANCE}/questions`,
-        headers: {
-            'Authorization': `Bearer ${req.body.JWT}`,
-            'Content-Type': 'application/json'
-          }
-    })
-    let Question = getQuestion.data
-    return res.json(Question)
+    try {
+        const getQuestion = await axios ({
+            method: 'get',
+            url: `${process.env.PATH_REGISTANCE}/questions`,
+            headers: {
+                'Authorization': `Bearer ${req.body.JWT}`,
+                'Content-Type': 'application/json'
+              }
+        }).catch(err => {
+            return res.json('getquestionsProblem')
+        })
+        let Question = getQuestion.data
+        return res.json(Question)
+    } catch (error) {
+        return res.json('getquestionsProblem')
+        
+    }
     })
 
 app.post('/api/question',async (req,res)=>{
+    try {
         const getQuestion = await axios ({
             method: 'get',
             url: `${process.env.PATH_REGISTANCE}/questions/${req.body.questionid}`,
@@ -116,6 +128,10 @@ app.post('/api/question',async (req,res)=>{
             answer:getAnswer.data
         }
         return res.json(Question)
+        
+    } catch (error) {
+        return res.json('getquestionsProblem')
+    }
         })
 
 app.listen(port);
