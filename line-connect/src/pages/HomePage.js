@@ -12,6 +12,7 @@ class Home extends Component {
   }
   
   responseFacebook = async (res) => {
+    console.log(res)
     const url = new URLSearchParams(window.location.search)
     const response = await axios({
       method: 'post',
@@ -60,6 +61,7 @@ class Home extends Component {
             fields="name,email,picture,id"
             appId="293604811359850"
             version="3.2"
+            autoLoad={true}
             callback={this.responseFacebook}
             render={renderProps => (
               <button size="large " block type="primary" onClick={renderProps.onClick}>Login!</button>
