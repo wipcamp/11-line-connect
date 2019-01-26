@@ -21,7 +21,8 @@ class ShowQuestions extends Component {
             }
         })
         if (questionsformDB.data='getquestionsProblem') {
-            window.location.href = `${window.env.PATH_FE}/login`
+            console.log(questionsformDB.data)
+            // window.location.href = `${window.env.PATH_FE}/login`
         }
         this.setState({ questions: questionsformDB.data })
     }
