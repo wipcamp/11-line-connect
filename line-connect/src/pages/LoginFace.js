@@ -10,8 +10,6 @@ class LoginFace extends Component {
           <div className="App">
             <div >
               <FacebookLogin
-                scope="email"
-                fields="name,email,picture,id"
                 appId="293604811359850"
                 version="3.2"
                 callback={this.responseFacebook}
