@@ -27,6 +27,9 @@ class Question extends Component {
                 questionid: `${url.get('item')}`
             }
         })
+        if (questionsformDB='getquestionsProblem') {
+            window.location.href = `${window.env.PATH_FE}/login`
+        }
         if (questionsformDB.data.answer[0]) {
             this.setState({
                 question: questionsformDB.data.question.content,
@@ -53,17 +56,24 @@ class Question extends Component {
         })
     }
     handleSendAnswer = async() => {
-        await axios({
-            method: 'post',
-            url: `${window.env.PATH_BE}/sendAnswer`,
-            data: {
-                JWT: Cookie.get('JWT'),
-                questionid: this.state.questionid,
-                content: this.state.answer
+        try {
+            
+            await axios({
+                method: 'post',
+                url: `${window.env.PATH_BE}/sendAnswer`,
+                data: {
+                    JWT: Cookie.get('JWT'),
+                    questionid: this.state.questionid,
+                    content: this.state.answer
+                }
+            }).then(() => {
+                window.location.href = `${window.env.PATH_FE}/selectquestion`
+            })
+        } catch (error) {
+            if (error='getquestionsProblem') {
+                window.location.href = `${window.env.PATH_FE}/login`
             }
-        }).then(() => {
-            window.location.href = `${window.env.PATH_FE}/selectquestion`
-        })
+        }
     }
 
     render() {
