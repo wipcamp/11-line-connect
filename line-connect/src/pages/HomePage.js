@@ -25,8 +25,10 @@ class Home extends Component {
       window.location.href = `${window.env.PATH_FE}/loginface`
     })
     const line = response.data
+    if(line==='auth lineproblem'){
+      window.location.href = `${window.env.PATH_FE}/loginface`
+    }
     const facebook = res
-
     await axios({
       method: 'post',
       url: `${window.env.PATH_AUTH}/auth/connect`,
@@ -52,7 +54,6 @@ class Home extends Component {
 
 
   render() {
-    
     return (
       <div className="App">
         <div >

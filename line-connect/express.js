@@ -28,7 +28,7 @@ app.post('/api/auth', async (req, res) => {
             }),
         }).catch(err => {
             console.log(err)
-            return err
+            return res.json('auth lineproblem')
         })
         const profile = await axios({
             method: 'get',
@@ -40,7 +40,7 @@ app.post('/api/auth', async (req, res) => {
         return res.json(lineProfile)
     } catch (error) {
         console.log(error)
-        return error
+        return res.json('auth lineproblem')
     }
 });
 app.post('/api/loginfacebook', (req, res) => {
