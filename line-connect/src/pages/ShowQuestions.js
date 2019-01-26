@@ -20,7 +20,7 @@ class ShowQuestions extends Component {
                 JWT: Cookie.get('JWT')
             }
         })
-        if (questionsformDB='getquestionsProblem') {
+        if (questionsformDB.data='getquestionsProblem') {
             window.location.href = `${window.env.PATH_FE}/login`
         }
         this.setState({ questions: questionsformDB.data })

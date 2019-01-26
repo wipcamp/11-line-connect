@@ -27,7 +27,7 @@ class Question extends Component {
                 questionid: `${url.get('item')}`
             }
         })
-        if (questionsformDB='getquestionsProblem') {
+        if (questionsformDB.data='getquestionsProblem') {
             window.location.href = `${window.env.PATH_FE}/login`
         }
         if (questionsformDB.data.answer[0]) {
@@ -70,7 +70,7 @@ class Question extends Component {
                 window.location.href = `${window.env.PATH_FE}/selectquestion`
             })
         } catch (error) {
-            if (error='getquestionsProblem') {
+            if (error.data='getquestionsProblem') {
                 window.location.href = `${window.env.PATH_FE}/login`
             }
         }
