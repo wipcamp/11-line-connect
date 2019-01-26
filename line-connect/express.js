@@ -27,7 +27,6 @@ app.post('/api/auth', async (req, res) => {
                 client_secret: '782fe647bb3279f92f1c16e1d12f4d67'
             }),
         }).catch(err => {
-            console.log(err)
             return res.json('auth lineproblem')
         })
         const profile = await axios({
@@ -39,7 +38,6 @@ app.post('/api/auth', async (req, res) => {
         const lineProfile = { ...profile.data, accessToken: line.data.access_token };
         return res.json(lineProfile)
     } catch (error) {
-        console.log(error)
         return res.json('auth lineproblem')
     }
 });

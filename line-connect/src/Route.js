@@ -22,7 +22,7 @@ class Routes extends React.Component {
             <Route path="/status/connected" component={ConnectedPage} />
             <Route path="/selectquestion" component={SelectQuestion} />
             <Route path="/question" component={Question} />
-            <Route path="/loginface" component={LoginFace} />
+            <Route path="/login" component={LoginFace} />
           </div>
       </Router>
     )

@@ -21,12 +21,11 @@ class Home extends Component {
         code: `${url.get('code')}`,
       },
     }).catch(err => {
-      console.log(err)
-      window.location.href = `${window.env.PATH_FE}/loginface`
+      window.location.href = `${window.env.PATH_FE}/login`
     })
     const line = response.data
     if(line==='auth lineproblem'){
-      window.location.href = `${window.env.PATH_FE}/loginface`
+      window.location.href = `${window.env.PATH_FE}/login`
     }
     const facebook = res
     await axios({
