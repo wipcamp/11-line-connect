@@ -20,6 +20,7 @@ class Home extends Component {
         code: `${url.get('code')}`,
       },
     }).catch(err => {
+      console.log(err)
       window.location.href = `${window.env.PATH_FE}/loginface`
     })
     const line = response.data
