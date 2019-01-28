@@ -57,6 +57,7 @@ class Home extends Component {
         accessTokenLine: line.accessToken
       }
     }).then(async (res) => {
+      Cookies.remove('codeLine')
       const sendLine = {
         provider_id: line.userId,
         provider_name: 'line',
