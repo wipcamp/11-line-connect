@@ -1,33 +1,52 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
+import FacebookLogin from 'react-facebook-login'
 import Cookies from 'js-cookie'
-import Loging from 'react-page-loading'
-import ReactLoading from 'react-loading';
+import styled from 'styled-components'
+
+// import Loging from 'react-page-loading'
+// import ReactLoading from 'react-loading';
+const Loading = styled.div`
+  position: absolute;
+  z-index: 2;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+`
 class Home extends Component {
   state = {
     param: '',
     data: {},
-    nameLine: ''
+    loading: 'block'
   }
-  
+  componentDidMount = async () => {
+    console.log(Cookies.get('codeLine'))
+    if (Cookies.get('codeLine') === undefined) {
+      const url = await new URLSearchParams(window.location.search)
+      await Cookies.set('codeLine', url.get('code'))
+    }
+    setTimeout(() => {
+      this.setState({
+        loading: 'none'
+      })
+    },5000)
+  }
   responseFacebook = async (res) => {
-    console.log(res)
-    const url = new URLSearchParams(window.location.search)
-    const response = await axios({
+    const facebook = res
+    console.log(facebook)
+    const responseLine = await axios({
       method: 'post',
       url: `${window.env.PATH_BE}/auth`,
       data: {
-        code: `${url.get('code')}`,
+        code: Cookies.get('codeLine'),
       },
-    }).catch(err => {
-      window.location.href = `${window.env.PATH_FE}/login`
     })
-    const line = response.data
-    if(line==='auth lineproblem'){
-      window.location.href = `${window.env.PATH_FE}/login`
-    }
-    const facebook = res
+    const line = responseLine.data
+    console.log(line)
+    // if (line === 'auth lineproblem') {
+    //   window.location.href = `${window.env.PATH_FE}/login`
+    // }
+    
     await axios({
       method: 'post',
       url: `${window.env.PATH_AUTH}/auth/connect`,
@@ -50,29 +69,18 @@ class Home extends Component {
       }
     })
   }
-
+  
 
   render() {
     return (
       <div className="App">
         <div >
+          <Loading style={{ display: this.state.loading }}/>
           <FacebookLogin
-            scope="email"
-            fields="name,email,picture,id"
             appId="293604811359850"
-            version="3.2"
-            autoLoad={true}
             callback={this.responseFacebook}
-            render={renderProps => (
-              <button size="large " block type="primary" onClick={renderProps.onClick}>Login!</button>
-            )}
           />
         </div>
-        {/* <Loging loader={"bar"} color={"#A9A9A9"} size={4} duration={1}>
-          <h1>Title</h1>
-          <p>content goes here</p>
-        </Loging> */}
-        {/* <ReactLoading type={this.props.type} color={this.props.color} height={667} width={375} /> */}
       </div>
     );
   }
