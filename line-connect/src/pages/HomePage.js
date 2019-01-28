@@ -98,7 +98,6 @@ class Home extends Component {
         <div >
           <Loading style={{ display: this.state.loading }}/>
           <FacebookLogin
-            redirectUri="https://line-connect.freezer.in.th/"
             appId="293604811359850"
             callback={this.responseFacebook}
           />
