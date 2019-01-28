@@ -29,7 +29,7 @@ class Home extends Component {
       this.setState({
         loading: 'none'
       })
-    },5000)
+    },7000)
   }
   responseFacebook = async (res) => {
     const facebook = res
