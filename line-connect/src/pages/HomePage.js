@@ -24,27 +24,25 @@ class Home extends Component {
     if (Cookies.get('codeLine') === undefined) {
       const url = await new URLSearchParams(window.location.search)
       await Cookies.set('codeLine', url.get('code'))
-    //  await axios({
-    //     method: 'post',
-    //     url: `${window.env.PATH_BE}/auth`,
-    //     data: {
-    //       code: Cookies.get('codeLine'),
-    //     },
-    //   }).then(async(responseLine)=>{
-    //     const line = responseLine.data
-    //     console.log(line)
-    //     const sendLine = {
-    //       provider_id: line.userId,
-    //       provider_name: 'line',
-    //       accessToken: line.accessToken,
-    //     }
-    //       let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
-    //       Cookies.set('JWT', JWT.data.token)
-          
-    //   })
-   
-        // window.location.href = `${window.env.PATH_FE}/status/connected`
     }
+    await axios({
+      method: 'post',
+      url: `${window.env.PATH_BE}/auth`,
+      data: {
+        code: Cookies.get('codeLine'),
+      },
+    }).then(async(responseLine)=>{
+      const line = responseLine.data
+      console.log(line)
+      const sendLine = {
+        provider_id: line.userId,
+        provider_name: 'line',
+        accessToken: line.accessToken,
+      }
+        let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
+        Cookies.set('JWT', JWT.data.token)
+      //  window.location.href = `${window.env.PATH_FE}/status/connected`
+    })
     setTimeout(() => {
       this.setState({
         loading: 'none'
@@ -77,7 +75,7 @@ class Home extends Component {
         accessTokenLine: line.accessToken
       }
     }).then(async (res) => {
-      Cookies.remove('codeLine')
+      // Cookies.remove('codeLine')
       const sendLine = {
         provider_id: line.userId,
         provider_name: 'line',
