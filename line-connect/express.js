@@ -27,7 +27,7 @@ app.post('/api/auth', async (req, res) => {
                 client_secret: '782fe647bb3279f92f1c16e1d12f4d67'
             }),
         }).catch(err => {
-            return res.json('auth lineproblem')
+            return res.json('auth lineproblem',err)
         })
         const profile = await axios({
             method: 'get',
