@@ -27,9 +27,9 @@ app.post('/api/auth', async (req, res) => {
                 client_secret: '782fe647bb3279f92f1c16e1d12f4d67'
             }),
         }).catch(err => {
-            console.log(err)
             return res.json('auth lineproblem')
         })
+        console.log(line.data)
         const profile = await axios({
             method: 'get',
             url: 'https://api.line.me/v2/profile',
