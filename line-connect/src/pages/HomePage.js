@@ -25,6 +25,7 @@ class Home extends Component {
       const url = await new URLSearchParams(window.location.search)
       await Cookies.set('codeLine', url.get('code'))
     }
+    console.log(Cookies.get('codeLine'))
     await axios({
       method: 'post',
       url: `${window.env.PATH_BE}/auth`,
