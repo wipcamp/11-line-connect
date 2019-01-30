@@ -61,9 +61,7 @@ class Home extends Component {
     })
     const line = responseLine.data
     console.log(line)
-    // if (line === 'auth lineproblem') {
-    //   window.location.href = `${window.env.PATH_FE}/login`
-    // }
+    Cookies.remove('codeLine')
 
     await axios({
       method: 'post',
@@ -80,18 +78,20 @@ class Home extends Component {
         provider_name: 'line',
         accessToken: line.accessToken,
       }
+
       if (await res.data.status) {
         let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
         Cookies.set('JWT', JWT.data.token)
         window.location.href = `${window.env.PATH_FE}/status/connected`
       } else if(await res.data.error === 'Please Register By Facebook Account Before Connect With Line') {
-        // window.location.href = 'https://itim.freezer.in.th'
+        window.location.href = 'https://itim.freezer.in.th'
         console.log(res.data.error)
       } else {
-        // window.location.href = `${window.env.PATH_FE}/status/errortoken`
+        window.location.href = `${window.env.PATH_FE}/status/errortoken`
         console.log(res.data.error)
 
       }
+
     })
   }
 
