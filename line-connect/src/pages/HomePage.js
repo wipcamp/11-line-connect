@@ -20,7 +20,7 @@ class Home extends Component {
   }
 
   componentDidMount = async () => {
-    console.log(window.env.PATH_BE , window.env.PATH_FE ,window.env.PATH_ITIM)
+    console.log(window.env)
     if (!Cookies.get('codeLine')) {
       const url = await new URLSearchParams(window.location.search)
       await Cookies.set('codeLine', url.get('code'))
