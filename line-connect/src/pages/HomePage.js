@@ -20,11 +20,12 @@ class Home extends Component {
     loading: 'block'
   }
   componentDidMount = async () => {
-    console.log(Cookies.get('codeLine'))
+    
     if (!Cookies.get('codeLine')) {
       const url = await new URLSearchParams(window.location.search)
       await Cookies.set('codeLine', url.get('code'))
     }
+    console.log(Cookies.get('codeLine'))
     // await axios({
     //   method: 'post',
     //   url: `${window.env.PATH_BE}/auth`,
