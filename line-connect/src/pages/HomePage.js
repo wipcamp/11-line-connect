@@ -85,9 +85,12 @@ class Home extends Component {
         Cookies.set('JWT', JWT.data.token)
         window.location.href = `${window.env.PATH_FE}/status/connected`
       } else if(await res.data.error === 'Please Register By Facebook Account Before Connect With Line') {
-        window.location.href = 'https://itim.freezer.in.th'
+        // window.location.href = 'https://itim.freezer.in.th'
+        console.log(res.data.error)
       } else {
-        window.location.href = `${window.env.PATH_FE}/status/errortoken`
+        // window.location.href = `${window.env.PATH_FE}/status/errortoken`
+        console.log(res.data.error)
+
       }
     })
   }
