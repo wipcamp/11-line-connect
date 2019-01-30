@@ -4,8 +4,6 @@ import FacebookLogin from 'react-facebook-login'
 import Cookies from 'js-cookie'
 import styled from 'styled-components'
 
-// import Loging from 'react-page-loading'
-// import ReactLoading from 'react-loading';
 const Loading = styled.div`
   position: absolute;
   z-index: 2;
@@ -13,46 +11,29 @@ const Loading = styled.div`
   height: 100vh;
   background-color: black;
 `
+
 class Home extends Component {
   state = {
     param: '',
     data: {},
     loading: 'block'
   }
+
   componentDidMount = async () => {
     
     if (!Cookies.get('codeLine')) {
       const url = await new URLSearchParams(window.location.search)
       await Cookies.set('codeLine', url.get('code'))
     }
-    console.log(Cookies.get('codeLine'))
-    // await axios({
-    //   method: 'post',
-    //   url: `${window.env.PATH_BE}/auth`,
-    //   data: {
-    //     code: Cookies.get('codeLine'),
-    //   },
-    // }).then(async(responseLine)=>{
-    //   const line = responseLine.data
-    //   console.log(line)
-    //   const sendLine = {
-    //     provider_id: line.userId,
-    //     provider_name: 'line',
-    //     accessToken: line.accessToken,
-    //   }
-    //     let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
-    //     Cookies.set('JWT', JWT.data.token)
-    //   //  window.location.href = `${window.env.PATH_FE}/status/connected`
-    // })
     setTimeout(() => {
       this.setState({
         loading: 'none'
       })
     }, 7000)
   }
+
   responseFacebook = async (res) => {
     const facebook = res
-    console.log(facebook)
     const responseLine = await axios({
       method: 'post',
       url: `${window.env.PATH_BE}/auth`,
@@ -61,7 +42,6 @@ class Home extends Component {
       },
     })
     const line = responseLine.data
-    console.log(line)
     Cookies.remove('codeLine')
 
     await axios({
@@ -85,14 +65,10 @@ class Home extends Component {
         Cookies.set('JWT', JWT.data.token)
         window.location.href = `${window.env.PATH_FE}/status/connected`
       } else if(await res.data.error === 'Please Register By Facebook Account Before Connect With Line') {
-        window.location.href = 'https://itim.freezer.in.th'
-        console.log(res.data.error)
+        window.location.href = `${window.env.PATH_ITIM}`
       } else {
         window.location.href = `${window.env.PATH_FE}/status/errortoken`
-        console.log(res.data.error)
-
       }
-
     })
   }
 
