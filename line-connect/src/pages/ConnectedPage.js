@@ -8,14 +8,6 @@ const Box = styled.div`
 `
 
 class Error extends Component {
-    Close = () => {
-        window.close();
-    }
-    // componentDidMount() {
-    //     setTimeout(function () {
-    //         window.this.Close();
-    //     }, 5000)
-    // }
     render() {
         return (
             <div>
@@ -23,7 +15,6 @@ class Error extends Component {
                     {Cookie.get('JWT')}
                     You are Connected
                 </Box>
-                <button onClick={() => window.close()}>Click</button>
             </div>
         );
     }
