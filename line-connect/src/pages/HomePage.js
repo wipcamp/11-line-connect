@@ -47,7 +47,7 @@ class Home extends Component {
       this.setState({
         loading: 'none'
       })
-    },7000)
+    }, 7000)
   }
   responseFacebook = async (res) => {
     const facebook = res
@@ -64,39 +64,41 @@ class Home extends Component {
     // if (line === 'auth lineproblem') {
     //   window.location.href = `${window.env.PATH_FE}/login`
     // }
-    
-    await axios({
-      method: 'post',
-      url: `${window.env.PATH_AUTH}/auth/connect`,
-      data: {
-        provider_fb: facebook.userID,
-        accessTokenFB: facebook.accessToken,
-        provider_line: line.userId,
-        accessTokenLine: line.accessToken
-      }
-    }).then(async (res) => {
-      // Cookies.remove('codeLine')
-      const sendLine = {
-        provider_id: line.userId,
-        provider_name: 'line',
-        accessToken: line.accessToken,
-      }
-      if (await res.data.status) {
-        let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
-        Cookies.set('JWT', JWT.data.token)
-        window.location.href = `${window.env.PATH_FE}/status/connected`
-      }
-    }).catch( async (error) => {
+    try {
+      await axios({
+        method: 'post',
+        url: `${window.env.PATH_AUTH}/auth/connect`,
+        data: {
+          provider_fb: facebook.userID,
+          accessTokenFB: facebook.accessToken,
+          provider_line: line.userId,
+          accessTokenLine: line.accessToken
+        }
+      }).then(async (res) => {
+        // Cookies.remove('codeLine')
+        const sendLine = {
+          provider_id: line.userId,
+          provider_name: 'line',
+          accessToken: line.accessToken,
+        }
+        if (await res.data.status) {
+          let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
+          Cookies.set('JWT', JWT.data.token)
+          window.location.href = `${window.env.PATH_FE}/status/connected`
+        }
+      })
+    } catch (error) {
       console.log(error)
-    })
+    }
+
   }
-  
+
 
   render() {
     return (
       <div className="App">
         <div >
-          <Loading style={{ display: this.state.loading }}/>
+          <Loading style={{ display: this.state.loading }} />
           <FacebookLogin
             redirectUri="https://line-connect.freezer.in.th/"
             appId="293604811359850"
