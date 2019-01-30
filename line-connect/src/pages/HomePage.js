@@ -86,6 +86,8 @@ class Home extends Component {
         Cookies.set('JWT', JWT.data.token)
         window.location.href = `${window.env.PATH_FE}/status/connected`
       }
+    }).catch( async (error) => {
+      console.log(error)
     })
   }
   
