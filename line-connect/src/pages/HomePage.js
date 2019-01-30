@@ -64,33 +64,32 @@ class Home extends Component {
     // if (line === 'auth lineproblem') {
     //   window.location.href = `${window.env.PATH_FE}/login`
     // }
-    try {
-      await axios({
-        method: 'post',
-        url: `${window.env.PATH_AUTH}/auth/connect`,
-        data: {
-          provider_fb: facebook.userID,
-          accessTokenFB: facebook.accessToken,
-          provider_line: line.userId,
-          accessTokenLine: line.accessToken
-        }
-      }).then(async (res) => {
-        // Cookies.remove('codeLine')
-        const sendLine = {
-          provider_id: line.userId,
-          provider_name: 'line',
-          accessToken: line.accessToken,
-        }
-        if (await res.data.status) {
-          let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
-          Cookies.set('JWT', JWT.data.token)
-          window.location.href = `${window.env.PATH_FE}/status/connected`
-        }
-      })
-    } catch (error) {
-      console.log(error.res)
-    }
 
+    await axios({
+      method: 'post',
+      url: `${window.env.PATH_AUTH}/auth/connect`,
+      data: {
+        provider_fb: facebook.userID,
+        accessTokenFB: facebook.accessToken,
+        provider_line: line.userId,
+        accessTokenLine: line.accessToken
+      }
+    }).then(async (res) => {
+      const sendLine = {
+        provider_id: line.userId,
+        provider_name: 'line',
+        accessToken: line.accessToken,
+      }
+      if (await res.data.status) {
+        let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
+        Cookies.set('JWT', JWT.data.token)
+        window.location.href = `${window.env.PATH_FE}/status/connected`
+      } else if(await res.data.error === 'Please Register By Facebook Account Before Connect With Line') {
+        window.location.href = 'https://itim.freezer.in.th'
+      } else {
+        window.location.href = `${window.env.PATH_FE}/status/errortoken`
+      }
+    })
   }
 
 
