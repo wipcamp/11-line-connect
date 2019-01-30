@@ -21,7 +21,7 @@ class Home extends Component {
   }
   componentDidMount = async () => {
     console.log(Cookies.get('codeLine'))
-    if (Cookies.get('codeLine') === undefined) {
+    if (!Cookies.get('codeLine')) {
       const url = await new URLSearchParams(window.location.search)
       await Cookies.set('codeLine', url.get('code'))
     }
