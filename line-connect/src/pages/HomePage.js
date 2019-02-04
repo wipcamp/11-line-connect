@@ -39,7 +39,7 @@ class Home extends Component {
       accessToken: line.accessToken,
     }
     let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
-  
+  console.log('jwt',JWT)
     if(JWT){
     // Cookies.remove('codeLine')
     Cookies.set('JWT', JWT.data.token)
