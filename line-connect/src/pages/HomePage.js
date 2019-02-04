@@ -43,7 +43,7 @@ class Home extends Component {
     if(JWT){
     // Cookies.remove('codeLine')
     Cookies.set('JWT', JWT.data.token)
-    window.location.href = `${window.env.PATH_FE}/status/connected`
+    // window.location.href = `${window.env.PATH_FE}/status/connected`
 
     }
 
