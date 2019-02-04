@@ -25,11 +25,33 @@ class Home extends Component {
       const url = await new URLSearchParams(window.location.search)
       await Cookies.set('codeLine', url.get('code'))
     }
+    const responseLine = await axios({
+      method: 'post',
+      url: `${window.env.PATH_BE}/auth`,
+      data: {
+        code: Cookies.get('codeLine'),
+      },
+    })
+    const line = responseLine.data
+    const sendLine = {
+      provider_id: line.userId,
+      provider_name: 'line',
+      accessToken: line.accessToken,
+    }
+    let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
+    if(JWT){
+    Cookies.remove('codeLine')
+    Cookies.set('JWT', JWT.data.token)
+    window.location.href = `${window.env.PATH_FE}/status/connected`
+
+    }
+
     setTimeout(() => {
       this.setState({
         loading: 'none'
       })
     }, 7000)
+    
   }
 
   responseFacebook = async (res) => {
