@@ -39,8 +39,9 @@ class Home extends Component {
       accessToken: line.accessToken,
     }
     let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
+  
     if(JWT){
-    Cookies.remove('codeLine')
+    // Cookies.remove('codeLine')
     Cookies.set('JWT', JWT.data.token)
     window.location.href = `${window.env.PATH_FE}/status/connected`
 
@@ -64,7 +65,7 @@ class Home extends Component {
       },
     })
     const line = responseLine.data
-    Cookies.remove('codeLine')
+    // Cookies.remove('codeLine')
 
     await axios({
       method: 'post',
