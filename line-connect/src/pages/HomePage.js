@@ -20,7 +20,6 @@ class Home extends Component {
   }
 
   componentDidMount = async () => {
-    console.log(window.env)
     if (!Cookies.get('codeLine')) {
       const url = await new URLSearchParams(window.location.search)
       await Cookies.set('codeLine', url.get('code'))
@@ -39,11 +38,11 @@ class Home extends Component {
       accessToken: line.accessToken,
     }
     let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
-  
+  console.log(JWT)
     if(JWT.data.token){
-    Cookies.remove('codeLine')
-    Cookies.set('JWT', JWT.data.token)
-    window.location.href = `${window.env.PATH_FE}/status/connected`
+    // Cookies.remove('codeLine')
+    // Cookies.set('JWT', JWT.data.token)
+    // window.location.href = `${window.env.PATH_FE}/status/connected`
 
     }
 
@@ -83,15 +82,15 @@ class Home extends Component {
         accessToken: line.accessToken,
       }
 
-      if (await res.data.status) {
-        let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
-        Cookies.set('JWT', JWT.data.token)
-        window.location.href = `${window.env.PATH_FE}/status/connected`
-      } else if(await res.data.error === 'Please Register By Facebook Account Before Connect With Line') {
-        window.location.href = `${window.env.PATH_ITIM}`
-      } else {
-        window.location.href = `${window.env.PATH_FE}/status/errortoken`
-      }
+      // if (await res.data.status) {
+      //   let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
+      //   Cookies.set('JWT', JWT.data.token)
+      //   window.location.href = `${window.env.PATH_FE}/status/connected`
+      // } else if(await res.data.error === 'Please Register By Facebook Account Before Connect With Line') {
+      //   window.location.href = `${window.env.PATH_ITIM}`
+      // } else {
+      //   window.location.href = `${window.env.PATH_FE}/status/errortoken`
+      // }
     })
   }
 
