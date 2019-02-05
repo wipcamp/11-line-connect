@@ -68,7 +68,7 @@ class ShowQuestions extends Component {
           <div className="col-12">
             <div className="row">
               {this.state.questions.map((item, index) => (
-                <div className="col-6 col-sm-4 text-center mt-5">
+                <div className="col-6 col-sm-4 text-center mt-1">
                   <Button onClick={() => this.handleQuestion(index + 1)}>
                     คำถามที่{index + 1}
                   </Button>
