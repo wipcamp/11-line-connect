@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components'
 import axios from 'axios'
 import Cookie from 'js-cookie'
-// const Box = styled.div`
-//     background-color: green;
-// `
+import Authline from './../service/AuthLine'
 require('dotenv').config()
 
 class Question extends Component {
@@ -71,14 +69,20 @@ class Question extends Component {
             })
         } catch (error) {
             if (error.data==='getquestionsProblem') {
-                window.location.href = `${window.env.PATH_FE}/login`
+                window.location.href = `${window.env.PATH_FE}/ErrorTokenPage`
             }
         }
     }
 
     render() {
         if(!Cookie.get('JWT')){
-            window.location.href = `${window.env.PATH_FE}/login`
+            const url =  new URLSearchParams(window.location.search)
+          let JWT =  Authline.login( url.get('code'))
+          if(JWT.data){
+            Cookie.set('JWT', JWT.data.token)
+          }else{
+            window.location.href = `${window.env.PATH_FE}/ErrorTokenPage`              
+          }
         }
         return (
             <div className='container'>

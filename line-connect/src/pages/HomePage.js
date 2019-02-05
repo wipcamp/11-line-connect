@@ -11,7 +11,7 @@ const Loading = styled.div`
   height: 100vh;
   background-color: black;
 `
-
+let line
 class Home extends Component {
   state = {
     param: '',
@@ -20,20 +20,10 @@ class Home extends Component {
   }
 
   componentDidMount = async () => {
-    console.log(window.env)
     if (!Cookies.get('codeLine')) {
       const url = await new URLSearchParams(window.location.search)
       await Cookies.set('codeLine', url.get('code'))
     }
-    setTimeout(() => {
-      this.setState({
-        loading: 'none'
-      })
-    }, 7000)
-  }
-
-  responseFacebook = async (res) => {
-    const facebook = res
     const responseLine = await axios({
       method: 'post',
       url: `${window.env.PATH_BE}/auth`,
@@ -41,9 +31,33 @@ class Home extends Component {
         code: Cookies.get('codeLine'),
       },
     })
-    const line = responseLine.data
+     line = responseLine.data
+    const sendLine = {
+      provider_id: line.userId,
+      provider_name: 'line',
+      accessToken: line.accessToken,
+    }
+    let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
+    if(JWT.data.token){
+      console.log('auth in',JWT)
     Cookies.remove('codeLine')
+    Cookies.set('JWT', JWT.data.token)
+    window.location.href = `${window.env.PATH_FE}/status/connected`
+    }
 
+    setTimeout(() => {
+      this.setState({
+        loading: 'none'
+      })
+    }, 7000)
+    
+  }
+
+  responseFacebook = async (res) => {
+    const facebook = res
+    Cookies.remove('codeLine')
+    console.log('auth in line',line)
+    console.log('auth in face',res)
     await axios({
       method: 'post',
       url: `${window.env.PATH_AUTH}/auth/connect`,
