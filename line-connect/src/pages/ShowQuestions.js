@@ -21,7 +21,7 @@ const Button = styled.div`
   background-color: white;
 `;
 const Body = styled.div`
-  min-height: 100vh;
+  /* min-height: 100vh; */
   background-image: linear-gradient(#ffffff, #f8e9d6);
 `;
 
@@ -61,7 +61,7 @@ class ShowQuestions extends Component {
               </div>
             </div>
           </div>
-          <h2>{Cookie.get("JWT")}</h2>
+          {/* <h2>{Cookie.get("JWT")}</h2> */}
           <div className="container">
             <Topic>เลือกคำถาม</Topic>
           </div>
