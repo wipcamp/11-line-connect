@@ -11,7 +11,7 @@ const Loading = styled.div`
   height: 100vh;
   background-color: black;
 `
-
+let line
 class Home extends Component {
   state = {
     param: '',
@@ -31,7 +31,7 @@ class Home extends Component {
         code: Cookies.get('codeLine'),
       },
     })
-    const line = responseLine.data
+     line = responseLine.data
     const sendLine = {
       provider_id: line.userId,
       provider_name: 'line',
@@ -56,14 +56,8 @@ class Home extends Component {
 
   responseFacebook = async (res) => {
     const facebook = res
-    const responseLine = await axios({
-      method: 'post',
-      url: `${window.env.PATH_BE}/auth`,
-      data: {
-        code: Cookies.get('codeLine'),
-      },
-    })
-    const line = responseLine.data
+   
+  
     // Cookies.remove('codeLine')
     console.log('auth in line',line)
     console.log('auth in face',res)
