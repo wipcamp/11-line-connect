@@ -21,7 +21,7 @@ const Button = styled.div`
   background-color: white;
 `;
 const Body = styled.div`
-  /* min-height: 100vh; */
+  min-height: 100vh;
   background-image: linear-gradient(#ffffff, #f8e9d6);
 `;
 
@@ -68,7 +68,7 @@ class ShowQuestions extends Component {
           <div className="col-12">
             <div className="row">
               {this.state.questions.map((item, index) => (
-                <div className="col-6 col-sm-4 text-center mt-1">
+                <div className="col-6 col-sm-4 text-center mt-3">
                   <Button onClick={() => this.handleQuestion(index + 1)}>
                     คำถามที่{index + 1}
                   </Button>
