@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
+import Authline from './../service/AuthLine'
 import axios from 'axios'
 import Cookie from 'js-cookie'
 require('dotenv').config()
@@ -27,7 +28,13 @@ class ShowQuestions extends Component {
     }
     render() {
         if(!Cookie.get('JWT')){
-            window.location.href = `${window.env.PATH_FE}/login`
+            const url =  new URLSearchParams(window.location.search)
+          let JWT =  Authline.login( url.get('code'))
+          if(JWT.data){
+            Cookie.set('JWT', JWT.data.token)
+          }else{
+            window.location.href = `${window.env.PATH_FE}/ErrorTokenPage`              
+          }
         }
         return (
             <div className='container'>
