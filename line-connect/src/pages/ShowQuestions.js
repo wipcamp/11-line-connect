@@ -24,6 +24,17 @@ const Body = styled.div`
   min-height: 100vh;
   background-image: linear-gradient(#ffffff, #f8e9d6);
 `;
+const Content = styled.div`
+  min-height: 100vh;
+  width: 100vw;
+  position: absolute;
+  z-index: 2;
+`;
+const Background = styled.div`
+  height: 100vh;
+  position: absolute;
+  z-index: 1;
+`;
 
 class ShowQuestions extends Component {
   state = {
@@ -51,32 +62,40 @@ class ShowQuestions extends Component {
     }
     return (
       <Body>
-        <Navbar />
-        <div className="container">
+        <Content>
+          <Navbar />
           <div className="container">
-            <Topic className="">ข้อมูลส่วนตัว</Topic>
             <div className="container">
-              <div className="col-12">
-                <Button>กรอกประวัติส่วนตัว</Button>
+              <Topic className="">ข้อมูลส่วนตัว</Topic>
+              <div className="container">
+                <div className="col-12">
+                  <Button>กรอกประวัติส่วนตัว</Button>
+                </div>
+              </div>
+            </div>
+            {/* <h2>{Cookie.get("JWT")}</h2> */}
+            <div className="container">
+              <Topic>เลือกคำถาม</Topic>
+            </div>
+            <div className="col-12">
+              <div className="row">
+                {this.state.questions.map((item, index) => (
+                  <div className="col-6 col-sm-4 text-center mt-3">
+                    <Button onClick={() => this.handleQuestion(index + 1)}>
+                      คำถามที่{index + 1}
+                    </Button>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-          {/* <h2>{Cookie.get("JWT")}</h2> */}
-          <div className="container">
-            <Topic>เลือกคำถาม</Topic>
-          </div>
-          <div className="col-12">
-            <div className="row">
-              {this.state.questions.map((item, index) => (
-                <div className="col-6 col-sm-4 text-center mt-3">
-                  <Button onClick={() => this.handleQuestion(index + 1)}>
-                    คำถามที่{index + 1}
-                  </Button>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        </Content>
+        <Background>
+          <img
+            src="/images/MaskGroup.png"
+            style={{ position: "absolute", bottom: "0" }}
+          />
+        </Background>
       </Body>
     );
   }
