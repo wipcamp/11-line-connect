@@ -35,6 +35,11 @@ const Background = styled.div`
   position: absolute;
   z-index: 1;
 `;
+const ImgBackground = styled.img`
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+`;
 
 class ShowQuestions extends Component {
   state = {
@@ -91,7 +96,7 @@ class ShowQuestions extends Component {
           </div>
         </Content>
         <Background>
-          <img
+          <ImgBackground
             src="/images/MaskGroup.png"
             style={{ position: "absolute", bottom: "0" }}
           />
