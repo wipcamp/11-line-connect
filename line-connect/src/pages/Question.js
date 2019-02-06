@@ -75,15 +75,9 @@ class Question extends Component {
     }
 
     render() {
-        if(!Cookie.get('JWT')){
-            const url =  new URLSearchParams(window.location.search)
-          let JWT =  Authline.login( url.get('code'))
-          if(JWT.data){
-            Cookie.set('JWT', JWT.data.token)
-          }else{
-            window.location.href = `${window.env.PATH_FE}/ErrorTokenPage`              
+        if (!Cookie.get("JWT")) {
+            window.location.href = `${window.env.PATH_FE}/login`;
           }
-        }
         return (
             <div className='container'>
                 <h1 className='text-center'>Question</h1>
