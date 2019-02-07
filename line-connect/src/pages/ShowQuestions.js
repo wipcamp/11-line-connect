@@ -11,14 +11,10 @@ const Topic = styled.p`
   font-size: 24px;
   margin-top: 25px;
 `;
-const Button = styled.div`
-  height: 50px;
-  line-height: 50px;
-  vertical-align: middle;
-  text-align: center;
-  border-radius: 5px;
+const Button = styled.button`
   background-color: white;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+  width: 100%;
 `;
 const Body = styled.div`
   min-height: 100vh;
@@ -54,7 +50,7 @@ class ShowQuestions extends Component {
   render() {
     if (!Cookie.get("JWT")) {
       Cookie.set("redirecturl", `${window.env.PATH_FE}/selectquestion`);
-      window.location.href = `${window.env.PATH_FE}/login`;
+      // window.location.href = `${window.env.PATH_FE}/login`;
     }
     return (
       <Body>
@@ -64,11 +60,10 @@ class ShowQuestions extends Component {
             <Topic className="">ข้อมูลส่วนตัว</Topic>
             <div className="container">
               <div className="col-12">
-                <Button>กรอกประวัติส่วนตัว</Button>
+                <Button className="btn">กรอกประวัติส่วนตัว</Button>
               </div>
             </div>
           </div>
-          {/* <h2>{Cookie.get("JWT")}</h2> */}
           <div className="container">
             <Topic>เลือกคำถาม</Topic>
           </div>
@@ -76,7 +71,10 @@ class ShowQuestions extends Component {
             <div className="row">
               {this.state.questions.map((item, index) => (
                 <div className="col-6 col-sm-4 text-center mt-3">
-                  <Button onClick={() => this.handleQuestion(index + 1)}>
+                  <Button
+                    className="btn"
+                    onClick={() => this.handleQuestion(index + 1)}
+                  >
                     คำถามที่{index + 1}
                   </Button>
                 </div>
