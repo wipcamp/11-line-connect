@@ -109,7 +109,7 @@ class Question extends Component {
       <Body>
         <Navbar />
         <div style={{ fontWeight: "bold" }}>
-          <div className="container mt-5">
+          <div className="container mt-4">
             <div className="container">
               <div className="col-12">
                 <div className="row">
