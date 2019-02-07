@@ -76,20 +76,21 @@ class ShowQuestions extends Component {
           </div>
           <div className="container">
             <Topic>เลือกคำถาม</Topic>
-          </div>
-          <div className="container">
-            <div className="col-12">
-              <div className="row">
-                {this.state.questions.map((item, index) => (
-                  <div className="col-6 col-sm-4 text-center mt-3">
-                    <Button
-                      className="btn"
-                      onClick={() => this.handleQuestion(index + 1)}
-                    >
-                      คำถามที่{index + 1}
-                    </Button>
-                  </div>
-                ))}
+
+            <div className="container">
+              <div className="col-12">
+                <div className="row">
+                  {this.state.questions.map((item, index) => (
+                    <div className="col-6 col-sm-4 text-center mt-3">
+                      <Button
+                        className="btn"
+                        onClick={() => this.handleQuestion(index + 1)}
+                      >
+                        คำถามที่{index + 1}
+                      </Button>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
