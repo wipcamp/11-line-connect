@@ -29,7 +29,6 @@ class Question extends Component {
     answer: "กำลังโหลดคำตอบ",
     statusAns: "disabled",
     statusEdit: "",
-    ans: "",
     button: "บันทึก"
   };
   componentDidMount = async () => {
@@ -60,11 +59,6 @@ class Question extends Component {
         statusEdit: "disabled"
       });
     }
-  };
-  handleAnswerByButton = () => {
-    this.setState({
-      statusAns: ""
-    });
   };
   handleAnswer = e => {
     this.setState({
@@ -123,21 +117,6 @@ class Question extends Component {
                 />
                 <div className="col-12 mt-3">
                   <div className="row float-right">
-                    {/* <button
-                      type="button"
-                      class="btn btn-warning mr-2"
-                      onClick={this.handleAnswerByButton}
-                      disabled={this.state.statusEdit}
-                    >
-                      แก้ไข
-                    </button>
-                    <button
-                      type="button"
-                      class="btn btn-info"
-                      onClick={this.handleSendAnswer}
-                    >
-                      ยืนยัน
-                    </button> */}
                     <button
                       type="button"
                       class="btn btn-danger"
