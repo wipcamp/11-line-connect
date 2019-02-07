@@ -25,10 +25,15 @@ const Content = styled.div`
   z-index: 1;
 `;
 const ImgBackground = styled.img`
-  position: absolute;
-  z-index: 0;
+  position: relative;
+  margin-top: 20px;
   width: 100vw;
-  bottom: 0px;
+  @media (max-width: 567px) {
+    position: absolute;
+    z-index: 0;
+    width: 100vw;
+    bottom: 0px;
+  }
 `;
 
 class ShowQuestions extends Component {
