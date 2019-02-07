@@ -25,7 +25,7 @@ const Body = styled.div`
   background-image: linear-gradient(#ffffff, #f8e9d6);
 `;
 const ImgBackground = styled.img`
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100vw;
 `;
