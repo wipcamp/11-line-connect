@@ -29,7 +29,8 @@ class Question extends Component {
     answer: "กำลังโหลดคำตอบ",
     statusAns: "disabled",
     statusEdit: "",
-    ans: ""
+    ans: "",
+    button: "บันทึก"
   };
   componentDidMount = async () => {
     const url = new URLSearchParams(window.location.search);
@@ -48,7 +49,8 @@ class Question extends Component {
     if (questionsformDB.data.answer[0]) {
       this.setState({
         question: questionsformDB.data.question.content,
-        answer: questionsformDB.data.answer[0].ans_content
+        answer: questionsformDB.data.answer[0].ans_content,
+        button: "แก้ไข"
       });
     } else {
       this.setState({
@@ -66,26 +68,34 @@ class Question extends Component {
   };
   handleAnswer = e => {
     this.setState({
-      answer: e.target.value
+      answer: e.target.value,
+      statusEdit: ""
     });
   };
   handleSendAnswer = async () => {
-    try {
-      await axios({
-        method: "post",
-        url: `${window.env.PATH_BE}/sendAnswer`,
-        data: {
-          JWT: Cookie.get("JWT"),
-          questionid: this.state.questionid,
-          content: this.state.answer
+    if (this.state.button === "บันทึก") {
+      try {
+        await axios({
+          method: "post",
+          url: `${window.env.PATH_BE}/sendAnswer`,
+          data: {
+            JWT: Cookie.get("JWT"),
+            questionid: this.state.questionid,
+            content: this.state.answer
+          }
+        }).then(() => {
+          window.location.href = `${window.env.PATH_FE}/selectquestion`;
+        });
+      } catch (error) {
+        if (error.data === "getquestionsProblem") {
+          window.location.href = `${window.env.PATH_FE}/ErrorTokenPage`;
         }
-      }).then(() => {
-        window.location.href = `${window.env.PATH_FE}/selectquestion`;
-      });
-    } catch (error) {
-      if (error.data === "getquestionsProblem") {
-        window.location.href = `${window.env.PATH_FE}/ErrorTokenPage`;
       }
+    } else {
+      this.setState({
+        statusAns: "",
+        button: "บันทึก"
+      });
     }
   };
 
@@ -96,44 +106,47 @@ class Question extends Component {
     return (
       <Body>
         <Navbar />
-        <div className="container">
-          <h1 className="text-center">Question</h1>
-          <div className="col-12">
-            <div className="row">
-              <p>
-                {this.state.questionid}. {this.state.question}
-              </p>
-              <br />
-              <textarea
-                value={this.state.answer}
-                disabled={this.state.statusAns}
-                onChange={this.handleAnswer}
-                className="col-12"
-                style={{ height: "150px" }}
-              />
-              <div className="col-12 mt-3">
-                <div className="row float-right">
-                  {/* <div className="row float-"> */}
-                  {/* <div className="inline-block mr-2"> */}
-                  <button
-                    type="button"
-                    class="btn btn-warning mr-2"
-                    onClick={this.handleAnswerByButton}
-                    disabled={this.state.statusEdit}
-                  >
-                    แก้ไข
-                  </button>
-                  {/* </div> */}
-                  {/* <div className="inline-block"> */}
-                  <button
-                    type="button"
-                    class="btn btn-info"
-                    onClick={this.handleSendAnswer}
-                  >
-                    ยืนยัน
-                  </button>
-                  {/* </div> */}
-                  {/* </div> */}
+        <div className="container mt-5">
+          <div className="container">
+            <div className="col-12">
+              <div className="row">
+                <p>
+                  คำถามที่ {this.state.questionid} : {this.state.question}
+                </p>
+                <br />
+                <textarea
+                  value={this.state.answer}
+                  disabled={this.state.statusAns}
+                  onChange={this.handleAnswer}
+                  className="col-12"
+                  style={{ height: "150px" }}
+                />
+                <div className="col-12 mt-3">
+                  <div className="row float-right">
+                    {/* <button
+                      type="button"
+                      class="btn btn-warning mr-2"
+                      onClick={this.handleAnswerByButton}
+                      disabled={this.state.statusEdit}
+                    >
+                      แก้ไข
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-info"
+                      onClick={this.handleSendAnswer}
+                    >
+                      ยืนยัน
+                    </button> */}
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      onClick={this.handleSendAnswer}
+                      disabled={this.state.statusEdit}
+                    >
+                      {this.state.button}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
