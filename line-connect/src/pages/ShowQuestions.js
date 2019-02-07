@@ -17,8 +17,8 @@ const Button = styled.div`
   vertical-align: middle;
   text-align: center;
   border-radius: 5px;
-  border: solid 1px gray;
   background-color: white;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
 `;
 const Body = styled.div`
   min-height: 100vh;
@@ -46,14 +46,14 @@ class ShowQuestions extends Component {
       }
     });
     if (questionsformDB.data === "getquestionsProblem") {
-        Cookie.set('redirecturl',`${window.env.PATH_FE}/selectquestion`)
+      Cookie.set("redirecturl", `${window.env.PATH_FE}/selectquestion`);
       window.location.href = `${window.env.PATH_FE}/login`;
     }
     this.setState({ questions: questionsformDB.data });
   };
   render() {
     if (!Cookie.get("JWT")) {
-     Cookie.set('redirecturl',`${window.env.PATH_FE}/selectquestion`)
+      Cookie.set("redirecturl", `${window.env.PATH_FE}/selectquestion`);
       window.location.href = `${window.env.PATH_FE}/login`;
     }
     return (
