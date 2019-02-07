@@ -21,6 +21,16 @@ const ImgBackground = styled.img`
     margin-top: 0;
   }
 `;
+const ButtonBack = styled.button`
+  border: 1px solid #304151;
+  background: transparent;
+  color: #304151;
+`;
+const ButtonAnswer = styled.button`
+  border: 1px solid #304151;
+  background: #304151;
+  color: #fff;
+`;
 
 class Question extends Component {
   state = {
@@ -92,6 +102,9 @@ class Question extends Component {
       });
     }
   };
+  handleBack = () => {
+    window.location.href = `${window.env.PATH_FE}/selectquestion`;
+  };
 
   render() {
     if (!Cookie.get("JWT")) {
@@ -112,19 +125,33 @@ class Question extends Component {
                   value={this.state.answer}
                   disabled={this.state.statusAns}
                   onChange={this.handleAnswer}
-                  className="col-12"
-                  style={{ height: "150px" }}
+                  className="col-12 mt-3"
+                  style={{
+                    height: "150px",
+                    boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.15)"
+                  }}
                 />
-                <div className="col-12 mt-3">
-                  <div className="row float-right">
-                    <button
-                      type="button"
-                      class="btn btn-danger"
-                      onClick={this.handleSendAnswer}
-                      disabled={this.state.statusEdit}
-                    >
-                      {this.state.button}
-                    </button>
+                <div className="col-12 mt-4">
+                  <div className="row">
+                    <div className="col pl-0">
+                      <ButtonBack
+                        type="button"
+                        className="btn"
+                        onClick={this.handleBack}
+                      >
+                        ย้อนกลับ
+                      </ButtonBack>
+                    </div>
+                    <div className="col text-right pr-0">
+                      <ButtonAnswer
+                        type="button"
+                        className="btn"
+                        onClick={this.handleSendAnswer}
+                        disabled={this.state.statusEdit}
+                      >
+                        {this.state.button}
+                      </ButtonAnswer>
+                    </div>
                   </div>
                 </div>
               </div>
