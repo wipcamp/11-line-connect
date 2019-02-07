@@ -46,13 +46,15 @@ class ShowQuestions extends Component {
       }
     });
     if (questionsformDB.data === "getquestionsProblem") {
+        Cookie.set('redirecturl',`${window.env.PATH_FE}/selectquestion`)
       window.location.href = `${window.env.PATH_FE}/login`;
     }
     this.setState({ questions: questionsformDB.data });
   };
   render() {
     if (!Cookie.get("JWT")) {
-      // window.location.href = `${window.env.PATH_FE}/login`;
+     Cookie.set('redirecturl',`${window.env.PATH_FE}/selectquestion`)
+      window.location.href = `${window.env.PATH_FE}/login`;
     }
     return (
       <Body>

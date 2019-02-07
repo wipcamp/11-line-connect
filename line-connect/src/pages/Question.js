@@ -26,6 +26,7 @@ class Question extends Component {
             }
         })
         if (questionsformDB.data==='getquestionsProblem') {
+            Cookie.set('redirecturl',`${window.env.PATH_FE}/selectquestion`)
             window.location.href = `${window.env.PATH_FE}/login`
         }
         if (questionsformDB.data.answer[0]) {
@@ -76,6 +77,7 @@ class Question extends Component {
 
     render() {
         if (!Cookie.get("JWT")) {
+            Cookie.set('redirecturl',`${window.env.PATH_FE}/selectquestion`)
             window.location.href = `${window.env.PATH_FE}/login`;
           }
         return (

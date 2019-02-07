@@ -8,7 +8,8 @@ const Box = styled.div`
 `
 
 class Error extends Component {
-    render() {
+    render() {  
+        window.location.href =  Cookie.get('redirecturl')||`${window.env.PATH_FE}/selectquestion`
         return (
             <div>
                 <Box>
