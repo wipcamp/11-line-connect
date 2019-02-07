@@ -20,10 +20,15 @@ const Body = styled.div`
   min-height: 100vh;
   background-image: linear-gradient(#ffffff, #f8e9d6);
 `;
-const ImgBackground = styled.img`
+const Content = styled.div`
   position: relative;
-  margin-top: 20px;
+  z-index: 1;
+`;
+const ImgBackground = styled.img`
+  position: absolute;
+  z-index: 0;
   width: 100vw;
+  bottom: 0px;
 `;
 
 class ShowQuestions extends Component {
@@ -55,7 +60,7 @@ class ShowQuestions extends Component {
     return (
       <Body>
         <Navbar />
-        <div className="container">
+        <Content className="container">
           <div className="container">
             <Topic className="">ข้อมูลส่วนตัว</Topic>
             <div className="container">
@@ -81,7 +86,7 @@ class ShowQuestions extends Component {
               ))}
             </div>
           </div>
-        </div>
+        </Content>
         <ImgBackground src="/images/MaskGroup.png" />
       </Body>
     );
