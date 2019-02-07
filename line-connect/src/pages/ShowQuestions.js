@@ -26,7 +26,7 @@ const Body = styled.div`
 `;
 const ImgBackground = styled.img`
   position: relative;
-  margin-top: 50px;
+  margin-top: 20px;
   width: 100vw;
 `;
 
