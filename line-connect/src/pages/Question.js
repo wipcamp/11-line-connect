@@ -16,9 +16,10 @@ const ImgBackground = styled.img`
   margin-top: 20px;
   width: 100vw;
   @media (max-width: 567px) {
-    position: fixed;
-    bottom: 0;
-    margin-top: 0;
+    position: absolute;
+    z-index: 0;
+    width: 100vw;
+    bottom: 0px;
   }
 `;
 const ButtonBack = styled.button`
