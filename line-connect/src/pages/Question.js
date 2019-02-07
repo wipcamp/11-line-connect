@@ -10,6 +10,7 @@ require("dotenv").config();
 const Body = styled.div`
   min-height: 100vh;
   background-image: linear-gradient(#ffffff, #f8e9d6);
+  font-weight: bold;
 `;
 const ImgBackground = styled.img`
   position: relative;

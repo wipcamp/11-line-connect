@@ -15,6 +15,7 @@ const Button = styled.button`
   background-color: white;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
   width: 100%;
+  font-weight: bold;
 `;
 const Body = styled.div`
   min-height: 100vh;
@@ -23,6 +24,7 @@ const Body = styled.div`
 const Content = styled.div`
   position: relative;
   z-index: 1;
+  font-weight: bold;
 `;
 const ImgBackground = styled.img`
   position: relative;
