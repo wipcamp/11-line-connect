@@ -8,7 +8,6 @@ import ErrorNotRegisterPage from './pages/ErrorNotRegisterPage'
 import ConnectedPage from './pages/ConnectedPage'
 import SelectQuestion from './pages/ShowQuestions'
 import Question from './pages/Question'
-import LoginFace from './pages/LoginFace'
 
 class Routes extends React.Component {
   render(){
@@ -22,7 +21,6 @@ class Routes extends React.Component {
             <Route path="/status/connected" component={ConnectedPage} />
             <Route path="/selectquestion" component={SelectQuestion} />
             <Route path="/question" component={Question} />
-            <Route path="/login" component={LoginFace} />
           </div>
       </Router>
     )

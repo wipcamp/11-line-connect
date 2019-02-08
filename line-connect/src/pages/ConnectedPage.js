@@ -13,7 +13,6 @@ class Error extends Component {
         return (
             <div>
                 <Box>
-                    {Cookie.get('JWT')}
                     You are Connected
                 </Box>
             </div>
