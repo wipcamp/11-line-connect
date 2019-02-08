@@ -42,6 +42,7 @@ class Home extends Component {
     console.log('auth in',JWT)
     Cookies.remove('codeLine')
     Cookies.set('JWT', JWT.data.token)
+    Cookies.set('wip_id', JWT.data.wip_id)
     window.location.href = `${window.env.PATH_FE}/status/connected`
     }
 
@@ -77,6 +78,7 @@ class Home extends Component {
       if (await res.data.status) {
         let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
         Cookies.set('JWT', JWT.data.token)
+        Cookies.set('wip_id', JWT.data.wip_id)
         window.location.href = `${window.env.PATH_FE}/status/connected`
       } else if(await res.data.error === 'Please Register By Facebook Account Before Connect With Line') {
         window.location.href = `${window.env.PATH_ITIM}`

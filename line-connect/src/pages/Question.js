@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import Cookie from "js-cookie";
-import Authline from "./../service/AuthLine";
 
 import Navbar from "../Components/Navbar";
 require("dotenv").config();
