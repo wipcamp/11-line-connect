@@ -48,8 +48,9 @@ class Question extends Component {
       }
     });
     if (questionsformDB.data === "getquestionsProblem") {
-      window.location.href = `${window.env.PATH_FE}/login`;
-    }
+      Cookie.set("redirecturl", `${window.env.PATH_FE}/selectquestion`);
+      window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1638650000&redirect_uri=${window.env.PATH_FE}&state=asdasd&scope=openid%20profile`
+      }
     if (questionsformDB.data.answer[0]) {
       this.setState({
         question: questionsformDB.data.question.content,
@@ -103,7 +104,8 @@ class Question extends Component {
 
   render() {
     if (!Cookie.get("JWT")) {
-      window.location.href = `${window.env.PATH_FE}/login`;
+      Cookie.set("redirecturl", `${window.env.PATH_FE}/selectquestion`);
+      window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1638650000&redirect_uri=${window.env.PATH_FE}&state=asdasd&scope=openid%20profile`
     }
     return (
       <Body>
