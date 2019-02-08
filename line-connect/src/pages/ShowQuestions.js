@@ -62,7 +62,7 @@ class ShowQuestions extends Component {
   render() {
     if (!Cookie.get("JWT")) {
       Cookie.set("redirecturl", `${window.env.PATH_FE}/selectquestion`);
-      // window.location.href = `${window.env.PATH_FE}/login`;
+      window.location.href = `${window.env.PATH_FE}/login`;
     }
     return (
       <Body>
