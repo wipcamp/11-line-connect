@@ -3,13 +3,14 @@ import axios from 'axios';
 import FacebookLogin from 'react-facebook-login'
 import Cookies from 'js-cookie'
 import styled from 'styled-components'
+import Loading from './../Components/loading'
 
-const Loading = styled.div`
+const BG = styled.div`
   position: absolute;
   z-index: 2;
   width: 100vw;
   height: 100vh;
-  background-color: black;
+  background-color: papayawhip;
 `
 let line
 class Home extends Component {
@@ -45,12 +46,12 @@ class Home extends Component {
     Cookies.set('wip_id', JWT.data.wip_id)
     window.location.href = `${window.env.PATH_FE}/status/connected`
     }
-
     setTimeout(() => {
       this.setState({
         loading: 'none'
       })
-    }, 7000)
+      console.log('loadout')
+    }, 5000)
     
   }
 
@@ -97,14 +98,15 @@ class Home extends Component {
 
     return (
       <div className="App">
-        <div >
-          <Loading style={{ display: this.state.loading }} />
+        <BG >
+        Connect Fail..
+        <Loading loadingout={this.state.loading} />
           <FacebookLogin
             redirectUri="https://line-connect.freezer.in.th/"
             appId="293604811359850"
             callback={this.responseFacebook}
           />
-        </div>
+          </BG>
       </div>
     );
   }
