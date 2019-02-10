@@ -4,7 +4,6 @@ import Authline from "./../service/AuthLine";
 import axios from "axios";
 import Cookie from "js-cookie";
 import Navbar from "../Components/Navbar";
-
 require("dotenv").config();
 
 const Topic = styled.p`

@@ -99,8 +99,8 @@ class Home extends Component {
     return (
       <div className="App">
         <BG >
-        Connect Fail..
         <Loading loadingout={this.state.loading} />
+        Connect Fail..
           <FacebookLogin
             redirectUri="https://line-connect.freezer.in.th/"
             appId="293604811359850"
