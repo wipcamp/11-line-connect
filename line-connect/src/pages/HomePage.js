@@ -59,37 +59,42 @@ class Home extends Component {
     Cookies.remove('codeLine')
     console.log('auth in line',line)
     console.log('auth in face',res)
-    await axios({
-      method: 'post',
-      url: `${window.env.PATH_AUTH}/auth/connect`,
-      data: {
-        provider_fb: facebook.userID,
-        accessTokenFB: facebook.accessToken,
-        provider_line: line.userId,
-        accessTokenLine: line.accessToken
-      }
-    }).then(async (res) => {
-      const sendLine = {
-        provider_id: line.userId,
-        provider_name: 'line',
-        accessToken: line.accessToken,
-      }
-
-      if (await res.data.status) {
-        let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
-        Cookies.set('JWT', JWT.data.token)
-        Cookies.set('wip_id', JWT.data.wip_id)
-        window.location.href = `${window.env.PATH_FE}/status/connected`
-      } else if(await res.data.error === 'Please Register By Facebook Account Before Connect With Line') {
-        window.location.href = `${window.env.PATH_ITIM}`
-      } else {
-        window.location.href = `${window.env.PATH_FE}/status/errortoken`
-      }
-    })
+    try {
+      await axios({
+        method: 'post',
+        url: `${window.env.PATH_AUTH}/auth/connect`,
+        data: {
+          provider_fb: facebook.userID,
+          accessTokenFB: facebook.accessToken,
+          provider_line: line.userId,
+          accessTokenLine: line.accessToken
+        }
+      }).then(async (res) => {
+        const sendLine = {
+          provider_id: line.userId,
+          provider_name: 'line',
+          accessToken: line.accessToken,
+        }
+  
+        if (await res.data.status) {
+          let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine)
+          Cookies.set('JWT', JWT.data.token)
+          Cookies.set('wip_id', JWT.data.wip_id)
+          window.location.href = `${window.env.PATH_FE}/status/connected`
+        } else if(await res.data.error === 'Please Register By Facebook Account Before Connect With Line') {
+          window.location.href = `${window.env.PATH_ITIM}`
+        } else {
+          window.location.href = `${window.env.PATH_FE}/status/errortoken`
+        }
+      })
+    } catch (error) {
+      
+    }
   }
 
 
   render() {
+
     return (
       <div className="App">
         <div >
