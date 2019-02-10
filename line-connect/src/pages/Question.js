@@ -121,6 +121,7 @@ class Question extends Component {
                   <textarea
                     value={this.state.answer}
                     onChange={this.handleAnswer}
+                    disabled={this.state.statusAns}
                     className="col-12 mt-3"
                     style={{
                       height: "150px",
