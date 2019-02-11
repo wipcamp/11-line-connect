@@ -27,16 +27,15 @@ const ButtonAnswer = styled.button`
   color: #fff;
 `;
 
-class Error extends Component {
+class ConnectSuccess extends Component {
   render() {
-    // window.location.href =  Cookie.get('redirecturl')||`${window.env.PATH_FE}/selectquestion`
     return (
       <Body>
         <div className="container p-5">
           <Box className="mt-5 p-5 text-center">
             <p>
               <FaCheckCircle className="mr-2" style={{ color: "#76B445" }} />
-              เข้าสู่ระบบสำเร็จ
+              ท่านเข้าสู่ระบบอยู่แล้วนะขอรับ
             </p>
             <ButtonAnswer type="button" className="btn pl-3 pr-3 mt-5 mx-auto">
               ปิด
@@ -49,4 +48,4 @@ class Error extends Component {
   }
 }
 
-export default Error;
+export default ConnectSuccess;
