@@ -12,7 +12,7 @@ const Body = styled.div`
 `;
 const ImgBackground = styled.img`
   position: relative;
-  /* margin-top: 60px; */
+  margin-top: 100px;
   width: 100vw;
 `;
 const ButtonBack = styled.button`
@@ -160,7 +160,7 @@ class Question extends Component {
             </div>
           </div>
         </div>
-        <ImgBackground src="/images/BG_Q&A.png" className="mt-5" />
+        <ImgBackground src="/images/BG_Q&A.png" />
       </Body>
     );
   }
