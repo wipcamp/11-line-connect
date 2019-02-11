@@ -12,7 +12,7 @@ const Body = styled.div`
 `;
 const ImgBackground = styled.img`
   position: relative;
-  margin-top: 100px;
+  margin-top: 80px;
   width: 100vw;
 `;
 const ButtonBack = styled.button`
