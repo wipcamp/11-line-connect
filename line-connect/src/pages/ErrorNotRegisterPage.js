@@ -40,12 +40,12 @@ class ErrorNotRegister extends Component {
               ไม่สามารถเข้าสู่ระบบได้กรุณาสมัครค่ายก่อนนะขอรับ
             </p>
             <div className="row">
-              <div className="col text-left">
+              <div className="col-5 text-left">
                 <ButtonAnswer type="button" className="btn pl-3 pr-3 mt-5">
                   ปิด
                 </ButtonAnswer>
               </div>
-              <div className="col text-right">
+              <div className="col-7 text-right">
                 <ButtonAnswer
                   onClick={this.handleItim}
                   type="button"
