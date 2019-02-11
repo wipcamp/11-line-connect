@@ -12,7 +12,7 @@ const Body = styled.div`
 `;
 const ImgBackground = styled.img`
   position: relative;
-  margin-top: 50px;
+  margin-top: 60px;
   width: 100vw;
 `;
 const ButtonBack = styled.button`
@@ -48,8 +48,10 @@ class Question extends Component {
     });
     if (questionsformDB.data === "getquestionsProblem") {
       Cookie.set("redirecturl", `${window.env.PATH_FE}/selectquestion`);
-      window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1638650000&redirect_uri=${window.env.PATH_FE}&state=asdasd&scope=openid%20profile`
-      }
+      window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1638650000&redirect_uri=${
+        window.env.PATH_FE
+      }&state=asdasd&scope=openid%20profile`;
+    }
     if (questionsformDB.data.answer[0]) {
       this.setState({
         question: questionsformDB.data.question.content,
@@ -104,7 +106,9 @@ class Question extends Component {
   render() {
     if (!Cookie.get("JWT")) {
       Cookie.set("redirecturl", `${window.env.PATH_FE}/selectquestion`);
-      window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1638650000&redirect_uri=${window.env.PATH_FE}&state=asdasd&scope=openid%20profile`
+      window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1638650000&redirect_uri=${
+        window.env.PATH_FE
+      }&state=asdasd&scope=openid%20profile`;
     }
     return (
       <Body>
@@ -156,7 +160,7 @@ class Question extends Component {
             </div>
           </div>
         </div>
-        <ImgBackground src="/images/MaskGroup.png" />
+        <ImgBackground src="/images/BG_Q&A.png" />
       </Body>
     );
   }

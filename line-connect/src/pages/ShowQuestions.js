@@ -54,15 +54,18 @@ class ShowQuestions extends Component {
     });
     if (questionsformDB.data === "getquestionsProblem") {
       Cookie.set("redirecturl", `${window.env.PATH_FE}/selectquestion`);
-      window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1638650000&redirect_uri=${window.env.PATH_FE}&state=asdasd&scope=openid%20profile`
+      window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1638650000&redirect_uri=${
+        window.env.PATH_FE
+      }&state=asdasd&scope=openid%20profile`;
     }
     this.setState({ questions: questionsformDB.data });
   };
   render() {
     if (!Cookie.get("JWT")) {
       Cookie.set("redirecturl", `${window.env.PATH_FE}/selectquestion`);
-      window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1638650000&redirect_uri=${window.env.PATH_FE}&state=asdasd&scope=openid%20profile`
-
+      window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1638650000&redirect_uri=${
+        window.env.PATH_FE
+      }&state=asdasd&scope=openid%20profile`;
     }
     return (
       <Body>
@@ -97,7 +100,7 @@ class ShowQuestions extends Component {
             </div>
           </div>
         </Content>
-        <ImgBackground src="/images/MaskGroup.png" />
+        <ImgBackground src="/images/BG_Q&A.png" />
       </Body>
     );
   }
