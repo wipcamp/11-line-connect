@@ -1,9 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { FaCheckCircle } from "react-icons/fa";
-import Liff from "liff";
+// import Liff from "liff";
 import Cookie from "js-cookie";
 require("dotenv").config();
+
+const Liff = window.liff;
 
 const Box = styled.div`
   background-color: white;
@@ -33,6 +35,7 @@ class ConnectSuccess extends Component {
     Liff.closeWindow();
   };
   render() {
+    console.log(Liff);
     return (
       <Body>
         <div className="container p-5">
