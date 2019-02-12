@@ -1,32 +1,34 @@
-import React, { Component } from 'react'
-import styled from 'styled-components'
+import React, { Component } from "react";
+import styled from "styled-components";
 
 const Background = styled.div`
   height: 100vh;
   background-color: papayawhip;
-  display:${props=>props.loadingout};
-`
+  display: ${props => props.loadingout};
+  position: relative;
+  z-index: 4;
+`;
 
 const Position = styled.img`
-  margin-top:35vh;
-  width:15%;
+  margin-top: 35vh;
+  width: 15%;
   position: absolute;
-  @media (max-width:720px) {
+  @media (max-width: 720px) {
     width: 40%;
   }
-`
+`;
 
 export default class Loading extends Component {
-  render () {
+  render() {
     return (
       <Background loadingout={this.props.loadingout}>
-        <div className = "container">
-          <div className = "row text-center justify-content-center">
-            <Position src = '/images/loading.gif' />
+        <div className="container">
+          <div className="row text-center justify-content-center">
+            <Position src="/images/loading.gif" />
             Connecting...
           </div>
         </div>
       </Background>
-    )
+    );
   }
 }
