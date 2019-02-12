@@ -118,8 +118,7 @@ class Home extends Component {
     return (
       <div className="App">
         <Body>
-          {/* <Loading loadingout={this.state.loading} /> */}
-          {/* Connect Fail.. */}
+          <Loading loadingout={this.state.loading} />
           <div
             className="text-center"
             style={{
