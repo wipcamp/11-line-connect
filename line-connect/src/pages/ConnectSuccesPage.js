@@ -4,6 +4,8 @@ import { FaCheckCircle } from "react-icons/fa";
 import Cookie from "js-cookie";
 require("dotenv").config();
 
+const Liff = window.liff;
+
 const Box = styled.div`
   background-color: white;
   box-shadow: 0px 0px 4px #d9d9d9;
@@ -28,8 +30,10 @@ const ButtonAnswer = styled.button`
 `;
 
 class ConnectSuccess extends Component {
+  handleClose = () => {
+    Liff.closeWindow();
+  };
   render() {
-    // window.location.href =  Cookie.get('redirecturl')||`${window.env.PATH_FE}/selectquestion`
     return (
       <Body>
         <div className="container p-5">
@@ -38,7 +42,11 @@ class ConnectSuccess extends Component {
               <FaCheckCircle className="mr-2" style={{ color: "#76B445" }} />
               เข้าสู่ระบบสำเร็จแล้วนะขอรับ
             </p>
-            <ButtonAnswer type="button" className="btn pl-3 pr-3 mt-5 mx-auto">
+            <ButtonAnswer
+              onClick={this.handleClose}
+              type="button"
+              className="btn pl-3 pr-3 mt-5 mx-auto"
+            >
               ปิด
             </ButtonAnswer>
           </Box>

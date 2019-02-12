@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { FaTimesCircle } from "react-icons/fa";
 require("dotenv").config();
 
+const Liff = window.liff;
 const Box = styled.div`
   background-color: white;
   box-shadow: 0px 0px 4px #d9d9d9;
@@ -30,6 +31,9 @@ class ErrorNotRegister extends Component {
   handleItim = () => {
     window.location.href = `${window.env.PATH_ITIM}`;
   };
+  handleClose = () => {
+    Liff.closeWindow();
+  };
   render() {
     return (
       <Body>
@@ -41,7 +45,11 @@ class ErrorNotRegister extends Component {
             </p>
             <div className="row">
               <div className="col-5 text-left">
-                <ButtonAnswer type="button" className="btn pl-3 pr-3 mt-5">
+                <ButtonAnswer
+                  onClick={this.handleClose}
+                  type="button"
+                  className="btn pl-3 pr-3 mt-5"
+                >
                   ปิด
                 </ButtonAnswer>
               </div>
