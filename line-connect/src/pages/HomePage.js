@@ -1,16 +1,30 @@
 import React, { Component } from "react";
 import axios from "axios";
-import FacebookLogin from "react-facebook-login";
+import FacebookLogin from "react-facebook-login/dist/facebook-login-render-props";
+import { FaFacebookF } from "react-icons/fa";
 import Cookies from "js-cookie";
 import styled from "styled-components";
 import Loading from "./../Components/loading";
 
-const BG = styled.div`
-  position: absolute;
-  z-index: 2;
+const Body = styled.div`
+  min-height: 100vh;
+  background-image: linear-gradient(#ffffff, #f8e9d6);
+`;
+const Background = styled.img`
+  position: fixed;
+  z-index: 0;
+  bottom: 0;
   width: 100vw;
-  height: 100vh;
-  background-color: papayawhip;
+`;
+const ButtonFacebook = styled.button`
+  background-color: #4267b2;
+  border-radius: 100px;
+  font-size: 18px;
+  color: white;
+  border: none;
+`;
+const Logo = styled.img`
+  width: 100vw;
 `;
 let line;
 class Home extends Component {
@@ -103,15 +117,42 @@ class Home extends Component {
   render() {
     return (
       <div className="App">
-        <BG>
-          <Loading loadingout={this.state.loading} />
-          Connect Fail..
-          <FacebookLogin
-            redirectUri="https://line-connect.freezer.in.th/"
-            appId="293604811359850"
-            callback={this.responseFacebook}
-          />
-        </BG>
+        <Body>
+          {/* <Loading loadingout={this.state.loading} /> */}
+          {/* Connect Fail.. */}
+          <div
+            className="text-center"
+            style={{
+              position: "absolute",
+              zIndex: "2",
+              top: "50px",
+              width: "100vw"
+            }}
+          >
+            <Logo src="/images/logo.png" />
+          </div>
+          <div
+            className="text-center"
+            style={{
+              position: "absolute",
+              zIndex: "3",
+              bottom: "100px",
+              width: "100vw"
+            }}
+          >
+            <FacebookLogin
+              redirectUri="https://line-connect.freezer.in.th/"
+              appId="293604811359850"
+              callback={this.responseFacebook}
+              render={renderProps => (
+                <ButtonFacebook onClick={renderProps.onClick} className=" p-3">
+                  <FaFacebookF /> เข้าสู่ระบบด้วย Facebook
+                </ButtonFacebook>
+              )}
+            />
+          </div>
+          <Background src="/images/BG_Facebook.png" />
+        </Body>
       </div>
     );
   }
