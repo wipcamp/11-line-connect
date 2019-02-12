@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { FaCheckCircle } from "react-icons/fa";
+import Liff from "liff";
 import Cookie from "js-cookie";
 require("dotenv").config();
 
@@ -28,6 +29,9 @@ const ButtonAnswer = styled.button`
 `;
 
 class ConnectSuccess extends Component {
+  handleClose = () => {
+    Liff.closeWindow();
+  };
   render() {
     return (
       <Body>
@@ -37,7 +41,11 @@ class ConnectSuccess extends Component {
               <FaCheckCircle className="mr-2" style={{ color: "#76B445" }} />
               ท่านเข้าสู่ระบบอยู่แล้วนะขอรับ
             </p>
-            <ButtonAnswer type="button" className="btn pl-3 pr-3 mt-5 mx-auto">
+            <ButtonAnswer
+              onClick={this.handleClose}
+              type="button"
+              className="btn pl-3 pr-3 mt-5 mx-auto"
+            >
               ปิด
             </ButtonAnswer>
           </Box>
