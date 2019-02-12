@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { FaTimesCircle } from "react-icons/fa";
+import Cookies from "js-cookie";
 require("dotenv").config();
 
 const Liff = window.liff;
@@ -33,7 +34,7 @@ class ErrorToken extends Component {
     window.location.href = `${window.env.PATH_ITIM}`;
   };
   handleClose = () => {
-    Liff.windowClose();
+    Liff.closeWindow();
   };
   render() {
     return (
