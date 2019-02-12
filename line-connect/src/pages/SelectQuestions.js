@@ -39,7 +39,7 @@ const ImgBackground = styled.img`
 
 class ShowQuestions extends Component {
   state = {
-    questions: []
+    questions: ['loading','loading','loading']
   };
   handleQuestion(props) {
     window.location.href = `/question?item=${props}`;

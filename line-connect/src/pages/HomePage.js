@@ -73,6 +73,7 @@ class Home extends Component {
     Cookies.remove("codeLine");
     console.log("auth in line", line);
     console.log("auth in face", res);
+   
     try {
       await axios({
         method: "post",
@@ -110,6 +111,11 @@ class Home extends Component {
         }
       });
     } catch (error) {
+      if(!line){
+        window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1638650000&redirect_uri=${
+          window.env.PATH_FE
+        }&state=asdasd&scope=openid%20profile`;
+      }
       window.location.href = `${window.env.PATH_FE}/status/error`;
     }
   };
