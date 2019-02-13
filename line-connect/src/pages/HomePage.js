@@ -47,6 +47,8 @@ class Home extends Component {
       }
     });
     line = responseLine.data;
+    Cookies.set("provider_id",line.userId)
+    Cookies.set("accessToken",line.accessToken)
     const sendLine = {
       provider_id: line.userId,
       provider_name: "line",
@@ -81,17 +83,18 @@ class Home extends Component {
         data: {
           provider_fb: facebook.userID,
           accessTokenFB: facebook.accessToken,
-          provider_line: line.userId,
-          accessTokenLine: line.accessToken
+          provider_line:Cookies.get("provider_id"),
+          accessTokenLine: Cookies.get("accessToken")
         }
       }).then(async res => {
         const sendLine = {
-          provider_id: line.userId,
+          provider_id: Cookies.get("provider_id"),
           provider_name: "line",
-          accessToken: line.accessToken
+          accessToken:  Cookies.get("accessToken")
         };
-
         if (await res.data.status) {
+          Cookies.remove("provider_id")
+          Cookies.remove("accessToken")
           let JWT = await axios.post(
             `${window.env.PATH_AUTH}/auth/login`,
             sendLine
