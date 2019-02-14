@@ -39,7 +39,7 @@ const ImgBackground = styled.img`
 
 class ShowQuestions extends Component {
   state = {
-    questions: ['loading','loading','loading']
+    questions: ["loading", "loading", "loading"]
   };
   handleQuestion(props) {
     window.location.href = `/question?item=${props}`;
@@ -58,7 +58,9 @@ class ShowQuestions extends Component {
         window.env.PATH_FE
       }&state=asdasd&scope=openid%20profile`;
     }
-    this.setState({ questions: questionsformDB.data });
+    if (questionsformDB.data != "undefined") {
+      this.setState({ questions: questionsformDB.data });
+    }
   };
   render() {
     if (!Cookie.get("JWT")) {
