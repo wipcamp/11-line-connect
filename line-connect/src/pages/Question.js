@@ -113,8 +113,8 @@ class Question extends Component {
     }
     return (
       <Body>
-        <Navbar />
         <ImgBackground src="/images/BG_Q&A.png" />
+        <Navbar />
         <div style={{ fontWeight: "bold" }}>
           <div className="container mt-4">
             <div className="container">
