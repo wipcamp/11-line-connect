@@ -18,7 +18,7 @@ class ErrorNotRegister extends Component {
     return (
       <Body>
         <p>{Cookies.get("JWT")}</p>
-        <p>{Liff.accessToken()}</p>
+        <p>{Liff.getAccessToken()}</p>
       </Body>
     );
   }
