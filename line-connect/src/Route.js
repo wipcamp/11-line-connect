@@ -9,6 +9,7 @@ import ErrorPage from "./pages/ErrorPage";
 import ConnectedPage from "./pages/ConnectedPage";
 import SelectQuestion from "./pages/SelectQuestions";
 import Question from "./pages/Question";
+import TestLiff from "./pages/testLiff";
 
 class Routes extends React.Component {
   render() {
@@ -26,6 +27,7 @@ class Routes extends React.Component {
           <Route path="/status/connected" component={ConnectedPage} />
           <Route path="/selectquestion" component={SelectQuestion} />
           <Route path="/question" component={Question} />
+          <Route path="/testliff" component={TestLiff} />
         </div>
       </Router>
     );
