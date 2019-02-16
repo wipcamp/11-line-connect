@@ -11,13 +11,20 @@ const Body = styled.div`
 `;
 
 class ErrorNotRegister extends Component {
+  state = {
+    accesstoken: ""
+  };
   handleClose = () => {
-    Liff.getAccessToken();
+    const token = Liff.getAccessToken();
+    this.setState({
+      accesstoken: token
+    });
   };
   render() {
     return (
       <Body>
         <p>{Cookies.get("JWT")}</p>
+        <p>{this.state.accesstoken}</p>
         <button onClick={this.handleClose} />
       </Body>
     );
