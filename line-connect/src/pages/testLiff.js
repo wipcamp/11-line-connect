@@ -12,13 +12,13 @@ const Body = styled.div`
 
 class ErrorNotRegister extends Component {
   handleClose = () => {
-    Liff.closeWindow();
+    Liff.getAccessToken();
   };
   render() {
     return (
       <Body>
         <p>{Cookies.get("JWT")}</p>
-        <p>{Liff.getAccessToken()}</p>
+        <button onClick={this.handleClose} />
       </Body>
     );
   }
