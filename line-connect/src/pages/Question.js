@@ -11,8 +11,9 @@ const Body = styled.div`
   background-image: linear-gradient(#ffffff, #f8e9d6);
 `;
 const ImgBackground = styled.img`
-  position: relative;
-  margin-top: 80px;
+  position: fixed;
+  /* margin-top: 80px; */
+  bottom: 0;
   width: 100vw;
 `;
 const ButtonBack = styled.button`
@@ -113,6 +114,7 @@ class Question extends Component {
     return (
       <Body>
         <Navbar />
+        <ImgBackground src="/images/BG_Q&A.png" />
         <div style={{ fontWeight: "bold" }}>
           <div className="container mt-4">
             <div className="container">
@@ -160,7 +162,6 @@ class Question extends Component {
             </div>
           </div>
         </div>
-        <ImgBackground src="/images/BG_Q&A.png" />
       </Body>
     );
   }
