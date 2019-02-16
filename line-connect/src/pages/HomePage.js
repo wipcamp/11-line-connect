@@ -47,8 +47,8 @@ class Home extends Component {
       }
     });
     line = responseLine.data;
-    Cookies.set("provider_id",line.userId)
-    Cookies.set("accessToken",line.accessToken)
+    Cookies.set("provider_id", line.userId);
+    Cookies.set("accessToken", line.accessToken);
     const sendLine = {
       provider_id: line.userId,
       provider_name: "line",
@@ -75,7 +75,7 @@ class Home extends Component {
     Cookies.remove("codeLine");
     console.log("auth in line", line);
     console.log("auth in face", res);
-   
+
     try {
       await axios({
         method: "post",
@@ -83,18 +83,18 @@ class Home extends Component {
         data: {
           provider_fb: facebook.userID,
           accessTokenFB: facebook.accessToken,
-          provider_line:Cookies.get("provider_id"),
+          provider_line: Cookies.get("provider_id"),
           accessTokenLine: Cookies.get("accessToken")
         }
       }).then(async res => {
         const sendLine = {
           provider_id: Cookies.get("provider_id"),
           provider_name: "line",
-          accessToken:  Cookies.get("accessToken")
+          accessToken: Cookies.get("accessToken")
         };
         if (await res.data.status) {
-          Cookies.remove("provider_id")
-          Cookies.remove("accessToken")
+          Cookies.remove("provider_id");
+          // Cookies.remove("accessToken")
           let JWT = await axios.post(
             `${window.env.PATH_AUTH}/auth/login`,
             sendLine
@@ -114,7 +114,7 @@ class Home extends Component {
         }
       });
     } catch (error) {
-      if(!line){
+      if (!line) {
         window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1638650000&redirect_uri=${
           window.env.PATH_FE
         }&state=asdasd&scope=openid%20profile`;

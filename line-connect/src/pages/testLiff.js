@@ -23,7 +23,7 @@ class ErrorNotRegister extends Component {
   render() {
     return (
       <Body>
-        <p>{Cookies.get("JWT")}</p>
+        <p>{Cookies.get("accessToken")}</p>
         <p>{this.state.accesstoken}</p>
         <button onClick={this.handleClose} />
       </Body>
