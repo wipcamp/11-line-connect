@@ -58,7 +58,7 @@ class ShowQuestions extends Component {
         window.env.PATH_FE
       }&state=asdasd&scope=openid%20profile`;
     }
-    if (questionsformDB.data != "undefined") {
+    if (questionsformDB.data !== "undefined") {
       this.setState({ questions: questionsformDB.data });
     }
   };
