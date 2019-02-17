@@ -16,18 +16,21 @@ class ErrorNotRegister extends Component {
     profile: ""
   };
   handleClose = async() => {
+   
+  };
+  componentDidMount(){
     const token = Liff.getAccessToken();
     const profile = Liff.getProfile()
-
-
     this.setState({
-      profile:{...profile,...token}
+      profile:{profile},
+      token:{token}
     });
-  };
+  }
   render() {
     return (
       <Body>
         <p>{this.state.profile.displayName}</p>
+        <p>{this.state.token}</p>
         <button onClick={this.handleClose} />
       </Body>
     );
