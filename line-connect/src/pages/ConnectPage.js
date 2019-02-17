@@ -8,9 +8,18 @@ import Cookies from "js-cookie";
 //   z-index: ${props => props.zindex};
 // `;
 class ConnectPage extends Component {
-  handleConnect = () => {};
+  handleConnect = () => {
+    const Liff = window.liff;
+    let accesstoken = Liff.getAccessToken();
+    Cookies.set("act", accesstoken);
+  };
   render() {
-    return <div />;
+    return (
+      <div>
+        {Cookies.get("act")}
+        <button onClick={this.handleConnect}>Click</button>
+      </div>
+    );
   }
 }
 

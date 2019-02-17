@@ -95,11 +95,11 @@ class ShowQuestions extends Component {
     // }
   };
   render() {
-    if (Cookies.get("JWT")) {
-      this.setState({
-        loading: "none"
-      });
-    }
+    // if (Cookies.get("JWT")) {
+    //   this.setState({
+    //     loading: "none"
+    //   });
+    // }
     return (
       <Body>
         {/* <Loading zindex={3} loading={this.state.loading} /> */}
