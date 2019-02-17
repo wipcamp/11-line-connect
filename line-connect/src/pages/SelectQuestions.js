@@ -35,7 +35,14 @@ const ImgBackground = styled.img`
 
 class ShowQuestions extends Component {
   state = {
-    questions: ["loading", "loading", "loading"],
+    questions: [
+      "loading",
+      "loading",
+      "loading",
+      "loading",
+      "loading",
+      "loading"
+    ],
     loading: "block",
     accesstoken: "",
     userid: ""
@@ -44,12 +51,12 @@ class ShowQuestions extends Component {
     window.location.href = `/question?item=${props}`;
   }
   componentDidMount = async () => {
-    const Liff = await window.liff;
-    let accessToken = Liff.getAccessToken();
-    let userId = Liff.getProfile().userId;
-    this.setState({
-      accesstoken: accessToken,
-      userid: userId
+    // if (!Cookies.get("JWT")) {
+    //   window.location.href = `${window.env.PATH_BE}/connect`;
+    // }
+    const Liff = window.liff;
+    Liff.getProfile().then(function() {
+      let accesstoken = Liff.getAccessToken();
     });
     // let questions;
     // if (!Cookies.get("JWT")) {
@@ -88,11 +95,11 @@ class ShowQuestions extends Component {
     // }
   };
   render() {
-    // if (Cookies.get("JWT")) {
-    //   this.setState({
-    //     loading: "none"
-    //   });
-    // }
+    if (Cookies.get("JWT")) {
+      this.setState({
+        loading: "none"
+      });
+    }
     return (
       <Body>
         {/* <Loading zindex={3} loading={this.state.loading} /> */}
@@ -108,7 +115,6 @@ class ShowQuestions extends Component {
           </div>
           <div className="container">
             <Topic>เลือกคำถาม</Topic>
-
             <div className="container">
               <div className="col-12">
                 <div className="row">
