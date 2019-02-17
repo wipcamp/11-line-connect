@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Cookies from "js-cookie";
-import AuthLine from "./../service/AuthLine"
 require("dotenv").config();
 
 const Liff = window.liff;
@@ -13,21 +12,38 @@ const Body = styled.div`
 
 class ErrorNotRegister extends Component {
   state = {
-    profile: ""
+    accesstoken: ""
   };
-  handleClose = async() => {
+  handleClose = () => {
     const token = Liff.getAccessToken();
-    const profile = Liff.getProfile()
-
-
+     Liff.sendMessages([{
+      "type": "template",
+      "altText": "this is a confirm template",
+      "template": {
+          "type": "confirm",
+          "text": "Are you sure?",
+          "actions": [
+              {
+                "type": "message",
+                "label": "Yes",
+                "text": "yes"
+              },
+              {
+                "type": "message",
+                "label": "No",
+                "text": "no"
+              }
+          ]
+      }
+    }])
     this.setState({
-      profile:{...profile,...token}
+      accesstoken: token
     });
   };
   render() {
     return (
       <Body>
-        <p>{this.state.profile.displayName}</p>
+        <p>{this.state.accesstoken}</p>
         <button onClick={this.handleClose} />
       </Body>
     );
