@@ -23,8 +23,8 @@ class ErrorNotRegister extends Component {
       Liff.sendMessages([
       {
         type: 'image',
-        originalContentUrl: 'https://' + document.domain + '/imgs/' + res + '.jpg',
-        previewImageUrl: 'https://' + document.domain + '/imgs/' + res + '_240.jpg'
+        originalContentUrl: '',
+        previewImageUrl: ''
       },
       {
         type: 'text',
