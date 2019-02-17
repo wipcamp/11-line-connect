@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 // Component
 import HomePage from "./pages/HomePage";
+import Connect from "./pages/ConnectPage";
 import ConnectSuccessPage from "./pages/ConnectSuccesPage";
 import ErrorTokenPage from "./pages/ErrorTokenPage";
 import ErrorNotRegisterPage from "./pages/ErrorNotRegisterPage";
@@ -17,6 +18,7 @@ class Routes extends React.Component {
       <Router>
         <div className="body">
           <Route exact path="/" component={HomePage} />
+          <Route path="/connect" component={Connect} />
           <Route path="/status/success" component={ConnectSuccessPage} />
           <Route path="/status/errortoken" component={ErrorTokenPage} />
           <Route path="/status/error" component={ErrorPage} />
