@@ -3,10 +3,11 @@ import styled from "styled-components";
 
 const Background = styled.div`
   height: 100vh;
+  width: 100vw;
   background-color: papayawhip;
   display: ${props => props.loadingout};
-  position: relative;
-  z-index: 4;
+  position: absolute;
+  z-index: ${props => props.zindex};
 `;
 
 const Position = styled.img`
@@ -21,7 +22,7 @@ const Position = styled.img`
 export default class Loading extends Component {
   render() {
     return (
-      <Background loadingout={this.props.loadingout}>
+      <Background zindex={this.props.zindex} loadingout={this.props.loadingout}>
         <div className="container">
           <div className="row text-center justify-content-center">
             <Position src="/images/loading.gif" />

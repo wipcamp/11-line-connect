@@ -2,9 +2,12 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import Authline from "../service/AuthLine";
 import axios from "axios";
-import Cookie from "js-cookie";
+import Cookies from "js-cookie";
 import Navbar from "../Components/Navbar";
+import Loading from "../Components/loading";
 require("dotenv").config();
+
+const Liff = window.liff;
 
 const Topic = styled.p`
   font-size: 24px;
@@ -26,52 +29,67 @@ const Content = styled.div`
   font-weight: bold;
 `;
 const ImgBackground = styled.img`
-  position: relative;
-  margin-top: 20px;
+  position: absolute;
+  z-index: 0;
   width: 100vw;
-  @media (max-width: 567px) {
-    position: absolute;
-    z-index: 0;
-    width: 100vw;
-    bottom: 0px;
-  }
+  bottom: 0px;
 `;
 
 class ShowQuestions extends Component {
   state = {
-    questions: ["loading", "loading", "loading"]
+    questions: ["loading", "loading", "loading"],
+    loading: "block"
   };
   handleQuestion(props) {
     window.location.href = `/question?item=${props}`;
   }
   componentDidMount = async () => {
-    const questionsformDB = await axios({
-      method: "post",
-      url: `${window.env.PATH_BE}/questions`,
-      data: {
-        JWT: Cookie.get("JWT")
+    let questions;
+    if (!Cookies.get("JWT")) {
+      const sendLine = {
+        provider_id: Liff.getProfile().userId,
+        provider_name: "line",
+        accessToken: Liff.getAccessToken()
+      };
+      const JWT = await axios.post(
+        `${window.env.PATH_AUTH}/auth/login`,
+        sendLine
+      );
+      if (!JWT) {
+        window.location.href = `https://google.com`;
+      } else {
+        Cookies.set("JWT", JWT);
+        questions = await axios({
+          method: "post",
+          url: `${window.env.PATH_BE}/questions`,
+          data: {
+            JWT: Cookies.get("JWT")
+          }
+        });
       }
-    });
-    if (questionsformDB.data === "getquestionsProblem") {
-      Cookie.set("redirecturl", `${window.env.PATH_FE}/selectquestion`);
-      window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1638650000&redirect_uri=${
-        window.env.PATH_FE
-      }&state=asdasd&scope=openid%20profile`;
+    } else {
+      questions = await axios({
+        method: "post",
+        url: `${window.env.PATH_BE}/questions`,
+        data: {
+          JWT: Cookies.get("JWT")
+        }
+      });
     }
-    if (questionsformDB.data !== "undefined") {
-      this.setState({ questions: questionsformDB.data });
+    if (questions.data === "getquestionsProblem") {
+      window.location.reload();
     }
   };
   render() {
-    if (!Cookie.get("JWT")) {
-      Cookie.set("redirecturl", `${window.env.PATH_FE}/selectquestion`);
-      window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1638650000&redirect_uri=${
-        window.env.PATH_FE
-      }&state=asdasd&scope=openid%20profile`;
+    if (Cookies.get("JWT")) {
+      this.setState({
+        loading: "none"
+      });
     }
     return (
       <Body>
-        <Navbar />
+        <Loading zindex={3} loading={this.state.loading} />
+        <Navbar zindex={2} />
         <Content className="container">
           <div className="container">
             <Topic className="">ข้อมูลส่วนตัว</Topic>
