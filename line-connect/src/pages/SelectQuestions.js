@@ -52,7 +52,7 @@ class ShowQuestions extends Component {
   }
   componentDidMount = async () => {
     if (!Cookies.get("JWT")) {
-      window.location.href = `${window.env.PATH_BE}/connect`;
+      window.location.href = `${window.env.PATH_FE}/connect`;
     } else {
       this.setState({
         loading: "none"
