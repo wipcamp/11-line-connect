@@ -17,16 +17,17 @@ class ErrorNotRegister extends Component {
   };
   handleClose = async() => {
     const token = Liff.getAccessToken();
-  const profileTemp= await AuthLine.login(token)
+    const profile = Liff.getProfile()
+
+
     this.setState({
-      profile: profileTemp
+      profile:{...profile,...token}
     });
   };
   render() {
     return (
       <Body>
-        <p>{Cookies.get("accessToken")}</p>
-        <p>{this.state.profile}</p>
+        <p>{this.state.profile.displayName}</p>
         <button onClick={this.handleClose} />
       </Body>
     );
