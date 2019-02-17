@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Cookies from "js-cookie";
-import AuthLine from "./../service/AuthLine"
 require("dotenv").config();
 
 const Liff = window.liff;
@@ -13,24 +12,18 @@ const Body = styled.div`
 
 class ErrorNotRegister extends Component {
   state = {
-    profile: ""
+    accesstoken: ""
   };
-  handleClose = async() => {
-   
-  };
-  componentDidMount(){
+  handleClose = () => {
     const token = Liff.getAccessToken();
-    const profile = Liff.getProfile()
     this.setState({
-      profile:{profile},
-      token:{token}
+      accesstoken: token
     });
-  }
+  };
   render() {
     return (
       <Body>
-        <p>{this.state.profile.displayName}</p>
-        <p>{this.state.token}</p>
+        <p>{this.state.accesstoken}</p>
         <button onClick={this.handleClose} />
       </Body>
     );
