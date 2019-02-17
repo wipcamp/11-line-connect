@@ -9,14 +9,14 @@ const Liff = window.liff;
 //   z-index: ${props => props.zindex};
 // `;
 class ConnectPage extends Component {
-    state = ({
-        token: 
-    )}
+  state = {
+    token: ""
+  };
   handleConnect = () => {
     let accesstoken = Liff.getAccessToken();
     this.setState({
-        token: accesstoken
-    })
+      token: accesstoken
+    });
   };
   render() {
     return (
