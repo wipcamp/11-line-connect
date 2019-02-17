@@ -22,9 +22,25 @@ class ErrorNotRegister extends Component {
     Liff.getProfile().then(function (profile) {
       Liff.sendMessages([
       {
-        type: 'image',
-        originalContentUrl: '',
-        previewImageUrl: ''
+        type: "flex",
+  altText: "this is a flex message",
+  contents: {
+    type: "bubble",
+  body: {
+      type: "box",
+      layout: "vertical",
+      contents: [
+        {
+          type: "text",
+          text: "hello"
+        },
+        {
+          type: "text",
+          text: "world"
+        }
+      ]
+    }
+  }
       },
       {
         type: 'text',
