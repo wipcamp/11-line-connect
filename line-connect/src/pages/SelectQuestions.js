@@ -7,8 +7,6 @@ import Navbar from "../Components/Navbar";
 import Loading from "../Components/loading";
 require("dotenv").config();
 
-const Liff = window.liff;
-
 const Topic = styled.p`
   font-size: 24px;
   margin-top: 25px;
@@ -46,6 +44,7 @@ class ShowQuestions extends Component {
     window.location.href = `/question?item=${props}`;
   }
   componentDidMount = async () => {
+    const Liff = window.liff;
     const accessToken = Liff.getAccessToken();
     const userId = Liff.getProfile().userId;
     this.setState({
