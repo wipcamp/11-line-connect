@@ -17,22 +17,27 @@ class ErrorNotRegister extends Component {
   handleClose = () => {
     const token = Liff.getAccessToken();
     Liff.sendMessages(
-      [
-        {
-          "type": "action",
-          "action": {
-            "type": "cameraRoll",
-            "label": "Send photo"
-          }
-        },
-        {
-          "type": "action",
-          "action": {
-            "type": "camera",
-            "label": "Open camera"
+      {  
+        "type": "flex",
+        "altText": "this is a flex message",
+        "contents": {
+          "type": "bubble",
+          "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+              {
+                "type": "text",
+                "text": "hello"
+              },
+              {
+                "type": "text",
+                "text": "world"
+              }
+            ]
           }
         }
-      ]
+      }
     )
     this.setState({
       accesstoken: token
