@@ -9,9 +9,14 @@ const Liff = window.liff;
 //   z-index: ${props => props.zindex};
 // `;
 class ConnectPage extends Component {
+    state = ({
+        token: 
+    )}
   handleConnect = () => {
     let accesstoken = Liff.getAccessToken();
-    Cookies.set("act", accesstoken);
+    this.setState({
+        token: accesstoken
+    })
   };
   render() {
     return (
