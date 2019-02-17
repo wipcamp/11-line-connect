@@ -51,58 +51,18 @@ class ShowQuestions extends Component {
     window.location.href = `/question?item=${props}`;
   }
   componentDidMount = async () => {
-    // if (!Cookies.get("JWT")) {
-    //   window.location.href = `${window.env.PATH_BE}/connect`;
-    // }
-    const Liff = window.liff;
-    Liff.getProfile().then(function() {
-      let accesstoken = Liff.getAccessToken();
-    });
-    // let questions;
-    // if (!Cookies.get("JWT")) {
-    //   const sendLine = {
-    //     provider_id: Liff.getProfile().userId,
-    //     provider_name: "line",
-    //     accessToken: Liff.getAccessToken()
-    //   };
-    //   const JWT = await axios.post(
-    //     `${window.env.PATH_AUTH}/auth/login`,
-    //     sendLine
-    //   );
-    //   if (!JWT) {
-    //     window.location.href = `https://google.com`;
-    //   } else {
-    //     Cookies.set("JWT", JWT);
-    //     questions = await axios({
-    //       method: "post",
-    //       url: `${window.env.PATH_BE}/questions`,
-    //       data: {
-    //         JWT: Cookies.get("JWT")
-    //       }
-    //     });
-    //   }
-    // } else {
-    //   questions = await axios({
-    //     method: "post",
-    //     url: `${window.env.PATH_BE}/questions`,
-    //     data: {
-    //       JWT: Cookies.get("JWT")
-    //     }
-    //   });
-    // }
-    // if (questions.data === "getquestionsProblem") {
-    //   window.location.reload();
-    // }
+    if (!Cookies.get("JWT")) {
+      window.location.href = `${window.env.PATH_BE}/connect`;
+    } else {
+      this.setState({
+        loading: "none"
+      });
+    }
   };
   render() {
-    // if (Cookies.get("JWT")) {
-    //   this.setState({
-    //     loading: "none"
-    //   });
-    // }
     return (
       <Body>
-        {/* <Loading zindex={3} loading={this.state.loading} /> */}
+        <Loading zindex={3} loading={this.state.loading} />
         <Navbar zindex={2} />
         <Content className="container">
           <div className="container">
