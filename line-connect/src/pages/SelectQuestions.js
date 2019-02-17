@@ -62,7 +62,7 @@ class ShowQuestions extends Component {
   render() {
     return (
       <Body>
-        <Loading zindex={3} loading={this.state.loading} />
+        <Loading zindex={3} loadingout={this.state.loading} />
         <Navbar zindex={2} />
         <Content className="container">
           <div className="container">
