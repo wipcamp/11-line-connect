@@ -25,6 +25,8 @@ class ConnectPage extends Component {
     return (
       <div>
         {Cookies.get("act")}
+        {this.state.token}
+        {this.state.userid}
         <button onClick={this.handleConnect}>Click</button>
       </div>
     );
