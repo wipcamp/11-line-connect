@@ -44,13 +44,6 @@ class ShowQuestions extends Component {
     window.location.href = `/question?item=${props}`;
   }
   componentDidMount = async () => {
-    const Liff = window.liff;
-    const accessToken = Liff.getAccessToken();
-    const userId = Liff.getProfile().userId;
-    this.setState({
-      accesstoken: accessToken,
-      userid: userId
-    });
     // let questions;
     // if (!Cookies.get("JWT")) {
     //   const sendLine = {
@@ -88,6 +81,13 @@ class ShowQuestions extends Component {
     // }
   };
   render() {
+    const Liff = window.liff;
+    let accessToken = Liff.getAccessToken();
+    let userId = Liff.getProfile().userId;
+    this.setState({
+      accesstoken: accessToken,
+      userid: userId
+    });
     // if (Cookies.get("JWT")) {
     //   this.setState({
     //     loading: "none"
