@@ -21,13 +21,12 @@ class ErrorNotRegister extends Component {
     this.setState({
       profile: profileTemp
     });
-    console.log(this.state.profile)
   };
   render() {
     return (
       <Body>
         <p>{Cookies.get("accessToken")}</p>
-        <p>{this.state.accesstoken}</p>
+        <p>{this.state.profile}</p>
         <button onClick={this.handleClose} />
       </Body>
     );
