@@ -15,29 +15,32 @@ class ErrorNotRegister extends Component {
     accesstoken: ""
   };
   handleClose = () => {
-    const token = Liff.getAccessToken();
-    Liff.sendMessages(
-      [
-        {
-          "type": "action",
-          "action": {
-            "type": "cameraRoll",
-            "label": "Send photo"
-          }
-        },
-        {
-          "type": "action",
-          "action": {
-            "type": "camera",
-            "label": "Open camera"
-          }
-        }
-      ]
-    )
+    const token = Liff.getAccessToken(); 
     this.setState({
       accesstoken: token
     });
-  };
+    Liff.getProfile().then(function (profile) {
+      Liff.sendMessages([
+      {
+        type: 'image',
+        originalContentUrl: 'https://' + document.domain + '/imgs/' + res + '.jpg',
+        previewImageUrl: 'https://' + document.domain + '/imgs/' + res + '_240.jpg'
+      },
+      {
+        type: 'text',
+        text: 'From:' + profile.displayName
+      }
+      ]).then(function () {
+        Liff.closeWindow();
+      }).catch(function (error) {
+      window.alert('Error sending message: ' + error.message);
+      });
+    }).catch(function (error) {
+      window.alert("Error getting profile: " + error.message);
+    });
+  }
+
+
   render() {
     return (
       <Body>
