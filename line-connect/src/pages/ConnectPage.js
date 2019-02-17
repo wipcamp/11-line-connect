@@ -10,12 +10,15 @@ const Liff = window.liff;
 // `;
 class ConnectPage extends Component {
   state = {
-    token: ""
+    token: "",
+    userid: ""
   };
   handleConnect = () => {
     let accesstoken = Liff.getAccessToken();
+    let userid = Liff.getProfile().userId;
     this.setState({
-      token: accesstoken
+      token: accesstoken,
+      userid: userid
     });
   };
   render() {
