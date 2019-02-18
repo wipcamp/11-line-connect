@@ -2,9 +2,30 @@ import React, { Component } from "react";
 import axios from "axios";
 import styled from "styled-components";
 import Cookies from "js-cookie";
-import { FaJournalWhills } from "react-icons/fa";
+import { FaLine } from "react-icons/fa";
 
 const Liff = window.liff;
+
+const Body = styled.body`
+  height: 100vh;
+  background-image: url("/images/BG_Facebook.png"),
+    linear-gradient(#ffffff, #f8e9d6);
+  background-size: 100%;
+  background-position: bottom;
+  background-repeat: no-repeat;
+`;
+
+const Logo = styled.img`
+  width: 100vw;
+`;
+
+const Button = styled.button`
+  background-color: #09b900;
+  border-radius: 100px;
+  font-size: 18px;
+  color: white;
+  border: none;
+`;
 
 class ConnectPage extends Component {
   state = {
@@ -37,11 +58,15 @@ class ConnectPage extends Component {
   render() {
     return (
       <div>
-        <p>jwt : {this.state.tokens}</p>
-        <p>wip id : {this.state.wipid}</p>
-        <p>token : {this.state.token}</p>
-        <p>user id : {this.state.userId}</p>
-        <button onClick={this.handleConnect}>Click</button>
+        <Body>
+          <Logo src="/images/logo.png" className="mt-5" />
+          <div className="text-center" style={{ marginTop: "80vw" }}>
+            <Button className="p-2 pl-3 pr-3" onClick={this.handleConnect}>
+              <FaLine className="mr-3" />
+              เข้าสู่ระบบด้วย Line
+            </Button>
+          </div>
+        </Body>
       </div>
     );
   }
