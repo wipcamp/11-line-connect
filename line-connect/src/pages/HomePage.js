@@ -35,33 +35,6 @@ class Home extends Component {
   };
 
   componentDidMount = async () => {
-    if (!Cookies.get("codeLine")) {
-      const url = await new URLSearchParams(window.location.search);
-      await Cookies.set("codeLine", url.get("code"));
-    }
-    const responseLine = await axios({
-      method: "post",
-      url: `${window.env.PATH_BE}/auth`,
-      data: {
-        code: Cookies.get("codeLine")
-      }
-    });
-    line = responseLine.data;
-    Cookies.set("provider_id", line.userId);
-    Cookies.set("accessToken", line.accessToken);
-    const sendLine = {
-      provider_id: line.userId,
-      provider_name: "line",
-      accessToken: line.accessToken
-    };
-    let JWT = await axios.post(`${window.env.PATH_AUTH}/auth/login`, sendLine);
-    if (JWT.data.token) {
-      console.log("auth in", JWT);
-      Cookies.remove("codeLine");
-      Cookies.set("JWT", JWT.data.token);
-      Cookies.set("wip_id", JWT.data.wip_id);
-      window.location.href = `${window.env.PATH_FE}/status/connected`;
-    }
     setTimeout(() => {
       this.setState({
         loading: "none"
@@ -72,10 +45,6 @@ class Home extends Component {
 
   responseFacebook = async res => {
     const facebook = res;
-    Cookies.remove("codeLine");
-    console.log("auth in line", line);
-    console.log("auth in face", res);
-
     try {
       await axios({
         method: "post",
@@ -83,25 +52,29 @@ class Home extends Component {
         data: {
           provider_fb: facebook.userID,
           accessTokenFB: facebook.accessToken,
-          provider_line: Cookies.get("provider_id"),
+          provider_line: Cookies.get("userId"),
           accessTokenLine: Cookies.get("accessToken")
         }
       }).then(async res => {
-        const sendLine = {
-          provider_id: Cookies.get("provider_id"),
-          provider_name: "line",
-          accessToken: Cookies.get("accessToken")
-        };
         if (await res.data.status) {
-          Cookies.remove("provider_id");
-          // Cookies.remove("accessToken")
-          let JWT = await axios.post(
-            `${window.env.PATH_AUTH}/auth/login`,
-            sendLine
-          );
-          Cookies.set("JWT", JWT.data.token);
-          Cookies.set("wip_id", JWT.data.wip_id);
-          window.location.href = `${window.env.PATH_FE}/status/success`;
+          const line = {
+            provider_id: Cookies.get("userId"),
+            provider_name: "line",
+            accessToken: Cookies.get("accessToken")
+          };
+          await axios
+            .post(`${window.env.PATH_AUTH}/auth/login`, line)
+            .then(JWT => {
+              if (JWT) {
+                Cookies.set("JWT", JWT.data.token);
+                Cookies.set("wip_id", JWT.data.wip_id);
+                Cookies.remove("userId");
+                Cookies.remove("accessToken");
+                window.location.href = `${window.env.PATH_FE}/selectquestion`;
+              } else {
+                window.location.href = `${window.env.PATH_FE}/error`;
+              }
+            });
         } else if (
           (await res.data.error) ===
           "Please Register By Facebook Account Before Connect With Line"
@@ -114,11 +87,6 @@ class Home extends Component {
         }
       });
     } catch (error) {
-      if (!line) {
-        window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1638650000&redirect_uri=${
-          window.env.PATH_FE
-        }&state=asdasd&scope=openid%20profile`;
-      }
       window.location.href = `${window.env.PATH_FE}/status/error`;
     }
   };
