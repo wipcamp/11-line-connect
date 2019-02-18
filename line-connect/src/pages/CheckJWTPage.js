@@ -15,21 +15,22 @@ class ConnectPage extends Component {
   };
   handleConnect = async () => {
     const accesstoken = await Liff.getAccessToken();
-    const userid = await Liff.getProfile().userId;
+    const profile = await Liff.getProfile();
+
     this.setState({
       token: accesstoken,
-      userId: userid
+      userId: profile.userId
     });
-    const line = {
-      provider_id: userid,
-      provider_name: "line",
-      accessToken: accesstoken
-    };
-    await axios.post(`${window.env.PATH_AUTH}/auth/login`, line).then(JWT => {
-      this.setState({
-        tokens: JWT.data.token,
-        wipid: JWT.data.wip_id
-      });
+    // const line = {
+    //   provider_id: userid,
+    //   provider_name: "line",
+    //   accessToken: accesstoken
+    // };
+    // await axios.post(`${window.env.PATH_AUTH}/auth/login`, line).then(JWT => {
+    //   this.setState({
+    //     tokens: JWT.data.token,
+    //     wipid: JWT.data.wip_id
+    //   });
       // if (JWT.data.wip_id) {
       //   Cookies.set("JWT", JWT.data.token);
       //   Cookies.set("wip_id", JWT.data.wip_id);
