@@ -15,8 +15,8 @@ class ConnectPage extends Component {
     userid: ""
   };
   handleConnect = async () => {
-    const accesstoken = Liff.getAccessToken();
-    const userid = Liff.getProfile().userId;
+    const accesstoken = await Liff.getAccessToken();
+    const userid = await Liff.getProfile().userId;
     const line = {
       provider_id: userid,
       provider_name: "line",
@@ -30,7 +30,7 @@ class ConnectPage extends Component {
       } else {
         Cookies.set("accessToken", accesstoken);
         Cookies.set("userId", userid);
-        window.location.href = `${window.env.PATH_FE}/selectquestion`;
+        window.location.href = `${window.env.PATH_FE}/`;
       }
     });
   };
