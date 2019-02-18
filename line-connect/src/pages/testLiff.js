@@ -63,8 +63,8 @@ class ErrorNotRegister extends Component {
   handleClearCookies = () => {
     Cookies.remove("JWT");
     this.setState({
-      accesstoken: "clear success";
-    })
+      accesstoken: "clear success"
+    });
   };
 
   render() {
