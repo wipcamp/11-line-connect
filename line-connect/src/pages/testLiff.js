@@ -15,53 +15,64 @@ class ErrorNotRegister extends Component {
     accesstoken: ""
   };
   handleClose = () => {
-    const token = Liff.getAccessToken(); 
+    const token = Liff.getAccessToken();
     this.setState({
       accesstoken: token
     });
-    Liff.getProfile().then(function (profile) {
-      Liff.sendMessages([
-      {
-        type: "flex",
-  altText: "this is a flex message",
-  contents: {
-    type: "bubble",
-  body: {
-      type: "box",
-      layout: "vertical",
-      contents: [
-        {
-          type: "text",
-          text: "hello"
-        },
-        {
-          type: "text",
-          text: "world"
-        }
-      ]
-    }
-  }
-      },
-      {
-        type: 'text',
-        text: 'From:' + profile.displayName
-      }
-      ]).then(function () {
-        Liff.closeWindow();
-      }).catch(function (error) {
-      window.alert('Error sending message: ' + error.message);
+    Liff.getProfile()
+      .then(function(profile) {
+        Liff.sendMessages([
+          {
+            type: "flex",
+            altText: "this is a flex message",
+            contents: {
+              type: "bubble",
+              body: {
+                type: "box",
+                layout: "vertical",
+                contents: [
+                  {
+                    type: "text",
+                    text: "hello"
+                  },
+                  {
+                    type: "text",
+                    text: "world"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            type: "text",
+            text: "From:" + profile.displayName
+          }
+        ])
+          .then(function() {
+            Liff.closeWindow();
+          })
+          .catch(function(error) {
+            window.alert("Error sending message: " + error.message);
+          });
+      })
+      .catch(function(error) {
+        window.alert("Error getting profile: " + error.message);
       });
-    }).catch(function (error) {
-      window.alert("Error getting profile: " + error.message);
-    });
-  }
+  };
 
+  handleClearCookies = () => {
+    Cookies.remove("JWT");
+    this.setState({
+      accesstoken: "clear success";
+    })
+  };
 
   render() {
     return (
       <Body>
         <p>{this.state.accesstoken}</p>
         <button onClick={this.handleClose} />
+        <button onClick={this.handleClearCookies}>clear cookies</button>
       </Body>
     );
   }
