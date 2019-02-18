@@ -31,16 +31,16 @@ class ConnectPage extends Component {
     //     tokens: JWT.data.token,
     //     wipid: JWT.data.wip_id
     //   });
-      // if (JWT.data.wip_id) {
-      //   Cookies.set("JWT", JWT.data.token);
-      //   Cookies.set("wip_id", JWT.data.wip_id);
-      //   window.location.href = `${window.env.PATH_FE}/selectquestion`;
-      // } else {
-      //   Cookies.set("accessToken", accesstoken);
-      //   Cookies.set("userId", userid);
-      //   window.location.href = `${window.env.PATH_FE}/`;
-      // }
-    });
+    // if (JWT.data.wip_id) {
+    //   Cookies.set("JWT", JWT.data.token);
+    //   Cookies.set("wip_id", JWT.data.wip_id);
+    //   window.location.href = `${window.env.PATH_FE}/selectquestion`;
+    // } else {
+    //   Cookies.set("accessToken", accesstoken);
+    //   Cookies.set("userId", userid);
+    //   window.location.href = `${window.env.PATH_FE}/`;
+    // }
+    // });
   };
   render() {
     return (
