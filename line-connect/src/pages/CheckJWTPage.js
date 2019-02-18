@@ -17,30 +17,22 @@ class ConnectPage extends Component {
     const accesstoken = await Liff.getAccessToken();
     const profile = await Liff.getProfile();
 
-    this.setState({
-      token: accesstoken,
-      userId: profile.userId
+    const line = {
+      provider_id: profile.userId,
+      provider_name: "line",
+      accessToken: accesstoken
+    };
+    await axios.post(`${window.env.PATH_AUTH}/auth/login`, line).then(JWT => {
+      if (JWT.data.wip_id) {
+        Cookies.set("JWT", JWT.data.token);
+        Cookies.set("wip_id", JWT.data.wip_id);
+        window.location.href = `${window.env.PATH_FE}/selectquestion`;
+      } else {
+        Cookies.set("accessToken", accesstoken);
+        Cookies.set("userId", profile.userId);
+        window.location.href = `${window.env.PATH_FE}/`;
+      }
     });
-    // const line = {
-    //   provider_id: userid,
-    //   provider_name: "line",
-    //   accessToken: accesstoken
-    // };
-    // await axios.post(`${window.env.PATH_AUTH}/auth/login`, line).then(JWT => {
-    //   this.setState({
-    //     tokens: JWT.data.token,
-    //     wipid: JWT.data.wip_id
-    //   });
-    // if (JWT.data.wip_id) {
-    //   Cookies.set("JWT", JWT.data.token);
-    //   Cookies.set("wip_id", JWT.data.wip_id);
-    //   window.location.href = `${window.env.PATH_FE}/selectquestion`;
-    // } else {
-    //   Cookies.set("accessToken", accesstoken);
-    //   Cookies.set("userId", userid);
-    //   window.location.href = `${window.env.PATH_FE}/`;
-    // }
-    // });
   };
   render() {
     return (
