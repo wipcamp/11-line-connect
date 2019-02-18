@@ -9,7 +9,7 @@ const Liff = window.liff;
 class ConnectPage extends Component {
   state = {
     token: "",
-    userid: "",
+    userId: "",
     tokens: "",
     wipid: ""
   };
@@ -18,7 +18,7 @@ class ConnectPage extends Component {
     const userid = await Liff.getProfile().userId;
     this.setState({
       token: accesstoken,
-      userid: userid
+      userId: userid
     });
     const line = {
       provider_id: userid,
@@ -47,7 +47,7 @@ class ConnectPage extends Component {
         <p>jwt : {this.state.tokens}</p>
         <p>wip id : {this.state.wipid}</p>
         <p>token : {this.state.token}</p>
-        <p>user id : {this.state.userid}</p>
+        <p>user id : {this.state.userId}</p>
         <button onClick={this.handleConnect}>Click</button>
       </div>
     );
