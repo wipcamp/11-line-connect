@@ -15,6 +15,10 @@ class ConnectPage extends Component {
   handleConnect = async () => {
     const accesstoken = await Liff.getAccessToken();
     const userid = await Liff.getProfile().userId;
+    this.setState({
+      token: accesstoken,
+      userid: userid
+    });
     const line = {
       provider_id: userid,
       provider_name: "line",
@@ -41,6 +45,8 @@ class ConnectPage extends Component {
       <div>
         {this.state.tokens}
         {this.state.wipid}
+        {this.state.token}
+        {this.state.userid}
         <button onClick={this.handleConnect}>Click</button>
       </div>
     );
