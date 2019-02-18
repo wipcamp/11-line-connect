@@ -65,7 +65,7 @@ class Home extends Component {
           await axios
             .post(`${window.env.PATH_AUTH}/auth/login`, line)
             .then(JWT => {
-              if (JWT) {
+              if (JWT.data.wip_id) {
                 Cookies.set("JWT", JWT.data.token);
                 Cookies.set("wip_id", JWT.data.wip_id);
                 Cookies.remove("userId");
@@ -95,7 +95,7 @@ class Home extends Component {
     return (
       <div className="App">
         <Body>
-          <Loading loadingout={this.state.loading} />
+          <Loading zindex={4} loadingout={this.state.loading} />
           <div
             className="text-center"
             style={{
