@@ -25,6 +25,8 @@ class ConnectPage extends Component {
       accessToken: accesstoken
     };
     await axios.post(`${window.env.PATH_AUTH}/auth/login`, line).then(JWT => {
+      Cookies.set("JWT", JWT.data.token);
+      Cookies.set("wip_id", JWT.data.wip_id);
       if (JWT.data.wip_id) {
         Cookies.set("JWT", JWT.data.token);
         Cookies.set("wip_id", JWT.data.wip_id);
