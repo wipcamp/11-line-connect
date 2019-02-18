@@ -46,8 +46,8 @@ class ConnectPage extends Component {
       <div>
         <p>jwt : {this.state.tokens}</p>
         <p>wip id : {this.state.wipid}</p>
-        <p>{this.state.token}</p>
-        {this.state.userid}
+        <p>token : {this.state.token}</p>
+        <p>user id : {this.state.userid}</p>
         <button onClick={this.handleConnect}>Click</button>
       </div>
     );
