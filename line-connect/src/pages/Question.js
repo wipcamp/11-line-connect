@@ -7,7 +7,7 @@ import Navbar from "../Components/Navbar";
 require("dotenv").config();
 
 const Body = styled.body`
-  height: ${props => props.bodyHeight};
+  min-height: ${props => props.bodyHeight};
   background-image: url("/images/BG_Q&A.png"), linear-gradient(#ffffff, #f8e9d6);
   background-size: 100%;
   background-position: bottom;
@@ -17,6 +17,9 @@ const ButtonBack = styled.button`
   border: 1px solid #304151;
   background: transparent;
   color: #304151;
+  @media only screen and (max-height: 600px) {
+    margin-bottom: 150px;
+  }
 `;
 const ButtonAnswer = styled.button`
   border: 1px solid #304151;
