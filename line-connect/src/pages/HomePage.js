@@ -70,7 +70,13 @@ class Home extends Component {
                 Cookies.set("wip_id", JWT.data.wip_id);
                 Cookies.remove("userId");
                 Cookies.remove("accessToken");
-                window.location.href = `${window.env.PATH_FE}/selectquestion`;
+                if (Cookies.get("redirecturl")) {
+                  let redirect = Cookies.get("redirecturl");
+                  Cookies.remove("redirecturl");
+                  window.location.href = `${window.env.PATH_FE}/${redirect}`;
+                } else {
+                  window.location.href = `${window.env.PATH_FE}/selectquestion`;
+                }
               } else {
                 window.location.href = `${window.env.PATH_FE}/error`;
               }

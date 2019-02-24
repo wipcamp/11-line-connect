@@ -36,6 +36,13 @@ class Question extends Component {
   componentDidMount = async () => {
     const url = new URLSearchParams(window.location.search);
     this.setState({ questionid: `${url.get("item")}` });
+    if (!Cookie.get("JWT")) {
+      Cookie.set(
+        "redirecturl",
+        `${window.env.PATH_FE}/question?item=${url.get("item")}`
+      );
+      window.location.href = `${window.env.PATH_FE}/checkjwt`;
+    }
     const questionsformDB = await axios({
       method: "post",
       url: `${window.env.PATH_BE}/question`,
@@ -45,10 +52,11 @@ class Question extends Component {
       }
     });
     if (questionsformDB.data === "getquestionsProblem") {
-      Cookie.set("redirecturl", `${window.env.PATH_FE}/selectquestion`);
-      window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1638650000&redirect_uri=${
-        window.env.PATH_FE
-      }&state=asdasd&scope=openid%20profile`;
+      Cookie.set(
+        "redirecturl",
+        `${window.env.PATH_FE}/question?item=${url.get("item")}`
+      );
+      window.location.href = `${window.env.PATH_FE}/checkjwt`;
     }
     if (questionsformDB.data.answer[0]) {
       this.setState({
@@ -102,12 +110,6 @@ class Question extends Component {
   };
 
   render() {
-    if (!Cookie.get("JWT")) {
-      Cookie.set("redirecturl", `${window.env.PATH_FE}/selectquestion`);
-      window.location.href = `https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=1638650000&redirect_uri=${
-        window.env.PATH_FE
-      }&state=asdasd&scope=openid%20profile`;
-    }
     return (
       <Body>
         <Navbar />
