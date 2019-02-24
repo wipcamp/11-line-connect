@@ -7,14 +7,11 @@ import Navbar from "../Components/Navbar";
 require("dotenv").config();
 
 const Body = styled.div`
-  min-height: 100vh;
-  background-image: linear-gradient(#ffffff, #f8e9d6);
-`;
-const ImgBackground = styled.img`
-  position: fixed;
-  /* margin-top: 80px; */
-  bottom: 0;
-  width: 100vw;
+  height: 100vh;
+  background-image: url("/images/BG_Q&A.png"), linear-gradient(#ffffff, #f8e9d6);
+  background-size: 100%;
+  background-position: bottom;
+  background-repeat: no-repeat;
 `;
 const ButtonBack = styled.button`
   border: 1px solid #304151;
@@ -113,7 +110,6 @@ class Question extends Component {
     }
     return (
       <Body>
-        <ImgBackground src="/images/BG_Q&A.png" />
         <Navbar />
         <div style={{ fontWeight: "bold" }}>
           <div className="container mt-4">
