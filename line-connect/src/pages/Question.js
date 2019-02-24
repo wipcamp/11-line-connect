@@ -6,7 +6,7 @@ import Cookie from "js-cookie";
 import Navbar from "../Components/Navbar";
 require("dotenv").config();
 
-const Body = styled.div`
+const Body = styled.body`
   /* height: 100vh; */
   background-image: url("/images/BG_Q&A.png"), linear-gradient(#ffffff, #f8e9d6);
   background-size: 100%;
