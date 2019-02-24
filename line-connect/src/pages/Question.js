@@ -7,9 +7,7 @@ import Navbar from "../Components/Navbar";
 require("dotenv").config();
 
 const Body = styled.body`
-  /* height: ${props => props.bodyHeight}; */
-  min-height: 100vh;
-  height: 100%;
+  height: ${props => props.bodyHeight};
   background-image: url("/images/BG_Q&A.png"), linear-gradient(#ffffff, #f8e9d6);
   background-size: 100%;
   background-position: bottom;
@@ -34,11 +32,11 @@ class Question extends Component {
     statusAns: "disabled",
     statusEdit: "",
     button: "บันทึก",
-    height: 0
+    height: ""
   };
   componentDidMount = async () => {
     this.setState({
-      height: window.innerHeight
+      height: window.innerHeight + "px"
     });
     const url = new URLSearchParams(window.location.search);
     this.setState({ questionid: `${url.get("item")}` });
@@ -116,7 +114,7 @@ class Question extends Component {
   };
   render() {
     return (
-      <Body>
+      <Body bodyHeight={this.state.height}>
         <Navbar />
         <div style={{ fontWeight: "bold" }}>
           <div className="container mt-4">
