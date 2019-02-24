@@ -7,7 +7,9 @@ import Navbar from "../Components/Navbar";
 require("dotenv").config();
 
 const Body = styled.body`
-  height: ${props => props.bodyHeight};
+  /* height: ${props => props.bodyHeight}; */
+  min-height: 100vh;
+  height: 100%;
   background-image: url("/images/BG_Q&A.png"), linear-gradient(#ffffff, #f8e9d6);
   background-size: 100%;
   background-position: bottom;
@@ -114,7 +116,7 @@ class Question extends Component {
   };
   render() {
     return (
-      <Body bodyHeight={this.state.height}>
+      <Body>
         <Navbar />
         <div style={{ fontWeight: "bold" }}>
           <div className="container mt-4">
