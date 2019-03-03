@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Cookies from "js-cookie";
 import Navbar from "../Components/Navbar";
 import Loading from "../Components/loading";
-import Swal from "sweetalert";
+import SweetAlert from "sweetalert";
 require("dotenv").config();
 
 const Topic = styled.p`
@@ -48,6 +48,9 @@ class ShowQuestions extends Component {
   handleQuestion(props) {
     window.location.href = `/question?item=${props}`;
   }
+  handlePop = () => {
+    SweetAlert("ขออภัย", "ระบบส่วนนี้ยังไม่พร้อมใช้งาน", "error");
+  };
   componentDidMount = async () => {
     const heightDiv = this.divElement.clientHeight + 100;
     const heightWeb = window.innerHeight;
@@ -82,18 +85,9 @@ class ShowQuestions extends Component {
             <Topic className="">ข้อมูลส่วนตัว</Topic>
             <div className="container">
               <div className="col-12">
-                <Button
-                  onClick={() => this.setState({ show: true })}
-                  className="btn"
-                >
+                <Button onClick={this.handlePop} className="btn">
                   กรอกประวัติส่วนตัว
                 </Button>
-                <Swal
-                  show={this.state.show}
-                  title="Demo"
-                  text="SweetAlert in React"
-                  onConfirm={() => this.setState({ show: false })}
-                />
               </div>
             </div>
           </div>
