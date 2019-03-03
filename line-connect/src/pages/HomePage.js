@@ -72,7 +72,7 @@ class Home extends Component {
                 Cookies.remove("accessToken");
                 if (Cookies.get("redirecturl")) {
                   let redirect = Cookies.get("redirecturl");
-                  Cookies.remove("redirecturl");
+                  // Cookies.remove("redirecturl");
                   window.location.href = `${window.env.PATH_FE}/${redirect}`;
                 } else {
                   window.location.href = `${window.env.PATH_FE}/selectquestion`;
