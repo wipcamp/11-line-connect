@@ -43,7 +43,8 @@ class ShowQuestions extends Component {
     loading: "block",
     accesstoken: "",
     userid: "",
-    show: ""
+    show: "",
+    height: ""
   };
   handleQuestion(props) {
     window.location.href = `/question?item=${props}`;

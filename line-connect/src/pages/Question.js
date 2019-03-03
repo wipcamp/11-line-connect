@@ -40,7 +40,7 @@ class Question extends Component {
   componentDidMount = async () => {
     const heightDiv = this.divElement.clientHeight + 100;
     const heightWeb = window.innerHeight;
-    const height = heightDiv + 100;
+    const height = heightDiv + 50;
     if (heightWeb > heightDiv) {
       await this.setState({
         height: window.innerHeight + "px"
