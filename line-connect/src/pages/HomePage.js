@@ -64,15 +64,15 @@ class Home extends Component {
           };
           await axios
             .post(`${window.env.PATH_AUTH}/auth/login`, line)
-            .then(JWT => {
+            .then(async JWT => {
               if (JWT.data.wip_id) {
                 Cookies.set("JWT", JWT.data.token);
                 Cookies.set("wip_id", JWT.data.wip_id);
                 Cookies.remove("userId");
                 Cookies.remove("accessToken");
                 if (Cookies.get("redirecturl")) {
-                  let redirect = Cookies.get("redirecturl");
-                  // Cookies.remove("redirecturl");
+                  let redirect = await Cookies.get("redirecturl");
+                  Cookies.remove("redirecturl");
                   window.location.href = `${window.env.PATH_FE}/${redirect}`;
                 } else {
                   window.location.href = `${window.env.PATH_FE}/selectquestion`;
