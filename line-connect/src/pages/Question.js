@@ -38,9 +38,18 @@ class Question extends Component {
     height: ""
   };
   componentDidMount = async () => {
-    this.setState({
-      height: window.innerHeight + "px"
-    });
+    const heightDiv = this.divElement.clientHeight + 100;
+    const heightWeb = window.innerHeight;
+    const height = heightDiv + 100;
+    if (heightWeb > heightDiv) {
+      await this.setState({
+        height: window.innerHeight + "px"
+      });
+    } else {
+      await this.setState({
+        height: height + "px"
+      });
+    }
     const url = new URLSearchParams(window.location.search);
     this.setState({ questionid: `${url.get("item")}` });
     if (!Cookie.get("JWT")) {
@@ -117,7 +126,10 @@ class Question extends Component {
   };
   render() {
     return (
-      <Body bodyHeight={this.state.height}>
+      <Body
+        ref={divElement => (this.divElement = divElement)}
+        bodyHeight={this.state.height}
+      >
         <Navbar />
         <div style={{ fontWeight: "bold" }}>
           <div className="container mt-4">

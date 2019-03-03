@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Authline from "../service/AuthLine";
-import axios from "axios";
 import Cookies from "js-cookie";
 import Navbar from "../Components/Navbar";
 import Loading from "../Components/loading";
+import Swal from "sweetalert";
 require("dotenv").config();
 
 const Topic = styled.p`
@@ -17,14 +16,12 @@ const Button = styled.button`
   width: 100%;
   font-weight: bold;
 `;
-const Body = styled.div`
-  min-height: 100vh;
-  background-image: linear-gradient(#ffffff, #f8e9d6);
-`;
-const Content = styled.div`
-  position: relative;
-  z-index: 1;
-  font-weight: bold;
+const Body = styled.body`
+  min-height: ${props => props.bodyHeight};
+  background-image: url("/images/BG_Q&A.png"), linear-gradient(#ffffff, #f8e9d6);
+  background-size: 100%;
+  background-position: bottom;
+  background-repeat: no-repeat;
 `;
 const ImgBackground = styled.img`
   position: absolute;
@@ -45,12 +42,25 @@ class ShowQuestions extends Component {
     ],
     loading: "block",
     accesstoken: "",
-    userid: ""
+    userid: "",
+    show: ""
   };
   handleQuestion(props) {
     window.location.href = `/question?item=${props}`;
   }
   componentDidMount = async () => {
+    const heightDiv = this.divElement.clientHeight + 100;
+    const heightWeb = window.innerHeight;
+    const height = heightDiv + 100;
+    if (heightWeb > heightDiv) {
+      await this.setState({
+        height: window.innerHeight + "px"
+      });
+    } else {
+      await this.setState({
+        height: height + "px"
+      });
+    }
     if (!Cookies.get("JWT")) {
       window.location.href = `${window.env.PATH_FE}/checkjwt`;
     } else {
@@ -61,15 +71,29 @@ class ShowQuestions extends Component {
   };
   render() {
     return (
-      <Body>
+      <Body
+        ref={divElement => (this.divElement = divElement)}
+        bodyHeight={this.state.height}
+      >
         <Loading zindex={3} loadingout={this.state.loading} />
-        <Navbar zindex={2} />
-        <Content className="container">
+        <Navbar />
+        <div style={{ fontWeight: "bold" }} className="container">
           <div className="container">
             <Topic className="">ข้อมูลส่วนตัว</Topic>
             <div className="container">
               <div className="col-12">
-                <Button className="btn">กรอกประวัติส่วนตัว</Button>
+                <Button
+                  onClick={() => this.setState({ show: true })}
+                  className="btn"
+                >
+                  กรอกประวัติส่วนตัว
+                </Button>
+                <Swal
+                  show={this.state.show}
+                  title="Demo"
+                  text="SweetAlert in React"
+                  onConfirm={() => this.setState({ show: false })}
+                />
               </div>
             </div>
           </div>
@@ -94,8 +118,7 @@ class ShowQuestions extends Component {
               </div>
             </div>
           </div>
-        </Content>
-        <ImgBackground src="/images/BG_Q&A.png" />
+        </div>
       </Body>
     );
   }
