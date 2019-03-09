@@ -53,10 +53,7 @@ class Question extends Component {
     const url = new URLSearchParams(window.location.search);
     this.setState({ questionid: `${url.get("item")}` });
     if (!Cookie.get("JWT")) {
-      Cookie.set(
-        "redirecturl",
-        `${window.env.PATH_FE}/question?item=${url.get("item")}`
-      );
+      Cookie.set("redirecturl", `question?item=${url.get("item")}`);
       window.location.href = `${window.env.PATH_FE}/checkjwt`;
     }
     const questionsformDB = await axios({
@@ -68,10 +65,7 @@ class Question extends Component {
       }
     });
     if (questionsformDB.data === "getquestionsProblem") {
-      Cookie.set(
-        "redirecturl",
-        `${window.env.PATH_FE}/question?item=${url.get("item")}`
-      );
+      Cookie.set("redirecturl", `question?item=${url.get("item")}`);
       window.location.href = `${window.env.PATH_FE}/checkjwt`;
     }
     if (questionsformDB.data.answer[0]) {
