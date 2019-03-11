@@ -124,7 +124,7 @@ class Home extends Component {
             }}
           >
             <FacebookLogin
-              redirectUri="https://line-connect.freezer.in.th/"
+              redirectUri="https://line-connect.wip.camp/"
               appId="293604811359850"
               callback={this.responseFacebook}
               render={renderProps => (
