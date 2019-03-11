@@ -30,6 +30,9 @@ const ButtonAnswer = styled.button`
 `;
 
 class ErrorToken extends Component {
+  componentDidMount = () => {
+    document.title = "Error";
+  };
   handleItim = () => {
     window.location.href = `${window.env.PATH_ITIM}`;
   };

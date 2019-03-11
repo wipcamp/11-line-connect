@@ -34,6 +34,9 @@ class ConnectPage extends Component {
     tokens: "",
     wipid: ""
   };
+  componentDidMount = () => {
+    document.title = "Login Line";
+  };
   handleConnect = async () => {
     const accesstoken = await Liff.getAccessToken();
     const profile = await Liff.getProfile();
@@ -65,7 +68,6 @@ class ConnectPage extends Component {
     return (
       <div>
         <Body>
-          <title>Login Line</title>
           <Logo src="/images/logo.png" className="mt-5" />
           <div className="text-center" style={{ marginTop: "80vw" }}>
             <Button className="p-2 pl-3 pr-3" onClick={this.handleConnect}>

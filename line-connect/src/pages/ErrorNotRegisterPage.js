@@ -28,6 +28,9 @@ const ButtonAnswer = styled.button`
 `;
 
 class ErrorNotRegister extends Component {
+  componentDidMount = () => {
+    document.title = "Error";
+  };
   handleItim = () => {
     window.location.href = `${window.env.PATH_ITIM}`;
   };
@@ -37,7 +40,6 @@ class ErrorNotRegister extends Component {
   render() {
     return (
       <Body>
-        <title>Error</title>
         <div className="container p-5">
           <Box className="mt-5 p-5 text-center">
             <p>

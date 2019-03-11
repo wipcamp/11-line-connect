@@ -38,6 +38,7 @@ class Question extends Component {
     height: ""
   };
   componentDidMount = async () => {
+    document.title = "Questions";
     const heightDiv = this.divElement.clientHeight + 100;
     const heightWeb = window.innerHeight;
     const height = heightDiv + 50;
@@ -124,7 +125,6 @@ class Question extends Component {
         ref={divElement => (this.divElement = divElement)}
         bodyHeight={this.state.height}
       >
-        <title>Questions</title>
         <Navbar />
         <div style={{ fontWeight: "bold" }}>
           <div className="container mt-4">

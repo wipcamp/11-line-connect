@@ -35,6 +35,7 @@ class Home extends Component {
   };
 
   componentDidMount = async () => {
+    document.title = "Login Line";
     setTimeout(() => {
       this.setState({
         loading: "none"
@@ -101,7 +102,6 @@ class Home extends Component {
     return (
       <div className="App">
         <Body>
-          <title>Login Facebook</title>
           <Loading zindex={4} loadingout={this.state.loading} />
           <div
             className="text-center"
