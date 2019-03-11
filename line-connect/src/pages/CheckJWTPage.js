@@ -34,6 +34,9 @@ class ConnectPage extends Component {
     tokens: "",
     wipid: ""
   };
+  componentDidMount = () => {
+    document.title = "Login Line";
+  };
   handleConnect = async () => {
     const accesstoken = await Liff.getAccessToken();
     const profile = await Liff.getProfile();

@@ -35,6 +35,7 @@ class Home extends Component {
   };
 
   componentDidMount = async () => {
+    document.title = "Login Facebook";
     setTimeout(() => {
       this.setState({
         loading: "none"

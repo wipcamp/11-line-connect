@@ -8,7 +8,6 @@ import ErrorNotRegisterPage from "./pages/ErrorNotRegisterPage";
 import ErrorPage from "./pages/ErrorPage";
 import SelectQuestion from "./pages/SelectQuestions";
 import Question from "./pages/Question";
-import TestLiff from "./pages/testLiff";
 import EditProfile1 from "./pages/EditProfile1Page";
 import EditProfile2 from "./pages/EditProfile2Page";
 import EditProfile3 from "./pages/EditProfile3Page";
@@ -29,7 +28,6 @@ class Routes extends React.Component {
           />
           <Route path="/selectquestion" component={SelectQuestion} />
           <Route path="/question" component={Question} />
-          <Route path="/testliff" component={TestLiff} />
           <Route path="/editprofile1" component={EditProfile1} />
           <Route path="/editprofile2" component={EditProfile2} />
           <Route path="/editprofile3" component={EditProfile3} />

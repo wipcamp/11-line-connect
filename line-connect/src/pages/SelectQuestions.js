@@ -53,6 +53,7 @@ class ShowQuestions extends Component {
     SweetAlert("ขออภัย", "ระบบส่วนนี้ยังไม่พร้อมใช้งาน", "error");
   };
   componentDidMount = async () => {
+    document.title = "Personal Information & Questions";
     const heightDiv = this.divElement.clientHeight + 100;
     const heightWeb = window.innerHeight;
     const height = heightDiv + 50;
